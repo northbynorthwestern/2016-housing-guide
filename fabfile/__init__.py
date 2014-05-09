@@ -100,19 +100,19 @@ with fab render without any exceptions. Any file used
 by the site templates should be rendered by fab render.
 """
 @task
-def less():
+def sass():
     """
-    Render LESS files to CSS.
+    Render Sass files to CSS.
     """
-    for path in glob('less/*.less'):
+    for path in glob('sass/*.scss'):
         filename = os.path.split(path)[-1]
         name = os.path.splitext(filename)[0]
-        out_path = 'www/css/%s.less.css' % name
+        out_path = 'www/css/%s.sass.css' % name
 
         try:
-            local('node_modules/bin/lessc %s %s' % (path, out_path))
+            local('./bin/sassc %s %s' % (path, out_path))
         except:
-            print 'It looks like "lessc" isn\'t installed. Try running: "%s"' % NPM_INSTALL_COMMAND
+            print 'It looks like "sassc" sucks and you suck for using sass'
             raise
 
 @task
@@ -186,9 +186,9 @@ def render():
     from flask import g
 
     update_copy()
-    assets.sync()
+    # assets.sync()
     update_data()
-    less()
+    sass()
     jst()
 
     app_config_js()
@@ -374,7 +374,7 @@ def bootstrap():
 
     local(NPM_INSTALL_COMMAND)
 
-    assets.sync()
+    # assets.sync()
     update_copy()
     update_data()
 
@@ -405,12 +405,12 @@ def _deploy_to_s3(path='.gzip'):
 
     sync = 'aws s3 sync %s/ %s --acl "public-read" ' + exclude_flags + ' --cache-control "max-age=5" --region "us-east-1"'
     sync_gzip = 'aws s3 sync %s/ %s --acl "public-read" --content-encoding "gzip" --exclude "*" ' + include_flags + ' --cache-control "max-age=5" --region "us-east-1"'
-    sync_assets = 'aws s3 sync %s/ %s --acl "public-read" --cache-control "max-age=86400" --region "us-east-1"'
+    # sync_assets = 'aws s3 sync %s/ %s --acl "public-read" --cache-control "max-age=86400" --region "us-east-1"'
 
     for bucket in app_config.S3_BUCKETS:
         local(sync % (path, 's3://%s/%s/' % (bucket, app_config.PROJECT_SLUG)))
         local(sync_gzip % (path, 's3://%s/%s/' % (bucket, app_config.PROJECT_SLUG)))
-        local(sync_assets % ('www/assets/', 's3://%s/%s/assets/' % (bucket, app_config.PROJECT_SLUG)))
+        # local(sync_assets % ('www/assets/', 's3://%s/%s/assets/' % (bucket, app_config.PROJECT_SLUG)))
 
 def _gzip(in_path='www', out_path='.gzip'):
     """

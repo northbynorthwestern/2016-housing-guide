@@ -1,0 +1,172 @@
+{% extends "_base.html" %}
+
+{% block header_content %}
+
+<div id="header">
+    <div class="grid">
+        <div class="grid__item one-whole desk-two-thirds float-left">
+            <h1><a href="{% url 'guide.views.home' %}"><span class="smaller">The </span>Housing Guide</a></h1>
+        </div><!--
+     --><div class="grid__item one-whole desk-one-third">
+            <div id="search-container">
+      <select id="searchbox" name="" data-placeholder="Select a hall" single class="chosen-select">
+      <option></option>
+        {% for dorm in dorms %}
+        <option value="/housing/hall/{{ dorm.slug }}">{{ dorm.short_name }}</option>
+        {% endfor %}
+      </select>
+      <script type="text/javascript">
+        $('.chosen-select').chosen();
+        $('#searchbox').change(function() {
+            window.location.href = $(this).val();
+        });
+    </script>
+    </div>
+        </div>
+  <div style="clear: both;"></div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+    <div class="grid">
+        <div id="detail-main-container" class="grid__item one-whole desk-three-quarters float-right">
+            <div>
+                <h2>{{ dorm.name }}</h2>
+        <h3>{{ dorm.address }}</h3>
+                <p class="body-text reduced-width padding-top">{{ dorm.blurb }}</p>
+            </div>
+            <div class="padding-top">
+        <div id="photo-tab" class="tab float-left" >
+                    <img src="{% static 'img/photo-icon.png' %}">
+                    <h3>Photo</h3>
+                </div>
+
+                <div id="video-tab" class="tab float-left">
+          <img src="{% static 'img/video-icon.png' %}">
+                    <h3>Video</h3>
+                </div>
+                <div id="media-container" class="clear reduced-width">
+          <div class="rslides_container">
+          <ul class="rslides">
+              {% for image in dorm.get_slideshow %}
+                  <li class="image">
+                      <img src="{{image.url}}">
+                      {% if image.caption %}
+                          <span class="image-caption">{{ image.caption }}</span>
+                      {% endif %}
+                  </li>
+              {% endfor %}
+          </ul>
+          </div>
+                    <div id="embed-container">
+
+          </div>
+                </div>
+
+        <h3 class="padding-top hidden-desktop">Vital stats</h3>
+        <div class="grid padding-top hidden-desktop">
+          <div class="grid__item one-whole lap-one-third stats-item">
+            <p class="body-text">{{dorm.campus_side}} campus</p>
+            <p class="body-text"><span class="number">{{ dorm.dist_to_tech|floatformat }}</span> minute walk to Tech</p>
+            <p class="body-text"><span class="number">{{ dorm.dist_to_norris|floatformat }}</span> minute walk to Norris</p>
+            <p class="body-text"><span class="number">{{ dorm.dist_to_kresge|floatformat }}</span> minute walk to Kresge</p>
+            <p class="body-text"><span class="number">{{ dorm.dist_to_bk|floatformat }}</span> minute walk to Burger King</p>
+          </div><!--
+         --><div class="grid__item one-whole lap-one-third stats-item">
+            <p class="body-text"><span class="number">{{ dorm.doubles }}</span> doubles</p>
+            <p class="body-text">+ <span class="number">{{ dorm.singles }}</span> singles</p>
+            <p class="body-text">+ <span class="number">{{ dorm.triples }}</span> triples</p>
+            <p id="sum" class="body-text"><span class="number">{{ dorm.size }}</span></span> residents</p>
+          </div><!--
+         --><div class="grid__item one-whole lap-one-third stats-item">
+            {% if dorm.has_ac %}
+              <p class="body-text">Air conditioning</p>
+            {% endif %}
+            {% if not dorm.has_ac %}
+              <p class="body-text">No air conditioning</p>
+            {% endif %}
+            {% if dorm.dining %}
+              <p class="body-text">Dining hall in building</p>
+            {% endif %}
+            {% if dorm.dorm_type == 'Hall' %}
+              <p class="body-text">Residence hall</p>
+            {% endif %}
+            {% if dorm.dorm_type == 'College' %}
+              <p class="body-text">Residential college</p>
+            {% endif %}
+            {% if dorm.dorm_type == 'Community' %}
+              <p class="body-text">Residential community</p>
+            {% endif %}
+            {% if dorm.dorm_type == 'Special Interest Housing' %}
+              <p class="body-text">Special interest housing</p>
+            {% endif %}
+            <p class="body-text"><span class="number">{{dorm.room_dimensions}}</span> room (double)</p>
+            <p class="body-text">$<span class="number">{{dorm.cost|floatformat}}</span> per quarter</p>
+          </div>
+        </div>
+
+                <div class="padding-top reduced-width">
+                    <h3>What residents say</h3>
+          {% for quote in dorm.get_quotes %}
+                    <p class="body-text quote padding-top">&ldquo;{{ quote.text }}&rdquo;</p>
+            <p class="quote-attr">{{ quote.source }}</p>
+          {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div id="detail-sidebar-container" class="grid__item one-whole desk-one-quarter float-left">
+            <div id="small-map">
+            </div>
+      <h3 class="padding-top display-desktop">Vital stats</h3>
+        <div class="display-desktop">
+          <div class="padding-top stats-item">
+            <p class="body-text">{{dorm.campus_side}} campus</p>
+            <p class="body-text"><span class="number">{{ dorm.dist_to_tech|floatformat }}</span> minute walk to Tech</p>
+            <p class="body-text"><span class="number">{{ dorm.dist_to_norris|floatformat }}</span> minute walk to Norris</p>
+            <p class="body-text"><span class="number">{{ dorm.dist_to_kresge|floatformat }}</span> minute walk to Kresge</p>
+            <p class="body-text"><span class="number">{{ dorm.dist_to_bk|floatformat }}</span> minute walk to Burger King</p>
+          </div>
+          <div class="stats-item">
+            <p class="body-text"><span class="number">{{dorm.doubles}}</span> doubles</p>
+            <p class="body-text">+ <span class="number">{{dorm.singles}}</span> singles</p>
+            <p class="body-text">+ <span class="number">{{dorm.triples}}</span> triples</p>
+            <p id="sum" class="body-text"><span class="number">{{dorm.size}}</span> residents</p>
+          </div>
+          <div class="stats-item">
+            {% if dorm.has_ac %}
+              <p class="body-text">Air conditioning</p>
+            {% endif %}
+            {% if not dorm.has_ac %}
+              <p class="body-text">No air conditioning</p>
+            {% endif %}
+            {% if dorm.dining %}
+              <p class="body-text">Dining hall in building</p>
+            {% endif %}
+            {% if dorm.dorm_type == 'Hall' %}
+              <p class="body-text">Residence hall</p>
+            {% endif %}
+            {% if dorm.dorm_type == 'College' %}
+              <p class="body-text">Residential college</p>
+            {% endif %}
+            {% if dorm.dorm_type == 'Community' %}
+              <p class="body-text">Residential community</p>
+            {% endif %}
+            {% if dorm.dorm_type == 'Special Interest Housing' %}
+              <p class="body-text">Special interest housing</p>
+            {% endif %}
+            <p class="body-text"><span class="number">{{dorm.room_dimensions}}</span> room (double)</p>
+            <p class="body-text">$<span class="number">{{dorm.cost|floatformat}}</span> per quarter</p>
+          </div>
+        </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+
+{% block extra_foot_js %}
+    {{ JS.push('js/detail.js') }}
+{% endblock %}

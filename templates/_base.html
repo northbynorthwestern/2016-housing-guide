@@ -32,6 +32,7 @@
     </script>
 
     <!-- CSS -->
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
     {{ CSS.push('less/app.less') }}
     {% block extra_css %}{% endblock extra_css %}
     {{ CSS.render('css/app.min.css') }}
@@ -49,82 +50,40 @@
     <a class="sr-only" href="#content">Skip To Content</a>
 
     {% block outer_content %}
-    <nav role="navigation">
-        <ul class="site-links">
-            <li class="npr"><a href="http://npr.org"><img src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR" /></a></li>
-            <li class="news"><a href="http://www.npr.org/sections/news/">News</a></li>
-            <li class="arts"><a href="http://www.npr.org/sections/arts/">Arts &amp; Life</a></li>
-            <li class="music"><a href="http://www.npr.org/music/">Music</a></li>
-            <li class="listen"><a href="http://www.npr.org/listen/">Listen</a></li>
-        </ul>
-        <ul class="social-links">
-            <li class="twitter"><a rel="external" href="http://twitter.com/share?text={{ COPY.sharing.twitter_text|urlencode }}&amp;url={{ SHARE_URL|urlencode }}" alt="Share on Twitter" target="_blank" onclick="_gaq.push(['_trackEvent', 'Social', 'Click Twitter In Navbar', '{{ PROJECT_NAME }}']);">Share This Page On Twitter</a></li>
-            <li class="facebook"><a rel="external" href="https://www.facebook.com/dialog/feed?app_id={{ FACEBOOK_APP_ID }}&amp;link={{ SHARE_URL|urlencode }}&amp;name={{ COPY.sharing.facebook_title|urlencode }}&amp;picture={{ FACEBOOK_IMAGE_URL|urlencode }}&amp;redirect_uri={{ SHARE_URL|urlencode }}" alt="Share on Facebook" target="_blank" onclick="_gaq.push(['_trackEvent', 'Social', 'Click Facebook In Navbar', '{{ PROJECT_NAME }}']);">Like This Page On Facebook</a></li>
-        </ul>
-        <ul class="site-links-2">
-            <li class="stations"><a href="http://www.npr.org/templates/stations/stations/">Stations</a></li>
-            <li class="donate"><a href="http://www.npr.org/stations/donate/index.php">Donate</a></li>
-            <li class="shop"><a href="http://shop.npr.org">Shop</a></li>
-        </ul>
-    </nav>
+    <div id="bar" class="background-purple">
+        <a href="http://northbynorthwestern.com/"><img src="{% get_static_prefix %}img/nbn-logo.png" alt="North by Northwestern"></a>
+    </div>
 
     {% block header_content %}
     {% endblock header_content %}
 
-    <section id="content">
-        <div class="container">
-            <div class="row">
-                <div id="main-content" class="col-md-8">
-                    {% block content %}
-                    <h1>{{ project_name }}</h1>
-                    App content goes here.
-
-                    <i class="icon icon-play"></i>
-                    {% endblock content %}
-                </div>
-                <div id="bigbox" class="col-md-4">
-                    {# 300x250 ad #}
-                    <div class="adwrapper">
-                        <div id="ad-desktop" class="sponsor300">
-                        </div>
-                        <p class="left">NPR thanks our sponsors</p>
-                        <p class="right"><a href="http://www.npr.org/about/place/corpsupport/">Become an NPR sponsor</a></p>
-                    </div>
-                </div>
-            </div>
-            {% block wide_content %}
-            {% endblock wide_content %}
-        </div>
-    </section>
-
-    <footer>
-        <div class="primary">
-            <ul>
-                <li><a href="http://www.npr.org" data-action="Click Logo"><img src="http://media.npr.org/chrome/news/nprlogo_138x46.gif" alt="NPR Logo"></a></li>
-                <li class="news"><a href="http://www.npr.org/sections/news/">News</a></li>
-                <li class="artslife"><a href="http://www.npr.org/sections/arts/">Arts &amp; Life</a></li>
-                <li class="music"><a href="http://www.npr.org/music/">Music</a></li>
-                <li class="programs"><a href="http://www.npr.org/programs/">Programs</a></li>
-                <li class="listen"><a href="http://www.npr.org/listen/">Listen</a></li>
-                <li class="about"><a href="http://www.npr.org/about/">About</a></li>
-            </ul>
-        </div>
-        <div class="secondary">
-            <p>&copy;2014 NPR</p>
-            <ul>
-                <li id="footerContact"><a href="http://help.npr.org/npr/includes/customer/npr/custforms/contactus.aspx">Contact</a></li>
-                <li><a href="http://www.npr.org/about/termsofuse.html">Terms of Use</a></li>
-                <li><a href="http://www.npr.org/about/privacypolicy.html">Privacy</a></li>
-                <li><a href="http://thin.npr.org/">Text-Only</a></li>
-            </ul>
-        </div>
-    </footer>
+    {% block content %}
+    {% endblock content %}
 
     {% endblock outer_content %}
+
+    <div class="grid padded background-purple clear">
+      <div class="grid__item one-whole lap-and-up-one-quarter">
+      <p class="credit"><em>Editing by&nbsp;</em>&nbsp;Denise Lu and Megan Thielking</p>
+      <p class="credit"><em>Reporting by&nbsp;</em>&nbsp;Shelbie Bostedt, Mallory Busch, Bethany DeLong, Katie George, Jessica Guenzl, Chrissy Lee, Anne Li, Alex Nitkin, Zoe Pearl, Preetisha Sen, Polina Senderova, Carter Sherman, Zach Silva, Sam Spahn, Sarah Turbin, Bethany Tuten, Eric Vanchieri and Alice Zhang</p>
+      </div><!--
+     --><div class="grid__item one-whole lap-and-up-one-quarter">
+        <p class="credit"><em>Photos by&nbsp;</em>&nbsp;Gabe Bergado, Mallory Busch, Bethany DeLong, Timothyna Duncan, Forrest Hanson, Sam Hart, Anne Li, Priscilla Liu, Susie Neilson, Michelle Reisin, Madhuri Sathish, Zach Silva, Jenny Starrs, Megan Suckut, Hillary Thomas, Bethany Tuten and Lucy Wang</p>
+      </div><!--
+     --><div class="grid__item one-whole lap-and-up-one-quarter">
+        <p class="credit"><em>Videos by&nbsp;</em>&nbsp;Gabe Bergado, Mallory Busch, Caitlin Gerena, Max Gleber, Forrest Hanson, John Hardberger, Christophe Haubursin, Denise Lu, Ned McGregor, Adam Mintzer, Yunita Ong, Jon Palmer, Sam Spahn, Jenny Starrs and Ashley Wu</p>
+      </div><!--
+     --><div class="grid__item one-whole lap-and-up-one-quarter">
+        <p class="credit"><em>Design and development by&nbsp;</em>&nbsp;Tyler Fisher, Hilary Fung, Dan Hill, KK Rebecca Lai, Sheng Wu and Katie Zhu</p>
+        <p class="credit">Data provided by Northwestern University Residential Services</p>
+      </div>
+    </div>
 
     {% block extra_foot %}
     {% endblock extra_foot %}
 
+    <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+    <script src="{% get_static_prefix %}js/leaflet-providers.js"></script>
     {{ JS.push('js/lib/jquery.js') }}
     {{ JS.push('js/lib/underscore.js') }}
     {{ JS.push('js/lib/bootstrap.js') }}

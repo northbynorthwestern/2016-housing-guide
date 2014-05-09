@@ -1,46 +1,184 @@
 {% extends '_base.html' %}
 
 {% block header_content %}
-<header>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1>{{ COPY.content.header_title }}</h1>
-                <h2>{{ COPY.content.lorem_ipsum }}</h2>
+<div id="header">
+    <h1><span class="smaller">The </span>Housing Guide</h1>
+    <div class="grid">
+        <div class="grid__item one-whole desk-two-thirds float-left">
+            <p class="body-text intro">Your first college home can be a taste of freedom and provide you with a great community, but the housing selection process can also be daunting. NBN's Housing Guide has you covered. Use the filters to see which buildings work for you, then click a building name to see video, photos and more.</p>
+        </div><!--
+     --><div class="grid__item one-whole desk-one-third">
+            <div id="search-container">
+      <select id="searchbox" name="" data-placeholder="Select a hall" single class="chosen-select">
+        <option></option>
+        {% for dorm in dorms %}
+        <option value="/housing/hall/{{ dorm.slug }}">{{ dorm.short_name }}</option>
+        {% endfor %}
+      </select>
+      <script type="text/javascript">
+        $('.chosen-select').chosen();
+        $('#searchbox').change(function() {
+            window.location.href = $(this).val();
+        });
+      </script>
             </div>
         </div>
+  <div style="clear: both;"></div>
     </div>
-</header>
+</div>
 {% endblock %}
 
 
 {% block content %}
-<h1>{{ PROJECT_NAME }}</h1>
-<div id="story-meta">
-    <p class="byline">by <span>{{ COPY.attribution.byline }}</span></p>
-    <p class="dateblock">
-        <span class="date">{{ COPY.attribution.pubdate }}</span>
-        <span class="time"> {{ COPY.attribution.pubtime }}</span>
-    </p>
-</div>
+    <div class="grid clear border-bottom">
 
-<h2>Example COPY list</h2>
-<dl>
-    {% for row in COPY.example_list %}
-    <dt>{{ row.term }}</dt><dd>{{ row.definition }}</dd>
-    {% endfor %}
-</dl>
+        <div id="filter-container" class="grid__item one-whole desk-one-fifth padded">
+            <h4>Filter <a href="#about-filters"><span class="epsilon">or read more</span></a></h4>
+            <div class="grid">
+                <div class="grid__item one-whole lap-one-fifth">
+                    <ul>
+                        <li>
+                            <input type="checkbox" class="filter" id="north-filter">
+                            <label for="north-filter">North Campus</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="filter" id="south-filter">
+                            <label for="south-filter">South Campus</label>
+                        </li>
+                    </ul>
+                </div><!--
+             --><div class="grid__item one-whole lap-one-fifth">
+                    <ul>
+                        <li>
+                            <input type="checkbox" class="filter" id="rescol-filter">
+                            <label for="rescol-filter">Res College</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="filter" id="rescomm-filter">
+                            <label for="rescomm-filter">Res Community</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="filter" id="reshall-filter">
+                            <label for="reshall-filter">Res Hall</label>
+                        </li>
+                    </ul>
+                </div><!--
+             --><div class="grid__item one-whole lap-one-fifth">
+                    <ul>
+                        <li>
+                            <input type="checkbox" class="filter" id="small-filter">
+                            <label for="small-filter">Small</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="filter" id="med-filter">
+                            <label for="med-filter">Medium</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="filter" id="large-filter">
+                            <label for="large-filter">Large</label>
+                        </li>
+                    </ul>
+                </div><!--
+             --><div class="grid__item one-whole lap-one-fifth">
+                    <ul>
+                        <li>
+                            <input type="checkbox" class="filter" id="ac-filter">
+                            <label for="ac-filter">Has A.C.</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="filter" id="dining-filter">
+                            <label for="dining-filter">Has dining hall</label>
+                        </li>
+                    </ul>
+                </div><!--
+             --><div class="grid__item one-whole lap-one-fifth">
+                    <ul>
+                        <li>
+                            <input type="checkbox" class="filter" id="freshmen-filter">
+                            <label for="freshmen-filter">Freshmen only</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="filter" id="female-filter">
+                            <label for="female-filter">Female only</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" class="filter" id="opengender-filter">
+                            <label for="opengender-filter">Open gender</label>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div id="clear-filter-button" class="clear-filter padding-top">
+                <h4><a><span>Clear all</span></a></h4>
+            </div>
+      <div id="temp">
+      </div>
+        </div><!-- End filter grid item
 
-<h2>JST example</h2>
-<p id="template-example"></p>
+     --><div id="explore-container" class="grid__item one-whole desk-four-fifths">
+
+            <div class="grid">
+
+                <div id="map-container" class="grid__item one-whole lap-and-up-one-half padding-top">
+                    <h4>Explore</h4>
+                    <div id="map">
+                    </div>
+                </div><!-- End map grid item
+
+             --><div id="table-container" class="grid__item one-whole lap-and-up-one-half padding-top">
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Hall</td>
+                                <td>Residents</td>
+                                <td>Type</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for dorm in dorms %}
+                            <tr onmouseover="highlightTable(this)" onmouseout="resetHighlightTable(this)">
+                                <td><p class="dorm-name" value="{{dorm.name}}"><a href="{% url 'guide.views.detail' dorm_slug=dorm.slug %}">{{ dorm.short_name }}</a></p></td>
+                                <td><p>{{ dorm.size }}</p></td>
+                                <td><p>{{ dorm.dorm_type }}</p></td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <div id="legend-container">
+                        <div id="legend">
+                            <div class="dot perfect-fit"></div>
+                            <p class="float-left">Perfect</p>
+                            <div class="dot good-fit"></div>
+                            <p class="float-left">Meh</p>
+                            <div class="dot bad-fit"></div>
+                            <p class="float-left">Not your type</p>
+                        </div>
+                    </div>
+                </div><!-- End table grid item -->
+            </div><!-- End explore grid item -->
+
+        </div><!-- End nested grid container -->
+
+    </div><!-- End grid container -->
+
+    <a id="about-filters"><h3 class="padding-top padding-left">About the filters</h3></a>
+    <div class="grid padded">
+        <div class="filter-exp grid__item one-whole lap-and-up-one-third">
+            <h2>North and South Campus</h2>
+            <p class="body-text">We chose to divide the unofficial "North Campus" and "South Campus" by Foster Street, so anything south of Foster is South Campus and anything north of Foster is North Campus.</p>
+        </div><!--
+     --><div class="filter-exp grid__item one-whole lap-and-up-one-third">
+            <h2>Types of halls</h2>
+            <p class="body-text">The university categorizes its halls into four types. A <a href="http://www.northwestern.edu/residential-communities/" target="_blank">residential community</a> has student-organized events and live-in faculty. A <a href="http://www.northwestern.edu/residentialcolleges/visitors/info/index.html" target="_blank">residential college</a> has a theme and offers activities and specialized classes supported by faculty fellows. <a href="http://www.northwestern.edu/living/options/undergraduate/special-interest-housing.html" target="_blank">Special interest housing</a> includes Interfaith Residence Hall in 1835 Hinman, GREEN House and other halls with particular focuses. A residence hall offers a classic college experience.
+        </div><!--
+     --><div class="filter-exp grid__item one-whole lap-and-up-one-third">
+            <h2>Gender Open Housing</h2>
+            <p class="body-text"><a href="http://www.northwestern.edu/living/assignments/gender-open-housing.html" target="_blank">Gender Open Housing</a> has existed since 2010 as an experiment in providing a housing solution "wherby students, regardless of sex, gender, or gender identity, are permitted to share a room or suite in select areas of Northwestern’s residence halls." For freshmen, two suites on the third floor of 1835 Hinman will be available for students interested in the option.</p>
+        </div>
+    </div>
 {% endblock %}
 
-
-{% block wide_content %}
-<div class="row">
-    <div class="col-md-12">
-        <h2>{{ COPY.content.footer_title }}</h2>
-        <p>{{ COPY.content.lorem_ipsum }}</p>
-    </div>
-</div>
+{% block extra_foot_js %}
+    {{ JS.push('js/home.js') }}
 {% endblock %}

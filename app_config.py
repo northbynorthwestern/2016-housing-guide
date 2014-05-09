@@ -14,11 +14,11 @@ import os
 NAMES
 """
 # Project name used for display
-PROJECT_NAME = 'housing2'
+PROJECT_NAME = 'Housing Guide'
 
 # Project name to be used in urls
 # Use dashes, not underscores!
-PROJECT_SLUG = 'housing2'
+PROJECT_SLUG = 'housing'
 
 # The name of the repository containing the source
 REPOSITORY_NAME = 'housing2'
@@ -37,7 +37,7 @@ DEPLOYMENT
 """
 PRODUCTION_S3_BUCKETS = ['apps.npr.org', 'apps2.npr.org']
 STAGING_S3_BUCKETS = ['stage-apps.npr.org']
-ASSETS_S3_BUCKET = 'assets.apps.npr.org'
+ASSETS_S3_BUCKET = []
 
 PRODUCTION_SERVERS = ['cron.nprapps.org']
 STAGING_SERVERS = ['50.112.92.131']
