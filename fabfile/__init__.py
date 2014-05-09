@@ -101,19 +101,14 @@ by the site templates should be rendered by fab render.
 """
 @task
 def sass():
-    """
-    Render Sass files to CSS.
-    """
-    for path in glob('sass/*.scss'):
-        filename = os.path.split(path)[-1]
-        name = os.path.splitext(filename)[0]
-        out_path = 'www/css/%s.sass.css' % name
+    path = 'sass/style.scss'
+    out_path = 'www/css/app.sass.css'
 
-        try:
-            local('./bin/sassc %s %s' % (path, out_path))
-        except:
-            print 'It looks like "sassc" sucks and you suck for using sass'
-            raise
+    try:
+        local('./bin/sassc %s %s' % (path, out_path))
+    except:
+        print 'It looks like "sassc" sucks and you suck for using sass'
+        raise
 
 @task
 def jst():
