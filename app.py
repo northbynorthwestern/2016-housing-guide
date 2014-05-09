@@ -17,26 +17,31 @@ def index():
     """
     Example view demonstrating rendering a simple HTML page.
     """
-    return render_template('index.html', **make_context())
+    context = make_context()
 
-@app.route('/widget.html')
-def widget():
-    """
-    Embeddable widget example page.
-    """
-    return render_template('widget.html', **make_context())
+    context['dorms'] = data.load()
 
-@app.route('/test_widget.html')
-def test_widget():
-    """
-    Example page displaying widget at different embed sizes.
-    """
-    return render_template('test_widget.html', **make_context())
+    with open('www/static-data/data.json') as f:
+        context['speeches_json'] = Markup(f.read())
 
-@app.route('/test/test.html')
-def test_dir():
-    return render_template('index.html', **make_context())
-    
+    return render_template('index.html', **context)
+
+@app.route('/hall/<string:slug>/')
+def _detail(slug):
+    """
+    Example view demonstrating rendering a simple HTML page.
+    """
+    context = make_context()
+
+    context['dorms'] = data.load()
+    dorm  = next(s for s in context['dorm'] if s['slug'] == slug)
+    context['dorm'] = dorm
+
+    with open('www/static-data/data-thin.json') as f:
+        context['dorms_json'] = Markup(f.read())
+
+    return render_template('detail.html', **context)
+
 app.register_blueprint(static.static)
 
 # Boilerplate
