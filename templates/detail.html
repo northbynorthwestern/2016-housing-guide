@@ -11,7 +11,7 @@
             <div id="search-container">
       <select id="searchbox" name="" data-placeholder="Select a hall" single class="chosen-select">
       <option></option>
-        {% for dorm in dorms %}
+        {% for dorm in COPY.dorms %}
         <option value="/hall/{{ dorm.slug }}">{{ dorm.short_name }}</option>
         {% endfor %}
       </select>
@@ -160,6 +160,7 @@
 <script type="text/javascript">
  var slug = "{{slug}}";
   window.dorm_url = 'http://nbn-housing.s3.amazonaws.com/static/json/' + slug + '.json';
+  window.dorm_video = "{{dorm.video_embed}}";
 </script>
 {% endblock %}
 

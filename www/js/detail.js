@@ -38,7 +38,7 @@
 }
 
 $('#video-tab').click(function() {
-  $('#embed-container').append('<iframe src="{{dorm.video_embed}}" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>');
+  $('#embed-container').append('<iframe src="' + dorm_video + '" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>');
   $('#media-container img').css('display', 'none');
   $('#video-tab').css('background', '#381F5E');
   $('#photo-tab').css('background', '#c3bccf');

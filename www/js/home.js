@@ -336,8 +336,3 @@ $(document).ready(function() {
         dorms_array.push("{{dorm}}");
     });
 });
-
-$('.chosen-select').chosen();
-$('#searchbox').change(function() {
-    window.location.href = $(this).val();
-});
