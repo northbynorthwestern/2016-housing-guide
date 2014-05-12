@@ -17,7 +17,8 @@
     <script type="text/javascript" src="//use.typekit.net/rwj4edd.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
-    <link rel="stylesheet" href="css/app.sass.css" />
+    <link rel="stylesheet" href="/css/responsiveslides.css" />
+    <link rel="stylesheet" href="/css/app.sass.css" />
 
     <!-- JS -->
     {{ JS.push('js/lib/modernizr.js') }}
@@ -31,7 +32,7 @@
 <body>
     {% block outer_content %}
     <div id="bar" class="background-purple">
-        <a href="http://northbynorthwestern.com/"><img src="img/nbn-logo.png" alt="North by Northwestern"></a>
+        <a href="http://northbynorthwestern.com/"><img src="http://nbn-housing.s3.amazonaws.com/static/img/nbn-logo.png" alt="North by Northwestern"></a>
     </div>
 
     {% block header_content %}
@@ -68,6 +69,7 @@
     {{ JS.push('js/lib/underscore.js') }}
     {{ JS.push('js/lib/moment.js') }}
     {{ JS.push('js/lib/chosen.jquery.min.js') }}
+    {{ JS.push('js/lib/responsiveslides.min.js') }}
     {{ JS.push('js/app_config.js') }}
     {{ JS.push('js/copy.js') }}
     {{ JS.push('js/console.js') }}

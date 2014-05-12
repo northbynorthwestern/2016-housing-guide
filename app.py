@@ -22,17 +22,41 @@ def index():
 
 @app.route('/hall/<string:slug>/')
 def _detail(slug):
-    """
-    Example view demonstrating rendering a simple HTML page.
-    """
+
     context = make_context()
 
-    context['dorms'] = data.load()
-    dorm  = next(s for s in context['dorm'] if s['slug'] == slug)
-    context['dorm'] = dorm
+    context['dorm'] = []
+    context['images'] = []
+    context['quotes'] = []
+    context['slug'] = ''
 
-    with open('www/static-data/data-thin.json') as f:
-        context['dorms_json'] = Markup(f.read())
+    dorms = list(context['COPY']['dorms'])
+    images = list(context['COPY']['images'])
+    quotes = list(context['COPY']['quotes'])
+    dorm_name = ''
+
+    for dorm in dorms:
+        dorm = dict(zip(dorm.__dict__['_columns'], dorm.__dict__['_row']))
+        dorm_slug = dorm.get('slug')
+        dorm_name = dorm.get('name')
+
+        if dorm_slug == slug:
+            context['dorm'] = dorm
+            context['slug'] = str(slug)
+
+    for image in images:
+        image = dict(zip(image.__dict__['_columns'], image.__dict__['_row']))
+        image_dorm = image.get('dorm')
+
+        if image_dorm == dorm_name:
+            context['images'].append(image)
+
+    for quote in quotes:
+        quote = dict(zip(quote.__dict__['_columns'], quote.__dict__['_row']))
+        quote_dorm = quote.get('dorm')
+
+        if quote_dorm == dorm_name:
+            context['quotes'].append(quote)
 
     return render_template('detail.html', **context)
 

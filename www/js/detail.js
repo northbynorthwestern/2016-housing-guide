@@ -16,7 +16,7 @@
   L.tileLayer.provider('MapQuestOpen.OSM').addTo(map);
 
    $.ajax({
-    url: 'http://nbn-housing.s3.amazonaws.com/static/json/{{dorm.slug}}.json',
+    url: dorm_url,
     async: true,
     dataType: 'jsonp',
     jsonp: false,

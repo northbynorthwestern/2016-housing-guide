@@ -12,7 +12,7 @@
       <select id="searchbox" name="" data-placeholder="Select a hall" single class="chosen-select">
         <option></option>
         {% for dorm in COPY.dorms %}
-        <option value="/housing/hall/{{ dorm.slug }}">{{ dorm.short_name }}</option>
+        <option value="/hall/{{ dorm.slug }}">{{ dorm.short_name }}</option>
         {% endfor %}
       </select>
             </div>

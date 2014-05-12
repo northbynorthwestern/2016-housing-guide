@@ -42,9 +42,9 @@ function onEachFeature(feature, layer) {
     // does this feature have a property named popupContent?
     if (feature.properties && feature.properties.name) {
         _.each(COPY.dorms, function(dorm) {
-            if (dorm.name === feature.properties.name) {
-                var address = dorm.address;
-                var headline = "<h4><a href='" + dorm.slug + "'>" + dorm.short_name + "</a></h4>";
+            if (dorm[0] === feature.properties.name) {
+                var address = dorm[7];
+                var headline = "<h4><a href='/hall/" + dorm[2] + "'>" + dorm[1] + "</a></h4>";
                 layer.bindPopup(headline + ' ' + address); //address
                 layer.on({
                     mouseover: highlightFeature,
@@ -206,8 +206,6 @@ _.each(COPY.dorms, function(dorm) {
     dorms[name]['female'] = dorm[9];
     dorms[name]['open_gender'] = dorm[11];
 });
-
-console.log(dorms);
 
 // count true properties of an object
 var count = function(obj, props) {
