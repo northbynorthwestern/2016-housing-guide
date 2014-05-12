@@ -41,17 +41,17 @@ $.each(data, function(key, val){
 function onEachFeature(feature, layer) {
     // does this feature have a property named popupContent?
     if (feature.properties && feature.properties.name) {
-        {% for dorm in dorms %}
-        if ( "{{dorm.name}}" === feature.properties.name) {
-            var address = "{{dorm.address}}";
-            var headline = "<h4><a href=" + "{% url 'guide.views.detail' dorm_slug=dorm.slug %}" + ">{{ dorm.short_name }}</a></h4>";
-            layer.bindPopup(headline + ' ' + address); //address
-            layer.on({
-                mouseover: highlightFeature,
-                mouseout: resetHighlight
-            });
-        }
-        {% endfor %}
+        _.each(COPY.dorms, function(dorm) {
+            if ( dorm.name === feature.properties.name) {
+                var address = dorm.address;
+                var headline = "<h4><a href='" + dorm.slug + "'>" + dorm.short_name + "</a></h4>";
+                layer.bindPopup(headline + ' ' + address); //address
+                layer.on({
+                    mouseover: highlightFeature,
+                    mouseout: resetHighlight
+                });
+            }
+        })
     }
 }
 
@@ -149,55 +149,57 @@ function changeMap(name, style) {
 }
 
 // dorm data
-var dorms = {
-    {% for dorm in dorms %}
-    "{{ dorm.short_name }}":
-    {
-        {% if dorm.dorm_type == "Hall" %}
-        'reshall': true,
-        {% else %}
-        'reshall': false,
-        {% endif %}
-        {% if dorm.dorm_type == "College" %}
-        'rescol': true,
-        {% else %}
-        'rescol': false,
-        {% endif %}
-        {% if dorm.dorm_type == "Community" %}
-        'rescomm': true,
-        {% else %}
-        'rescomm': false,
-        {% endif %}
-        {% if dorm.campus_side == "North" %}
-        'north': true,
-        'south': false,
-        {% else %}
-        'north': false,
-        'south': true,
-        {% endif %}
-        {% if dorm.size <= 100 %}
-        'small': true,
-        'med': false,
-        'large': false,
-        {% endif %}
-        {% if dorm.size > 100 and dorm.size <= 200 %}
-        'small': false,
-        'med': true,
-        'large': false,
-        {% endif %}
-        {% if dorm.size > 200 %}
-        'small': false,
-        'med': false,
-        'large': true,
-        {% endif %}
-        'ac': {{ dorm.has_ac|lower }},
-        'dining': {{ dorm.dining|lower }},
-        'freshmen': {{ dorm.freshmen_only|lower }},
-        'female': {{ dorm.female_only|lower }},
-        'opengender': {{ dorm.open_gender|lower }}
-    },
-    {% endfor %}
-};
+// var dorms = {
+//     _.each(COPY.dorms, function(dorm) {
+//         dorm.short_name:
+//         {
+//             if (dorm.dorm_type == "Hall") {
+//                 'reshall': true,
+//             }
+//             else {
+//                 'reshall': false,
+//             }
+//             {% endif %}
+//             {% if dorm.dorm_type == "College" %}
+//             'rescol': true,
+//             {% else %}
+//             'rescol': false,
+//             {% endif %}
+//             {% if dorm.dorm_type == "Community" %}
+//             'rescomm': true,
+//             {% else %}
+//             'rescomm': false,
+//             {% endif %}
+//             {% if dorm.campus_side == "North" %}
+//             'north': true,
+//             'south': false,
+//             {% else %}
+//             'north': false,
+//             'south': true,
+//             {% endif %}
+//             {% if dorm.size <= 100 %}
+//             'small': true,
+//             'med': false,
+//             'large': false,
+//             {% endif %}
+//             {% if dorm.size > 100 and dorm.size <= 200 %}
+//             'small': false,
+//             'med': true,
+//             'large': false,
+//             {% endif %}
+//             {% if dorm.size > 200 %}
+//             'small': false,
+//             'med': false,
+//             'large': true,
+//             {% endif %}
+//             'ac': {{ dorm.has_ac|lower }},
+//             'dining': {{ dorm.dining|lower }},
+//             'freshmen': {{ dorm.freshmen_only|lower }},
+//             'female': {{ dorm.female_only|lower }},
+//             'opengender': {{ dorm.open_gender|lower }}
+//         },
+//     });
+// };
 
 // count true properties of an object
 var count = function(obj, props) {
@@ -324,8 +326,7 @@ clearFilter();
 
 $(document).ready(function() {
     var dorms_array = [];
-    {% for dorm in dorms %}
+    _.each(COPY.dorms, function(dorm) {
         dorms_array.push("{{dorm}}");
-    {% endfor %}
+    });
 });
-</script>

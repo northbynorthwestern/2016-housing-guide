@@ -11,7 +11,7 @@
             <div id="search-container">
       <select id="searchbox" name="" data-placeholder="Select a hall" single class="chosen-select">
         <option></option>
-        {% for dorm in dorms %}
+        {% for dorm in COPY.dorms %}
         <option value="/housing/hall/{{ dorm.slug }}">{{ dorm.short_name }}</option>
         {% endfor %}
       </select>
@@ -136,9 +136,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                        {% for dorm in dorms %}
+                        {% for dorm in COPY.dorms %}
                             <tr onmouseover="highlightTable(this)" onmouseout="resetHighlightTable(this)">
-                                <td><p class="dorm-name" value="{{dorm.name}}"><a href="{% url 'guide.views.detail' dorm_slug=dorm.slug %}">{{ dorm.short_name }}</a></p></td>
+                                <td><p class="dorm-name" value="{{dorm.name}}"><a href="/hall/{{ dorm.slug }}">{{ dorm.short_name }}</a></p></td>
                                 <td><p>{{ dorm.size }}</p></td>
                                 <td><p>{{ dorm.dorm_type }}</p></td>
                             </tr>

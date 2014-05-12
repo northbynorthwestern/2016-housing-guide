@@ -17,14 +17,8 @@ def index():
     """
     Example view demonstrating rendering a simple HTML page.
     """
-    context = make_context()
 
-    context['dorms'] = data.load()
-
-    with open('www/static-data/data.json') as f:
-        context['speeches_json'] = Markup(f.read())
-
-    return render_template('index.html', **context)
+    return render_template('index.html', **make_context())
 
 @app.route('/hall/<string:slug>/')
 def _detail(slug):
