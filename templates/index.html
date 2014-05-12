@@ -15,12 +15,6 @@
         <option value="/housing/hall/{{ dorm.slug }}">{{ dorm.short_name }}</option>
         {% endfor %}
       </select>
-      <script type="text/javascript">
-        $('.chosen-select').chosen();
-        $('#searchbox').change(function() {
-            window.location.href = $(this).val();
-        });
-      </script>
             </div>
         </div>
   <div style="clear: both;"></div>
