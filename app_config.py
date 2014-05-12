@@ -35,8 +35,8 @@ PROJECT_FILENAME = 'housing2'
 """
 DEPLOYMENT
 """
-PRODUCTION_S3_BUCKETS = ['apps.npr.org', 'apps2.npr.org']
-STAGING_S3_BUCKETS = ['stage-apps.npr.org']
+PRODUCTION_S3_BUCKETS = ['apps.northbynorthwestern.com']
+STAGING_S3_BUCKETS = []
 ASSETS_S3_BUCKET = []
 
 PRODUCTION_SERVERS = ['cron.nprapps.org']
