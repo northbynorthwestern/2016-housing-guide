@@ -118,10 +118,10 @@
         <div class="display-desktop">
           <div class="padding-top stats-item">
             <p class="body-text">{{dorm.campus_side}} campus</p>
-            <p class="body-text"><span class="number">{{ dorm.dist_to_tech|float }}</span> minute walk to Tech</p>
-            <p class="body-text"><span class="number">{{ dorm.dist_to_norris|float }}</span> minute walk to Norris</p>
-            <p class="body-text"><span class="number">{{ dorm.dist_to_kresge|float }}</span> minute walk to Kresge</p>
-            <p class="body-text"><span class="number">{{ dorm.dist_to_bk|float }}</span> minute walk to Burger King</p>
+            <p class="body-text"><span class="number">{{ dorm.dist_to_tech }}</span> minute walk to Tech</p>
+            <p class="body-text"><span class="number">{{ dorm.dist_to_norris }}</span> minute walk to Norris</p>
+            <p class="body-text"><span class="number">{{ dorm.dist_to_kresge }}</span> minute walk to Kresge</p>
+            <p class="body-text"><span class="number">{{ dorm.dist_to_bk }}</span> minute walk to Burger King</p>
           </div>
           <div class="stats-item">
             <p class="body-text"><span class="number">{{dorm.doubles}}</span> doubles</p>
@@ -151,7 +151,9 @@
             {% if dorm.dorm_type == 'Special Interest Housing' %}
               <p class="body-text">Special interest housing</p>
             {% endif %}
-            <p class="body-text"><span class="number">{{dorm.room_dimensions}}</span> room (double)</p>
+            {% if dorm.room_dimensions %}
+            <p class="body-text"><span class="number"> {{dorm.room_dimensions}}</span> room (double)</p>
+            {% endif %}
             <p class="body-text">$<span class="number">{{dorm.cost|float}}</span> per quarter</p>
           </div>
         </div>

@@ -38,11 +38,12 @@ def _detail(slug):
     for dorm in dorms:
         dorm = dict(zip(dorm.__dict__['_columns'], dorm.__dict__['_row']))
         dorm_slug = dorm.get('slug')
-        dorm_name = dorm.get('name')
 
         if dorm_slug == slug:
             context['dorm'] = dorm
             context['slug'] = str(slug)
+            dorm_name = dorm.get('name')
+
 
     for image in images:
         image = dict(zip(image.__dict__['_columns'], image.__dict__['_row']))
@@ -57,6 +58,8 @@ def _detail(slug):
 
         if quote_dorm == dorm_name:
             context['quotes'].append(quote)
+
+    print context['dorm']
 
     return render_template('detail.html', **context)
 
