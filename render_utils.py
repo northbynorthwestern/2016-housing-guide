@@ -129,14 +129,14 @@ class CSSIncluder(Includer):
 
             if src.endswith('scss'):
                 src_paths.append('%s' % src)
-                src = src.replace('scss', 'css') # sass/example.scss -> css/example.scss
-                src = '%s.sass.css' % src[:-4]   # css/example.scss -> css/example.sass.css
+                src = src.replace('sass', 'css') # sass/example.scss -> css/example.scss
+                src = '%ssass.css' % src[:-4]   # css/example.scss -> css/example.sass.css
             else:
                 src_paths.append('www/%s' % src)
 
             with open('www/%s' % src) as f:
                 print '- compressing %s' % src
-                output.append(cssmin(f.read().encode('utf-8')))
+                output.append(cssmin(f.read()))
 
         context = make_context()
         context['paths'] = src_paths

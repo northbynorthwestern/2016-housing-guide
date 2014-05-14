@@ -20,7 +20,8 @@
 
     {{ CSS.push('sass/style.scss') }}
     {% block extra_css %}{% endblock extra_css %}
-    {{ CSS.render('css/app.sass.css') }}
+    {{ CSS.render('css/style.sass.css') }}
+    <link rel="stylesheet" href="/css/style.sass.css" />
 
     <!-- JS -->
     {{ JS.push('js/lib/modernizr.js') }}
@@ -64,8 +65,6 @@
 
     {% block extra_foot %}
     {% endblock extra_foot %}
-
-    <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
     {{ JS.push('js/lib/jquery.js') }}
     {{ JS.push('js/lib/underscore.js') }}
     {{ JS.push('js/lib/moment.js') }}

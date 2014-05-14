@@ -102,7 +102,7 @@ by the site templates should be rendered by fab render.
 @task
 def sass():
     path = 'sass/style.scss'
-    out_path = 'www/css/app.sass.css'
+    out_path = 'www/css/style.sass.css'
 
     try:
         local('./bin/sassc %s %s' % (path, out_path))
