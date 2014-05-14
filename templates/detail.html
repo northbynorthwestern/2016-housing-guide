@@ -5,14 +5,14 @@
 <div id="header">
     <div class="grid">
         <div class="grid__item one-whole desk-two-thirds float-left">
-            <h1><a href="/"><span class="smaller">The </span>Housing Guide</a></h1>
+            <h1><a href="/housing"><span class="smaller">The </span>Housing Guide</a></h1>
         </div><!--
      --><div class="grid__item one-whole desk-one-third">
             <div id="search-container">
       <select id="searchbox" name="" data-placeholder="Select a hall" single class="chosen-select">
       <option></option>
         {% for dorm in COPY.dorms %}
-        <option value="/hall/{{ dorm.slug }}">{{ dorm.short_name }}</option>
+        <option value="../{{ dorm.slug }}">{{ dorm.short_name }}</option>
         {% endfor %}
       </select>
     </div>
