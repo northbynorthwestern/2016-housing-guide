@@ -59,8 +59,6 @@ def _detail(slug):
         if quote_dorm == dorm_name:
             context['quotes'].append(quote)
 
-    print context['dorm']
-
     return render_template('detail.html', **context)
 
 app.register_blueprint(static.static)

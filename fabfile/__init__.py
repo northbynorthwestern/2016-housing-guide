@@ -189,7 +189,7 @@ def render():
     app_config_js()
     copy_js()
 
-    compiled_includes = []
+    compiled_includes = {}
 
     for rule in app.app.url_map.iter_rules():
         rule_string = rule.rule
@@ -232,6 +232,55 @@ def render():
             compiled_includes = g.compiled_includes
 
         with open(filename, 'w') as f:
+            f.write(content.encode('utf-8'))
+
+    return compiled_includes
+
+@task
+def render_dorms(compiled_includes):
+    """
+    Render the detail pages.
+    """
+    from flask import g, url_for
+    from render_utils import make_context
+
+    context = make_context()
+
+    local('rm -rf .dorms_html')
+
+    dorms = list(context['COPY']['dorms'])
+
+    compiled_includes = compiled_includes or {}
+
+    for dorm in dorms:
+        dorm = dict(zip(dorm.__dict__['_columns'], dorm.__dict__['_row']))
+        slug = dorm.get('slug')
+
+        with app.app.test_request_context():
+            path = '%sindex.html' % url_for('_detail', slug=slug)
+
+        with app.app.test_request_context(path=path):
+            print 'Rendering %s' % path
+
+            g.compile_includes = True
+            g.compiled_includes = compiled_includes
+
+            view = app.__dict__['_detail']
+            content = view(slug)
+
+            # compiled_includes = g.compiled_includes
+
+        path = '.dorms_html%s' % path
+
+        # Ensure path exists
+        head = os.path.split(path)[0]
+
+        try:
+            os.makedirs(head)
+        except OSError:
+            pass
+
+        with open(path, 'w') as f:
             f.write(content.encode('utf-8'))
 
 @task
@@ -531,9 +580,12 @@ def deploy(remote='origin'):
         if app_config.DEPLOY_SERVICES:
             deploy_confs()
 
-    render()
+    compiled_includes = render()
+    render_dorms(compiled_includes)
     _gzip('www', '.gzip')
     _deploy_to_s3()
+    _gzip('.dorms_html', '.dorms_gzip')
+    _deploy_to_s3('.dorms_gzip')
 
 """
 Cron jobs
