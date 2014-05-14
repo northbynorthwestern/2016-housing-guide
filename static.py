@@ -20,16 +20,16 @@ def _templates_js():
 
     return r.std_out, 200, { 'Content-Type': 'application/javascript' }
 
-# Render LESS files on-demand
-@static.route('/less/<string:filename>')
-def _less(filename):
+# Render Sass files on-demand
+@static.route('/sass/<string:filename>')
+def _sass(filename):
     try:
-        with open('less/%s' % filename) as f:
-            less = f.read()
+        with open('sass/%s' % filename) as f:
+            sass = f.read()
     except IOError:
         abort(404)
 
-    r = envoy.run('node_modules/bin/lessc -', data=less)
+    r = envoy.run('./bin/sassc sass/style.scss www/css/app.sass.css',)
 
     return r.std_out, 200, { 'Content-Type': 'text/css' }
 

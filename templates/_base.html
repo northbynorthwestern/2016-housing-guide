@@ -17,8 +17,10 @@
     <script type="text/javascript" src="//use.typekit.net/rwj4edd.js"></script>
     <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
-    <link rel="stylesheet" href="/housing/css/responsiveslides.css" />
-    <link rel="stylesheet" href="/housing/css/app.sass.css" />
+
+    {{ CSS.push('sass/style.scss') }}
+    {% block extra_css %}{% endblock extra_css %}
+    {{ CSS.render('css/app.sass.css') }}
 
     <!-- JS -->
     {{ JS.push('js/lib/modernizr.js') }}
@@ -64,10 +66,10 @@
     {% endblock extra_foot %}
 
     <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
-    <script src="/housing/js/lib/leaflet-providers.js"></script>
     {{ JS.push('js/lib/jquery.js') }}
     {{ JS.push('js/lib/underscore.js') }}
     {{ JS.push('js/lib/moment.js') }}
+    {{ JS.push('js/lib/leaflet-providers.js') }}
     {{ JS.push('js/lib/chosen.jquery.min.js') }}
     {{ JS.push('js/lib/responsiveslides.min.js') }}
     {{ JS.push('js/app_config.js') }}

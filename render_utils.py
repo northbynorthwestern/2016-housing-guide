@@ -127,10 +127,10 @@ class CSSIncluder(Includer):
 
         for src in self.includes:
 
-            if src.endswith('less'):
+            if src.endswith('scss'):
                 src_paths.append('%s' % src)
-                src = src.replace('less', 'css') # less/example.less -> css/example.css
-                src = '%s.less.css' % src[:-4]   # css/example.css -> css/example.less.css
+                src = src.replace('scss', 'css') # sass/example.scss -> css/example.scss
+                src = '%s.sass.css' % src[:-4]   # css/example.scss -> css/example.sass.css
             else:
                 src_paths.append('www/%s' % src)
 
