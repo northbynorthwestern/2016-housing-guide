@@ -112,9 +112,9 @@
             </div>
         </div>
         <div id="detail-sidebar-container" class="grid__item one-whole desk-one-quarter float-left">
-            <div id="small-map">
-            </div>
-      <h3 class="padding-top display-desktop">Vital stats</h3>
+          <div id="small-map">
+          </div>
+        <h3 class="padding-top display-desktop">Vital stats</h3>
         <div class="display-desktop">
           <div class="padding-top stats-item">
             <p class="body-text">{{dorm.campus_side}} campus</p>
@@ -159,16 +159,16 @@
         </div>
         </div>
     </div>
-<script type="text/javascript">
- var slug = "{{slug}}";
-  window.dorm_url = 'http://nbn-housing.s3.amazonaws.com/static/json/' + slug + '.json';
-  window.dorm_video = "{{dorm.video_embed}}";
-</script>
-{% endblock %}
+    <script type="text/javascript">
 
+      var slug = "{{slug}}";
+      window.dorm_url = 'http://nbn-housing.s3.amazonaws.com/static/json/' + slug + '.json';
+      window.dorm_video = "{{dorm.video_embed}}";
+    </script>
+{% endblock %}
 
 {% block extra_foot_js %}
-  <script src="../../js/lib/leaflet.js"></script>
+  <script src='../../js/detail.js'></script>
 
-    {{ JS.push('js/detail.js') }}
 {% endblock %}
+

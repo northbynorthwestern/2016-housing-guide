@@ -66,8 +66,7 @@
     {% block extra_foot %}
     {% endblock extra_foot %}
     {{ JS.push('js/lib/jquery.js') }}
-    {{ JS.push('js/lib/underscore.js') }}
-    {{ JS.push('js/lib/moment.js') }}
+    {{ JS.push('js/lib/leaflet.js') }}
     {{ JS.push('js/lib/leaflet-providers.js') }}
     {{ JS.push('js/lib/chosen.jquery.min.js') }}
     {{ JS.push('js/lib/responsiveslides.min.js') }}
@@ -77,8 +76,10 @@
     {{ JS.push('js/ads.js') }}
     {{ JS.push('js/templates.js') }}
     {{ JS.push('js/app.js') }}
-    {% block extra_foot_js %}{% endblock extra_foot_js %}
     {{ JS.push('js/analytics.js') }}
     {{ JS.render('js/app-footer.min.js') }}
+
+    {% block extra_foot_js %}{% endblock extra_foot_js %}
+
 </body>
 </html>

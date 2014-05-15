@@ -1,7 +1,3 @@
-  $(function() {
-    $(".rslides").responsiveSlides();
-  });
-
   var geojson;
 
   var defaultStyle = {'weight': '0', fillColor: '#381f5e', fillOpacity: '1'};
@@ -15,16 +11,6 @@
   }).setView([42.05504447993239,-87.6753830909729], 16);
   L.tileLayer.provider('MapQuestOpen.OSM').addTo(map);
 
-   $.ajax({
-    url: dorm_url,
-    async: true,
-    dataType: 'jsonp',
-    jsonp: false,
-    jsonpCallback:'myCallback',
-    success:function(data) {
-        parse_map_data(data);
-    }
-  });
   function parse_map_data(data){
     $.each(data, function(key, val){
         geojson = new L.GeoJSON(val, {
@@ -37,18 +23,33 @@
     });
 }
 
-$('#video-tab').click(function() {
-  $('#embed-container').append('<iframe src="' + dorm_video + '" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>');
-  $('#media-container img').css('display', 'none');
-  $('#video-tab').css('background', '#381F5E');
-  $('#photo-tab').css('background', '#c3bccf');
-  $('#embed-container').css('display','block');
-});
+$(document).ready(function() {
 
-$('#photo-tab').click(function() {
-  $('#embed-container iframe').remove();
-  $('#embed-container').hide();
-  $('#media-container img').css('display', 'block');
-  $('#photo-tab').css('background', '#381F5E');
-  $('#video-tab').css('background', '#c3bccf');
+  $(".rslides").responsiveSlides();
+   $.ajax({
+    url: dorm_url,
+    async: true,
+    dataType: 'jsonp',
+    jsonp: false,
+    jsonpCallback:'myCallback',
+    success:function(data) {
+        parse_map_data(data);
+    }
+  });
+
+  $('#video-tab').click(function() {
+    $('#embed-container').append('<iframe src="' + dorm_video + '" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>');
+    $('#media-container img').css('display', 'none');
+    $('#video-tab').css('background', '#381F5E');
+    $('#photo-tab').css('background', '#c3bccf');
+    $('#embed-container').css('display','block');
+  });
+
+  $('#photo-tab').click(function() {
+    $('#embed-container iframe').remove();
+    $('#embed-container').hide();
+    $('#media-container img').css('display', 'block');
+    $('#photo-tab').css('background', '#381F5E');
+    $('#video-tab').css('background', '#c3bccf');
+  });
 });
