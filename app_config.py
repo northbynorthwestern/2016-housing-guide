@@ -88,17 +88,17 @@ COPY_PATH = 'data/copy.xlsx'
 """
 SHARING
 """
-PROJECT_DESCRIPTION = 'An opinionated project template for (mostly) server-less apps.'
+PROJECT_DESCRIPTION = "The North by Northwestern Freshman Housing Guide, featuring photos, videos, statistics and the opinions of current residents of Northwestern University's housing options."
 SHARE_URL = 'http://%s/%s/' % (PRODUCTION_S3_BUCKETS[0], PROJECT_SLUG)
 
 # Will be resized to 120x120, can't be larger than 1MB
 TWITTER_IMAGE_URL = ''
-TWITTER_HANDLE = '@nprviz'
+TWITTER_HANDLE = '@nbn_tweets'
 
 # 16:9 ("wide") image. FB uses 16:9 in the newsfeed and crops to square in timelines.
 # No documented restrictions on size
 FACEBOOK_IMAGE_URL = ''
-FACEBOOK_APP_ID = '138837436154588'
+FACEBOOK_APP_ID = ''
 
 # Thumbnail image for Google News / Search.
 # No documented restrictions on resolution or size
@@ -115,7 +115,7 @@ NPR_DFP = {
 SERVICES
 """
 GOOGLE_ANALYTICS = {
-    'ACCOUNT_ID': 'UA-5828686-4',
+    'ACCOUNT_ID': 'UA-15143352-1',
     'DOMAIN': PRODUCTION_S3_BUCKETS[0],
     'TOPICS': '' # e.g. '[1014,3,1003,1002,1001]'
 }
