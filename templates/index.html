@@ -12,7 +12,9 @@
       <select id="searchbox" name="" data-placeholder="Select a hall" single class="chosen-select">
         <option></option>
         {% for dorm in COPY.dorms %}
-        <option value="/housing/hall/{{ dorm.slug }}">{{ dorm.short_name }}</option>
+            {% if dorm.short_name != 'short_name' %}
+                <option value="/housing/hall/{{ dorm.slug }}">{{ dorm.short_name }}</option>
+            {% endif %}
         {% endfor %}
       </select>
             </div>
@@ -131,11 +133,13 @@
                         </thead>
                         <tbody>
                         {% for dorm in COPY.dorms %}
-                            <tr onmouseover="highlightTable(this)" onmouseout="resetHighlightTable(this)">
-                                <td><p class="dorm-name" value="{{dorm.name}}"><a href="hall/{{ dorm.slug }}">{{ dorm.short_name }}</a></p></td>
-                                <td><p>{{ dorm.size }}</p></td>
-                                <td><p>{{ dorm.dorm_type }}</p></td>
-                            </tr>
+                            {% if dorm.short_name != 'short_name' %}
+                                <tr onmouseover="highlightTable(this)" onmouseout="resetHighlightTable(this)">
+                                    <td><p class="dorm-name" value="{{dorm.name}}"><a href="hall/{{ dorm.slug }}">{{ dorm.short_name }}</a></p></td>
+                                    <td><p>{{ dorm.size }}</p></td>
+                                    <td><p>{{ dorm.dorm_type }}</p></td>
+                                </tr>
+                            {% endif %}
                         {% endfor %}
                         </tbody>
                     </table>
