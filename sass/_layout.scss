@@ -233,6 +233,9 @@ td {
 	h2, h3 {
 		font-family: $proxima;
 		color: white;
+		a {
+			color: white;
+		}
 	}
 }
 
@@ -243,19 +246,22 @@ td {
 	}
 
 	@media (min-width: $lap-start) {
-		left: 25%;
+		left: 20%;
 		position: relative;
 	}
 }
 
-.sponsored-content h3 {
-	display: inline;
+.image-container {
+	img {
+		display: block;
+		margin: 0 auto;
+	}
 }
 
-.rez-logo {
-	height: 40px;
-	width: auto;
-	display: inline;
-	padding-top: 14px;
-	vertical-align: bottom;
+.sponsored-content {
+	text-align: center;
+}
+
+.sponsored-content a {
+	color: white;
 }

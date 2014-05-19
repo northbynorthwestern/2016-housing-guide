@@ -2610,24 +2610,28 @@ td {
   #sponsored-container h2, #sponsored-container h3 {
     font-family: "proxima-nova", sans-serif;
     color: white; }
+    #sponsored-container h2 a, #sponsored-container h3 a {
+      color: white; }
 
 .sponsored-intro p {
   font-size: 1.25em;
   font-family: "proxima-nova", sans-serif; }
 @media (min-width: 625px) {
   .sponsored-intro {
-    left: 25%;
+    left: 20%;
     position: relative; } }
 
-.sponsored-content h3 {
-  display: inline; }
+.image-container img {
+  display: block;
+  margin: 0 auto; }
 
-.rez-logo {
-  height: 40px;
-  width: auto;
-  display: inline;
-  padding-top: 14px;
-  vertical-align: bottom; }
+.sponsored-content {
+  text-align: center;
+  text-decoration: none; }
+
+.sponsored-content a {
+  text-decoration: none;
+  color: white; }
 
 h1, h2, h3, h4, h5, h6, p {
   margin-bottom: 0em; }

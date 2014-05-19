@@ -14,7 +14,8 @@ maxZoom: 18,
 maxBounds: [
     [42.07095890994855, -87.65922546386719],
     [42.039094188385945, -87.69158363342285]
-]
+],
+scrollWheelZoom: false
 }).setView([42.05504447993239,-87.6753830909729], 15);
 L.tileLayer.provider('MapQuestOpen.OSM').addTo(map);
 $.ajax({
