@@ -224,3 +224,38 @@ td {
 		margin-top: 0px;
 	}
 }
+
+#sponsored-container {
+	background-color: $dark-purple;
+	color: white;
+	border-bottom: 1px solid $light-purple;
+
+	h2, h3 {
+		font-family: $proxima;
+		color: white;
+	}
+}
+
+.sponsored-intro {
+	p {
+		font-size: 1.25em;
+		font-family: $proxima;
+	}
+
+	@media (min-width: $lap-start) {
+		left: 25%;
+		position: relative;
+	}
+}
+
+.sponsored-content h3 {
+	display: inline;
+}
+
+.rez-logo {
+	height: 40px;
+	width: auto;
+	display: inline;
+	padding-top: 14px;
+	vertical-align: bottom;
+}

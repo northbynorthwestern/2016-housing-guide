@@ -2603,6 +2603,32 @@ td {
   .teaser:first-child {
     margin-top: 0px; } }
 
+#sponsored-container {
+  background-color: #381F5E;
+  color: white;
+  border-bottom: 1px solid #c3bccf; }
+  #sponsored-container h2, #sponsored-container h3 {
+    font-family: "proxima-nova", sans-serif;
+    color: white; }
+
+.sponsored-intro p {
+  font-size: 1.25em;
+  font-family: "proxima-nova", sans-serif; }
+@media (min-width: 625px) {
+  .sponsored-intro {
+    left: 25%;
+    position: relative; } }
+
+.sponsored-content h3 {
+  display: inline; }
+
+.rez-logo {
+  height: 40px;
+  width: auto;
+  display: inline;
+  padding-top: 14px;
+  vertical-align: bottom; }
+
 h1, h2, h3, h4, h5, h6, p {
   margin-bottom: 0em; }
 
@@ -2726,6 +2752,10 @@ p.credit {
   font-family: "proxima-nova", sans-serif;
   font-weight: light;
   font-size: 0.8em; }
+
+#sponsored-container p a {
+  color: white;
+  text-decoration: underline; }
 
 @media (min-width: 980px) {
   .reduced-width {
