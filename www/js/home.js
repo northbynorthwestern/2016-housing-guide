@@ -166,7 +166,7 @@ _.each(COPY.dorms, function(dorm) {
         dorms[name]['rescol'] = true;
     }
     else {
-        dorms[name]['rescol'] = true;
+        dorms[name]['rescol'] = false;
     }
 
     if (dorm[3] === 'Community') {
