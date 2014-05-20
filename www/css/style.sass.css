@@ -2626,11 +2626,9 @@ td {
   margin: 0 auto; }
 
 .sponsored-content {
-  text-align: center;
-  text-decoration: none; }
+  text-align: center; }
 
 .sponsored-content a {
-  text-decoration: none;
   color: white; }
 
 h1, h2, h3, h4, h5, h6, p {
