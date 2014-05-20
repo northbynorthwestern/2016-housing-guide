@@ -156,7 +156,10 @@
             {% if dorm.room_dimensions %}
             <p class="body-text"><span class="number"> {{dorm.room_dimensions}}</span> room (double)</p>
             {% endif %}
-            <p class="body-text">$<span class="number">{{dorm.cost|float}}</span> per quarter</p>
+            <p class="body-text">$<span class="number">{{dorm.cost}}</span> per quarter</p>
+            <div class="ad padding-top">
+              <a href="http://rezessentials.com" target="_blank"><img src="http://nbn-housing.s3.amazonaws.com/static/img/rezessentials-box.jpg"></a>
+            </div>
           </div>
         </div>
         </div>
