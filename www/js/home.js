@@ -45,7 +45,7 @@ function onEachFeature(feature, layer) {
         _.each(COPY.dorms, function(dorm) {
             if (dorm[0] === feature.properties.name) {
                 var address = dorm[7];
-                var headline = "<h4><a href='/hall/" + dorm[2] + "'>" + dorm[1] + "</a></h4>";
+                var headline = "<h4><a href='hall/" + dorm[2] + "'>" + dorm[1] + "</a></h4>";
                 layer.bindPopup(headline + ' ' + address); //address
                 layer.on({
                     mouseover: highlightFeature,
