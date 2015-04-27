@@ -82,8 +82,8 @@ curl https://npmjs.org/install.sh | sh
 Then bootstrap the project:
 
 ```
-cd housing2
-mkvirtualenv --no-site-packages housing2
+cd housing-guide
+mkvirtualenv --no-site-packages housing-guide
 pip install -r requirements.txt
 fab bootstrap
 ```
@@ -124,7 +124,7 @@ Run the project
 A flask app is used to run the project locally. It will automatically recompile templates and assets on demand.
 
 ```
-workon housing2
+workon housing-guide
 python app.py
 ```
 
@@ -245,7 +245,7 @@ Compile static assets
 Compile LESS to CSS, compile javascript templates to Javascript and minify all assets:
 
 ```
-workon housing2
+workon housing-guide
 fab render
 ```
 

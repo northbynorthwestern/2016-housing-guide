@@ -10,27 +10,32 @@ See get_secrets() below for a fast way to access them.
 
 import os
 
+from authomatic.providers import oauth2
+from authomatic import Authomatic
+
+
 """
 NAMES
 """
 # Project name used for display
 PROJECT_NAME = 'Housing Guide'
 
-# Project name to be used in urls
-# Use dashes, not underscores!
-PROJECT_SLUG = 'housing'
+
+PROJECT_SLUG = '2015-housing-guide'
+
+# Project name to be used in file paths
+PROJECT_FILENAME = '2015_housing_guide'
 
 # The name of the repository containing the source
-REPOSITORY_NAME = 'housing2'
-REPOSITORY_URL = 'git@github.com:TylerFisher/%s.git' % REPOSITORY_NAME
+REPOSITORY_NAME = '2015-housing-guide'
+GITHUB_USERNAME = 'northbynorthwestern'
+REPOSITORY_URL = 'git@github.com:%s/%s.git' % (GITHUB_USERNAME, REPOSITORY_NAME)
 REPOSITORY_ALT_URL = None # 'git@bitbucket.org:nprapps/%s.git' % REPOSITORY_NAME'
 
 # Project name used for assets rig
 # Should stay the same, even if PROJECT_SLUG changes
-ASSETS_SLUG = 'housing2'
+ASSETS_SLUG = '2015-housing-guide'
 
-# Project name to be used in file paths
-PROJECT_FILENAME = 'housing2'
 
 """
 DEPLOYMENT
@@ -79,11 +84,34 @@ SERVERS = []
 SERVER_BASE_URL = ''
 DEBUG = True
 
+DEFAULT_MAX_AGE = 20
+
+
 """
 COPY EDITING
 """
-COPY_GOOGLE_DOC_KEY = '0AqjLQISCZzBkdEFBTHAtWHlGNnA5N2pFSTdsQUlnbnc'
+COPY_GOOGLE_DOC_KEY = '1iTgwJcRFLnCADgl_C6AauXgN1RPSTcocacWnNlZ-mb8'
 COPY_PATH = 'data/copy.xlsx'
+
+"""
+OAUTH
+"""
+
+GOOGLE_OAUTH_CREDENTIALS_PATH = '~/.google_oauth_credentials'
+
+authomatic_config = {
+    'google': {
+        'id': 1,
+        'class_': oauth2.Google,
+        'consumer_key': os.environ.get('GOOGLE_OAUTH_CLIENT_ID'),
+        'consumer_secret': os.environ.get('GOOGLE_OAUTH_CONSUMER_SECRET'),
+        'scope': ['https://www.googleapis.com/auth/drive', 'https://www.googleapis.com/auth/userinfo.email'],
+        'offline': True,
+    },
+}
+
+authomatic = Authomatic(authomatic_config, os.environ.get('AUTHOMATIC_SALT'))
+
 
 """
 SHARING
