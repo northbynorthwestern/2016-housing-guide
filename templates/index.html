@@ -3,6 +3,7 @@
 {% block header_content %}
 <div id="header">
     <h1><span class="smaller">The </span>Housing Guide</h1>
+    <a href="http://rezessentials.com"><img class="sponsored-by" src="http://media.northbynorthwestern.com.s3.amazonaws.com/uploads/2015/_graphics/housing/sponsored_sub.png"></a>
     <div class="grid">
         <div class="grid__item one-whole desk-two-thirds float-left">
             <p class="body-text intro">Your first college home can be a taste of freedom and provide you with a great community, but the housing selection process can also be daunting. NBN's Housing Guide has you covered. Use the filters to see which buildings work for you, then click a building name to see video, photos and more.</p>
@@ -127,7 +128,7 @@
                         <thead>
                             <tr>
                                 <td>Hall</td>
-                                <td>Residents</td>
+                                <td style="text-align: right; padding-right: 15px;">Residents</td>
                                 <td>Type</td>
                             </tr>
                         </thead>
@@ -136,7 +137,7 @@
                             {% if dorm.short_name != 'short_name' %}
                                 <tr onmouseover="highlightTable(this)" onmouseout="resetHighlightTable(this)">
                                     <td><p class="dorm-name" value="{{dorm.name}}"><a href="hall/{{ dorm.slug }}">{{ dorm.short_name }}</a></p></td>
-                                    <td><p>{{ dorm.size }}</p></td>
+                                    <td><p style="text-align: right; padding-right: 10px;">{{ dorm.size|int }}</p></td>
                                     <td><p>{{ dorm.dorm_type }}</p></td>
                                 </tr>
                             {% endif %}
@@ -159,48 +160,24 @@
         </div><!-- End nested grid container -->
 
     </div><!-- End grid container -->
-    <div id="sponsored-container">
-    <h3 class="padding-top padding-left"><a href="http://rezessentials.com" target="_blank">The Fridge Guide</a></h3>
-        <div class="grid padded ">
-            <div class="sponsored-intro grid__item one-whole lap-and-up-six-tenths">
 
-                <div class="image-container padding-top">
-                    <a href="http://rezessentials.com" target="_blank"><img src="http://nbn-housing.s3.amazonaws.com/static/img/rezessentials-logo.png"></a>
-                </div>
-
-                <h2 class="sponsored-content padding-top"><a href="http://rezessentials.com" target="_blank">Taking the Stress Out of Move-in Day</a></h2>
-
-                <p class="padding-top">We know how hectic move-in day is. Simplify your move-in experience by ordering your mini fridge through RezEssentials.</p>
-
-                <p class="padding-top">We partnered with Northwestern so your RezEssentials fridge will be waiting for you when you arrive!</p>
-
-                <p class="padding-top">And don't worry about 2015 summer storage. RezEssentials customers get a $50 discount on storage costs.</p>
-
-                <p class="padding-top">Questions? Visit our website at <a href="http://rezessentials.com" target="_blank">RezEssentials.com</a> or email us at <a href="mailto:support@rezessentials.com">support@RezEssentials.com</a></p>
-            </div>
-        </div>
-        <div class="grid padding-top padding-left">
-            <div class="grid__item one-whole">
-                <h3>What Northwestern Students Have to Say</h3>
-            </div>
-        </div>
-        <div class="grid padded">
-           <div class="filter-exp grid__item one-whole lap-and-up-one-third">
-               <p class="body-text quote">&ldquo;Seeing my mini fridge there in my room after having to carry all my stuff up the stairs was amazing.&rdquo;</p>
-               <p class="quote-attr">Edwin A., Sargent Hall</p>
-           </div><!--
-        --><div class="filter-exp grid__item one-whole lap-and-up-one-third">
-               <p class="body-text quote">&ldquo;The fridge works great and the fact that it's run by current Northwestern students makes me know that I'm in good hands.&rdquo;</p>
-               <p class="quote-attr">John R., Foster-Walker (Plex)</p>
-           </div><!--
-        --><div class="filter-exp grid__item one-whole lap-and-up-one-third">
-               <p class="body-text quote">&ldquo;It saves so much time and hassle; it's honestly the most convenient way to get a mini fridge.&rdquo;</p>
-               <p class="quote-attr">Carol S., 1835 Hinman</p>
-           </div>
-            <!-- <img src="http://nbn-housing.s3.amazonaws.com/static/img/rezessentials-banner.jpg"> -->
-        </div>
+    <div id="related-articles">
+      {% for article in COPY.featured_articles %}
+        <a href="{{ article.url }}">
+          <p class="title">{{ article.title }}</p>
+          <p class="title">{{ article.teaser_sentence }}</p>
+        </a>
+      {% endfor %}
     </div>
-    <a id="about-filters"><h3 class="padding-top padding-left">About the filters</h3></a>
+
+    <div class="grid padded">
+      <div class="filter-exp grid__item one-whole">
+        <p class="body-text" style="padding: 1em; background-color: rgba(80, 31, 132, 0.05);">This year North by Northwestern did not include Shepard Residential College, Public Affairs Residential College, the North Mid-Quads and the South Mid-Quads because of ongoing rennovations. Check out <a href="http://apps.northbynorthwestern.com/housing/2014/"><strong>last year's housing guide</strong></a> to learn about those dorms.</p>
+      </div>
+    </div>
+
+    <a id="about-filters">
+    <h3 class="padding-top padding-left">About the filters</h3></a>
     <div class="grid padded">
         <div class="filter-exp grid__item one-whole lap-and-up-one-third">
             <h2>North and South Campus</h2>

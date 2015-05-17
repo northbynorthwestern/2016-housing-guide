@@ -142,7 +142,7 @@ class CSSIncluder(Includer):
 
             with open('www/%s' % src) as f:
                 print '- compressing %s' % src
-                output.append(cssmin(f.read()))
+                output.append(f.read())
 
         context = make_context()
         context['paths'] = src_paths

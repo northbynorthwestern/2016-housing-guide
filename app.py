@@ -35,11 +35,13 @@ def _detail(slug):
     context['dorm'] = []
     context['images'] = []
     context['quotes'] = []
+    context['nonres_quotes'] = []
     context['slug'] = ''
 
     dorms = list(context['COPY']['dorms'])
     images = list(context['COPY']['images'])
     quotes = list(context['COPY']['quotes'])
+    nonres_quotes = list(context['COPY']['nonres_quotes'])
     dorm_name = ''
 
     for dorm in dorms:
@@ -50,7 +52,6 @@ def _detail(slug):
             context['dorm'] = dorm
             context['slug'] = str(slug)
             dorm_name = dorm.get('name')
-
 
     for image in images:
         image = dict(zip(image.__dict__['_columns'], image.__dict__['_row']))
@@ -65,6 +66,13 @@ def _detail(slug):
 
         if quote_dorm == dorm_name:
             context['quotes'].append(quote)
+
+    for quote in nonres_quotes:
+        quote = dict(zip(quote.__dict__['_columns'], quote.__dict__['_row']))
+        quote_dorm = quote.get('dorm')
+
+        if quote_dorm == dorm_name:
+            context['nonres_quotes'].append(quote)
 
     return render_template('detail.html', **context)
 

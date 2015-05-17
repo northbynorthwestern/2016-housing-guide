@@ -265,3 +265,38 @@ td {
 .sponsored-content a {
 	color: white;
 }
+
+
+/// New Stuff for 2015
+.grid .header {
+  @media (min-width: 620px) {
+    width: calc(100% - 250px);
+    padding-right: 3em;
+  }
+}
+
+.grid .ad {
+  @media (max-width: 620px) {
+    display: none;
+  }
+
+  p {
+    width: 100%;
+    text-align: right;
+    font-family: $proxima;
+    color: $light-purple;
+    font-size: 0.75em;
+  }
+}
+
+.sponsored-by {
+  display: block;
+  margin-bottom: 1em;
+  @media (max-width: $desk-start) {
+    margin: 0 auto;
+  }
+}
+
+#header h1 {
+  margin-bottom: 0 !important;
+}

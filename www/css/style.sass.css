@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /*------------------------------------*\
     STYLE.CSS
 \*------------------------------------*/
@@ -389,13 +390,26 @@
 /*
  * Correct `block` display not defined in IE 8/9.
  */
-article, aside, details, figcaption, figure, footer, header, hgroup, main, nav, section, summary {
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
   display: block; }
 
 /*
  * Correct `inline-block` display not defined in IE 8/9.
  */
-audio, canvas, video {
+audio,
+canvas,
+video {
   display: inline-block; }
 
 /*
@@ -446,7 +460,8 @@ a:focus {
 /*
  * Improve readability when focused and also mouse hovered in all browsers.
  */
-a:active, a:hover {
+a:active,
+a:hover {
   outline: 0; }
 
 /* ==========================================================================
@@ -469,7 +484,8 @@ abbr[title] {
 /*
  * Address style set to `bolder` in Firefox 4+, Safari 5, and Chrome.
  */
-b, strong {
+b,
+strong {
   font-weight: bold; }
 
 /*
@@ -496,7 +512,10 @@ mark {
 /*
  * Correct font family set oddly in Safari 5 and Chrome.
  */
-code, kbd, pre, samp {
+code,
+kbd,
+pre,
+samp {
   font-family: monospace, serif;
   font-size: 1em; }
 
@@ -521,7 +540,8 @@ small {
 /*
  * Prevent `sub` and `sup` affecting `line-height` in all browsers.
  */
-sub, sup {
+sub,
+sup {
   font-size: 75%;
   line-height: 0;
   position: relative;
@@ -583,7 +603,10 @@ legend {
  * 2. Correct font size not being inherited in all browsers.
  * 3. Address margins set differently in Firefox 4+, Safari 5, and Chrome.
  */
-button, input, select, textarea {
+button,
+input,
+select,
+textarea {
   font-family: inherit;
   /* 1 */
   font-size: 100%;
@@ -595,7 +618,8 @@ button, input, select, textarea {
  * Address Firefox 4+ setting `line-height` on `input` using `!important` in
  * the UA stylesheet.
  */
-button, input {
+button,
+input {
   line-height: normal; }
 
 /*
@@ -604,7 +628,8 @@ button, input {
  * Correct `button` style inheritance in Chrome, Safari 5+, and IE 8+.
  * Correct `select` style inheritance in Firefox 4+ and Opera.
  */
-button, select {
+button,
+select {
   text-transform: none; }
 
 /*
@@ -614,7 +639,10 @@ button, select {
  * 3. Improve usability and consistency of cursor style between image-type
  *    `input` and others.
  */
-button, html input[type="button"], input[type="reset"], input[type="submit"] {
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
   -webkit-appearance: button;
   /* 2 */
   cursor: pointer;
@@ -623,14 +651,16 @@ button, html input[type="button"], input[type="reset"], input[type="submit"] {
 /*
  * Re-set default cursor for disabled elements.
  */
-button[disabled], html input[disabled] {
+button[disabled],
+html input[disabled] {
   cursor: default; }
 
 /*
  * 1. Address box sizing set to `content-box` in IE 8/9.
  * 2. Remove excess padding in IE 8/9.
  */
-input[type="checkbox"], input[type="radio"] {
+input[type="checkbox"],
+input[type="radio"] {
   box-sizing: border-box;
   /* 1 */
   padding: 0;
@@ -653,13 +683,15 @@ input[type="search"] {
  * Remove inner padding and search cancel button in Safari 5 and Chrome
  * on OS X.
  */
-input[type="search"]::-webkit-search-cancel-button, input[type="search"]::-webkit-search-decoration {
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none; }
 
 /*
  * Remove inner padding and border in Firefox 4+.
  */
-button::-moz-focus-inner, input::-moz-focus-inner {
+button::-moz-focus-inner,
+input::-moz-focus-inner {
   border: 0;
   padding: 0; }
 
@@ -691,8 +723,8 @@ table {
  * As per: csswizardry.com/2011/10/reset-restarted
  */
 /**
-    * Let’s make the box model all nice, shall we...?
-    */
+* Let’s make the box model all nice, shall we...?
+*/
 *, *:before, *:after {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -703,7 +735,12 @@ table {
 /**
  * The usual...
  */
-h1, h2, h3, h4, h5, h6, p, blockquote, pre, dl, dd, ol, ul, form, fieldset, legend, table, th, td, caption, hr {
+h1, h2, h3, h4, h5, h6,
+p, blockquote, pre,
+dl, dd, ol, ul,
+form, fieldset, legend,
+table, th, td, caption,
+hr {
   margin: 0;
   padding: 0; }
 
@@ -734,10 +771,18 @@ img {
 /**
  * Give form elements some cursor interactions...
  */
-label, input, textarea, button, select, option {
+label,
+input,
+textarea,
+button,
+select,
+option {
   cursor: pointer; }
 
-.text-input:active, .text-input:focus, textarea:active, textarea:focus {
+.text-input:active,
+.text-input:focus,
+textarea:active,
+textarea:focus {
   cursor: text;
   outline: none; }
 
@@ -765,10 +810,27 @@ label, input, textarea, button, select, option {
 /**
  * Base elements
  */
-.form-fields > li {
+h1, h2, h3, h4, h5, h6, hgroup,
+ul, ol, dl,
+blockquote, p, address,
+table,
+fieldset, figure,
+pre,
+.form-fields > li,
+.media,
+.island,
+.islet {
   margin-bottom: 24px;
   margin-bottom: 1.5rem; }
-  .islet .form-fields > li {
+  .islet h1, .islet h2, .islet h3, .islet h4, .islet h5, .islet h6, .islet hgroup, .islet
+  ul, .islet ol, .islet dl, .islet
+  blockquote, .islet p, .islet address, .islet
+  table, .islet
+  fieldset, .islet figure, .islet
+  pre, .islet .form-fields > li, .islet
+  .media, .islet
+  .island, .islet
+  .islet {
     margin-bottom: 12px;
     margin-bottom: 0.75rem; }
 
@@ -885,7 +947,8 @@ hgroup .hN {
  * The `.lede` class is used to make the introductory text (usually a paragraph)
  * of a document slightly larger.
  */
-.lede, .lead {
+.lede,
+.lead {
   font-size: 18px;
   font-size: 1.125rem;
   line-height: 1.33333; }
@@ -896,7 +959,8 @@ hgroup .hN {
 /**
  * A series of classes for setting tiny type; for use in smallprint etc.
  */
-.smallprint, .milli {
+.smallprint,
+.milli {
   font-size: 12px;
   font-size: 0.75rem;
   line-height: 2; }
@@ -919,7 +983,7 @@ hgroup .hN {
  * Inline quotes.
  */
 q {
-  quotes: "\2018" "\2019" "\201C" "\201D"; }
+  quotes: "‘" "’" "\\201C" "\\201D"; }
   q:before {
     content: "\2018";
     content: open-quote; }
@@ -934,15 +998,15 @@ q {
     content: close-quote; }
 
 blockquote {
-  quotes: "\201C" "\201D"; }
+  quotes: "\\201C" "\\201D"; }
   blockquote p:before {
-    content: "\201C";
+    content: "\\201C";
     content: open-quote; }
   blockquote p:after {
     content: "";
     content: no-close-quote; }
   blockquote p:last-of-type:after {
-    content: "\201D";
+    content: "\\201D";
     content: close-quote; }
   blockquote q:before {
     content: "\2018";
@@ -962,8 +1026,8 @@ blockquote {
  */
 blockquote {
   /**
-     * .4em is roughly equal to the width of the opening “ that we wish to hang.
-     */
+   * .4em is roughly equal to the width of the opening “ that we wish to hang.
+   */
   text-indent: -0.41em; }
   blockquote p:last-of-type {
     margin-bottom: 0; }
@@ -996,8 +1060,8 @@ pre mark {
  */
 .code-comment {
   /**
-     * Override this setting in your theme stylesheet
-     */
+   * Override this setting in your theme stylesheet
+   */
   opacity: 0.75;
   filter: alpha(opacity=75); }
 
@@ -1053,7 +1117,8 @@ img {
 /**
  * Non-fluid images if you specify `width` and/or `height` attributes.
  */
-img[width], img[height] {
+img[width],
+img[height] {
   max-width: none; }
 
 /**
@@ -1108,7 +1173,8 @@ figure > img {
 /**
  * Remove vertical spacing from nested lists.
  */
-li > ul, li > ol {
+li > ul,
+li > ol {
   margin-bottom: 0; }
 
 /**
@@ -1178,11 +1244,13 @@ li > ul, li > ol {
 table {
   width: 100%; }
 
-th, td {
+th,
+td {
   padding: 6px;
   text-align: left; }
   @media screen and (min-width: 480px) {
-    th, td {
+    th,
+    td {
       padding: 12px; } }
 
 /**
@@ -1296,9 +1364,11 @@ th, td {
 /**
  * Bordered tables
  */
-.table--bordered th, .table--bordered td {
+.table--bordered th,
+.table--bordered td {
   border: 1px solid #ccc; }
-  .table--bordered th:empty, .table--bordered td:empty {
+  .table--bordered th:empty,
+  .table--bordered td:empty {
     border: none; }
 .table--bordered thead tr:last-child th {
   border-bottom-width: 2px; }
@@ -1339,6 +1409,12 @@ fieldset {
    <input type=password class=text-input>
  *
  */
+.text-input,
+textarea {
+  /**
+   * Style these via your theme stylesheet.
+   */ }
+
 /**
  * Group sets of form fields in a list, e.g.:
  *
@@ -1391,15 +1467,16 @@ fieldset {
    </li>
  *
  */
-label, .label {
+label,
+.label {
   display: block; }
 
 /**
-     * Extra help text in `label`s, e.g.:
-     *
-       <label>Card number <small class=additional>No spaces</small></label>
-     *
-     */
+ * Extra help text in `label`s, e.g.:
+ *
+   <label>Card number <small class=additional>No spaces</small></label>
+ *
+ */
 .additional {
   display: block;
   font-weight: normal; }
@@ -1424,9 +1501,11 @@ label, .label {
   margin: 0; }
 
 /*
-     * Labels in check-lists
-     */
-.check-label, .check-list label, .check-list .label {
+ * Labels in check-lists
+ */
+.check-label,
+.check-list label,
+.check-list .label {
   display: inline-block; }
 
 /**
@@ -1465,7 +1544,8 @@ label, .label {
   display: inline-block;
   visibility: hidden; }
 
-.text-input:active + .extra-help, .text-input:focus + .extra-help {
+.text-input:active + .extra-help,
+.text-input:focus + .extra-help {
   visibility: visible; }
 
 /**
@@ -1513,14 +1593,14 @@ label, .label {
   margin-bottom: 0; }
 
 /**
-     * Very infrequently occuring grid wrappers as children of grid wrappers.
-     */
+ * Very infrequently occuring grid wrappers as children of grid wrappers.
+ */
 .grid > .grid {
   margin-left: 0; }
 
 /**
-     * Grid
-     */
+ * Grid
+ */
 .grid__item {
   display: inline-block;
   width: 100%;
@@ -1542,20 +1622,20 @@ label, .label {
  * variations.
  */
 /**
-    * Whole
-    */
+* Whole
+*/
 .one-whole {
   width: 100%; }
 
 /**
-    * Halves
-    */
+* Halves
+*/
 .one-half, .two-quarters, .three-sixths, .four-eighths, .five-tenths, .six-twelfths {
   width: 50%; }
 
 /**
-    * Thirds
-    */
+* Thirds
+*/
 .one-third, .two-sixths, .four-twelfths {
   width: 33.333%; }
 
@@ -1563,8 +1643,8 @@ label, .label {
   width: 66.666%; }
 
 /**
-    * Quarters
-    */
+* Quarters
+*/
 .one-quarter, .two-eighths, .three-twelfths {
   width: 25%; }
 
@@ -1572,8 +1652,8 @@ label, .label {
   width: 75%; }
 
 /**
-    * Fifths
-    */
+* Fifths
+*/
 .one-fifth, .two-tenths {
   width: 20%; }
 
@@ -1587,8 +1667,8 @@ label, .label {
   width: 80%; }
 
 /**
-    * Sixths
-    */
+* Sixths
+*/
 .one-sixth, .two-twelfths {
   width: 16.666%; }
 
@@ -1596,8 +1676,8 @@ label, .label {
   width: 83.333%; }
 
 /**
-    * Eighths
-    */
+* Eighths
+*/
 .one-eighth {
   width: 12.5%; }
 
@@ -1611,8 +1691,8 @@ label, .label {
   width: 87.5%; }
 
 /**
-    * Tenths
-    */
+* Tenths
+*/
 .one-tenth {
   width: 10%; }
 
@@ -1626,8 +1706,8 @@ label, .label {
   width: 90%; }
 
 /**
-    * Twelfths
-    */
+* Twelfths
+*/
 .one-twelfth {
   width: 8.333%; }
 
@@ -1656,389 +1736,499 @@ label, .label {
  */
 @media only screen and (max-width: 624px) {
   /**
-    * Whole
-    */
-  /**
-    * Halves
-    */
-  /**
-    * Thirds
-    */
-  /**
-    * Quarters
-    */
-  /**
-    * Fifths
-    */
-  /**
-    * Sixths
-    */
-  /**
-    * Eighths
-    */
-  /**
-    * Tenths
-    */
-  /**
-    * Twelfths
-    */
+  * Whole
+  */
   .palm-one-whole {
     width: 100%; }
+
+  /**
+  * Halves
+  */
   .palm-one-half, .palm-two-quarters, .palm-three-sixths, .palm-four-eighths, .palm-five-tenths, .palm-six-twelfths {
     width: 50%; }
+
+  /**
+  * Thirds
+  */
   .palm-one-third, .palm-two-sixths, .palm-four-twelfths {
     width: 33.333%; }
+
   .palm-two-thirds, .palm-four-sixths, .palm-eight-twelfths {
     width: 66.666%; }
+
+  /**
+  * Quarters
+  */
   .palm-one-quarter, .palm-two-eighths, .palm-three-twelfths {
     width: 25%; }
+
   .palm-three-quarters, .palm-six-eighths, .palm-nine-twelfths {
     width: 75%; }
+
+  /**
+  * Fifths
+  */
   .palm-one-fifth, .palm-two-tenths {
     width: 20%; }
+
   .palm-two-fifths, .palm-four-tenths {
     width: 40%; }
+
   .palm-three-fifths, .palm-six-tenths {
     width: 60%; }
+
   .palm-four-fifths, .palm-eight-tenths {
     width: 80%; }
+
+  /**
+  * Sixths
+  */
   .palm-one-sixth, .palm-two-twelfths {
     width: 16.666%; }
+
   .palm-five-sixths, .palm-ten-twelfths {
     width: 83.333%; }
+
+  /**
+  * Eighths
+  */
   .palm-one-eighth {
     width: 12.5%; }
+
   .palm-three-eighths {
     width: 37.5%; }
+
   .palm-five-eighths {
     width: 62.5%; }
+
   .palm-seven-eighths {
     width: 87.5%; }
+
+  /**
+  * Tenths
+  */
   .palm-one-tenth {
     width: 10%; }
+
   .palm-three-tenths {
     width: 30%; }
+
   .palm-seven-tenths {
     width: 70%; }
+
   .palm-nine-tenths {
     width: 90%; }
+
+  /**
+  * Twelfths
+  */
   .palm-one-twelfth {
     width: 8.333%; }
+
   .palm-five-twelfths {
     width: 41.666%; }
+
   .palm-seven-twelfths {
     width: 58.333%; }
+
   .palm-eleven-twelfths {
     width: 91.666%; } }
-
 @media only screen and (min-width: 625px) and (max-width: 979px) {
   /**
-    * Whole
-    */
-  /**
-    * Halves
-    */
-  /**
-    * Thirds
-    */
-  /**
-    * Quarters
-    */
-  /**
-    * Fifths
-    */
-  /**
-    * Sixths
-    */
-  /**
-    * Eighths
-    */
-  /**
-    * Tenths
-    */
-  /**
-    * Twelfths
-    */
+  * Whole
+  */
   .lap-one-whole {
     width: 100%; }
+
+  /**
+  * Halves
+  */
   .lap-one-half, .lap-two-quarters, .lap-three-sixths, .lap-four-eighths, .lap-five-tenths, .lap-six-twelfths {
     width: 50%; }
+
+  /**
+  * Thirds
+  */
   .lap-one-third, .lap-two-sixths, .lap-four-twelfths {
     width: 33.333%; }
+
   .lap-two-thirds, .lap-four-sixths, .lap-eight-twelfths {
     width: 66.666%; }
+
+  /**
+  * Quarters
+  */
   .lap-one-quarter, .lap-two-eighths, .lap-three-twelfths {
     width: 25%; }
+
   .lap-three-quarters, .lap-six-eighths, .lap-nine-twelfths {
     width: 75%; }
+
+  /**
+  * Fifths
+  */
   .lap-one-fifth, .lap-two-tenths {
     width: 20%; }
+
   .lap-two-fifths, .lap-four-tenths {
     width: 40%; }
+
   .lap-three-fifths, .lap-six-tenths {
     width: 60%; }
+
   .lap-four-fifths, .lap-eight-tenths {
     width: 80%; }
+
+  /**
+  * Sixths
+  */
   .lap-one-sixth, .lap-two-twelfths {
     width: 16.666%; }
+
   .lap-five-sixths, .lap-ten-twelfths {
     width: 83.333%; }
+
+  /**
+  * Eighths
+  */
   .lap-one-eighth {
     width: 12.5%; }
+
   .lap-three-eighths {
     width: 37.5%; }
+
   .lap-five-eighths {
     width: 62.5%; }
+
   .lap-seven-eighths {
     width: 87.5%; }
+
+  /**
+  * Tenths
+  */
   .lap-one-tenth {
     width: 10%; }
+
   .lap-three-tenths {
     width: 30%; }
+
   .lap-seven-tenths {
     width: 70%; }
+
   .lap-nine-tenths {
     width: 90%; }
+
+  /**
+  * Twelfths
+  */
   .lap-one-twelfth {
     width: 8.333%; }
+
   .lap-five-twelfths {
     width: 41.666%; }
+
   .lap-seven-twelfths {
     width: 58.333%; }
+
   .lap-eleven-twelfths {
     width: 91.666%; } }
-
 @media only screen and (min-width: 625px) {
   /**
-    * Whole
-    */
-  /**
-    * Halves
-    */
-  /**
-    * Thirds
-    */
-  /**
-    * Quarters
-    */
-  /**
-    * Fifths
-    */
-  /**
-    * Sixths
-    */
-  /**
-    * Eighths
-    */
-  /**
-    * Tenths
-    */
-  /**
-    * Twelfths
-    */
+  * Whole
+  */
   .lap-and-up-one-whole {
     width: 100%; }
+
+  /**
+  * Halves
+  */
   .lap-and-up-one-half, .lap-and-up-two-quarters, .lap-and-up-three-sixths, .lap-and-up-four-eighths, .lap-and-up-five-tenths, .lap-and-up-six-twelfths {
     width: 50%; }
+
+  /**
+  * Thirds
+  */
   .lap-and-up-one-third, .lap-and-up-two-sixths, .lap-and-up-four-twelfths {
     width: 33.333%; }
+
   .lap-and-up-two-thirds, .lap-and-up-four-sixths, .lap-and-up-eight-twelfths {
     width: 66.666%; }
+
+  /**
+  * Quarters
+  */
   .lap-and-up-one-quarter, .lap-and-up-two-eighths, .lap-and-up-three-twelfths {
     width: 25%; }
+
   .lap-and-up-three-quarters, .lap-and-up-six-eighths, .lap-and-up-nine-twelfths {
     width: 75%; }
+
+  /**
+  * Fifths
+  */
   .lap-and-up-one-fifth, .lap-and-up-two-tenths {
     width: 20%; }
+
   .lap-and-up-two-fifths, .lap-and-up-four-tenths {
     width: 40%; }
+
   .lap-and-up-three-fifths, .lap-and-up-six-tenths {
     width: 60%; }
+
   .lap-and-up-four-fifths, .lap-and-up-eight-tenths {
     width: 80%; }
+
+  /**
+  * Sixths
+  */
   .lap-and-up-one-sixth, .lap-and-up-two-twelfths {
     width: 16.666%; }
+
   .lap-and-up-five-sixths, .lap-and-up-ten-twelfths {
     width: 83.333%; }
+
+  /**
+  * Eighths
+  */
   .lap-and-up-one-eighth {
     width: 12.5%; }
+
   .lap-and-up-three-eighths {
     width: 37.5%; }
+
   .lap-and-up-five-eighths {
     width: 62.5%; }
+
   .lap-and-up-seven-eighths {
     width: 87.5%; }
+
+  /**
+  * Tenths
+  */
   .lap-and-up-one-tenth {
     width: 10%; }
+
   .lap-and-up-three-tenths {
     width: 30%; }
+
   .lap-and-up-seven-tenths {
     width: 70%; }
+
   .lap-and-up-nine-tenths {
     width: 90%; }
+
+  /**
+  * Twelfths
+  */
   .lap-and-up-one-twelfth {
     width: 8.333%; }
+
   .lap-and-up-five-twelfths {
     width: 41.666%; }
+
   .lap-and-up-seven-twelfths {
     width: 58.333%; }
+
   .lap-and-up-eleven-twelfths {
     width: 91.666%; } }
-
 @media only screen and (max-width: 979px) {
   /**
-    * Whole
-    */
-  /**
-    * Halves
-    */
-  /**
-    * Thirds
-    */
-  /**
-    * Quarters
-    */
-  /**
-    * Fifths
-    */
-  /**
-    * Sixths
-    */
-  /**
-    * Eighths
-    */
-  /**
-    * Tenths
-    */
-  /**
-    * Twelfths
-    */
+  * Whole
+  */
   .portable-one-whole {
     width: 100%; }
+
+  /**
+  * Halves
+  */
   .portable-one-half, .portable-two-quarters, .portable-three-sixths, .portable-four-eighths, .portable-five-tenths, .portable-six-twelfths {
     width: 50%; }
+
+  /**
+  * Thirds
+  */
   .portable-one-third, .portable-two-sixths, .portable-four-twelfths {
     width: 33.333%; }
+
   .portable-two-thirds, .portable-four-sixths, .portable-eight-twelfths {
     width: 66.666%; }
+
+  /**
+  * Quarters
+  */
   .portable-one-quarter, .portable-two-eighths, .portable-three-twelfths {
     width: 25%; }
+
   .portable-three-quarters, .portable-six-eighths, .portable-nine-twelfths {
     width: 75%; }
+
+  /**
+  * Fifths
+  */
   .portable-one-fifth, .portable-two-tenths {
     width: 20%; }
+
   .portable-two-fifths, .portable-four-tenths {
     width: 40%; }
+
   .portable-three-fifths, .portable-six-tenths {
     width: 60%; }
+
   .portable-four-fifths, .portable-eight-tenths {
     width: 80%; }
+
+  /**
+  * Sixths
+  */
   .portable-one-sixth, .portable-two-twelfths {
     width: 16.666%; }
+
   .portable-five-sixths, .portable-ten-twelfths {
     width: 83.333%; }
+
+  /**
+  * Eighths
+  */
   .portable-one-eighth {
     width: 12.5%; }
+
   .portable-three-eighths {
     width: 37.5%; }
+
   .portable-five-eighths {
     width: 62.5%; }
+
   .portable-seven-eighths {
     width: 87.5%; }
+
+  /**
+  * Tenths
+  */
   .portable-one-tenth {
     width: 10%; }
+
   .portable-three-tenths {
     width: 30%; }
+
   .portable-seven-tenths {
     width: 70%; }
+
   .portable-nine-tenths {
     width: 90%; }
+
+  /**
+  * Twelfths
+  */
   .portable-one-twelfth {
     width: 8.333%; }
+
   .portable-five-twelfths {
     width: 41.666%; }
+
   .portable-seven-twelfths {
     width: 58.333%; }
+
   .portable-eleven-twelfths {
     width: 91.666%; } }
-
 @media only screen and (min-width: 980px) {
   /**
-    * Whole
-    */
-  /**
-    * Halves
-    */
-  /**
-    * Thirds
-    */
-  /**
-    * Quarters
-    */
-  /**
-    * Fifths
-    */
-  /**
-    * Sixths
-    */
-  /**
-    * Eighths
-    */
-  /**
-    * Tenths
-    */
-  /**
-    * Twelfths
-    */
+  * Whole
+  */
   .desk-one-whole {
     width: 100%; }
+
+  /**
+  * Halves
+  */
   .desk-one-half, .desk-two-quarters, .desk-three-sixths, .desk-four-eighths, .desk-five-tenths, .desk-six-twelfths {
     width: 50%; }
+
+  /**
+  * Thirds
+  */
   .desk-one-third, .desk-two-sixths, .desk-four-twelfths {
     width: 33.333%; }
+
   .desk-two-thirds, .desk-four-sixths, .desk-eight-twelfths {
     width: 66.666%; }
+
+  /**
+  * Quarters
+  */
   .desk-one-quarter, .desk-two-eighths, .desk-three-twelfths {
     width: 25%; }
+
   .desk-three-quarters, .desk-six-eighths, .desk-nine-twelfths {
     width: 75%; }
+
+  /**
+  * Fifths
+  */
   .desk-one-fifth, .desk-two-tenths {
     width: 20%; }
+
   .desk-two-fifths, .desk-four-tenths {
     width: 40%; }
+
   .desk-three-fifths, .desk-six-tenths {
     width: 60%; }
+
   .desk-four-fifths, .desk-eight-tenths {
     width: 80%; }
+
+  /**
+  * Sixths
+  */
   .desk-one-sixth, .desk-two-twelfths {
     width: 16.666%; }
+
   .desk-five-sixths, .desk-ten-twelfths {
     width: 83.333%; }
+
+  /**
+  * Eighths
+  */
   .desk-one-eighth {
     width: 12.5%; }
+
   .desk-three-eighths {
     width: 37.5%; }
+
   .desk-five-eighths {
     width: 62.5%; }
+
   .desk-seven-eighths {
     width: 87.5%; }
+
+  /**
+  * Tenths
+  */
   .desk-one-tenth {
     width: 10%; }
+
   .desk-three-tenths {
     width: 30%; }
+
   .desk-seven-tenths {
     width: 70%; }
+
   .desk-nine-tenths {
     width: 90%; }
+
+  /**
+  * Twelfths
+  */
   .desk-one-twelfth {
     width: 8.333%; }
+
   .desk-five-twelfths {
     width: 41.666%; }
+
   .desk-seven-twelfths {
     width: 58.333%; }
+
   .desk-eleven-twelfths {
     width: 91.666%; } }
-
 /**
  * If you have set the additional `$responsive-extra` variable to ‘true’ in
  * `_vars.scss` then you now have access to the following class available to
@@ -2065,13 +2255,14 @@ label, .label {
  * any element using a handy helper class.
  */
 .brand {
-  font-family: "Helvetica Neue", sans-serif!important;
+  font-family: Helvetica Neue, sans-serif!important;
   color: #4a8ec2!important; }
 
 .brand-face {
-  font-family: "Helvetica Neue", sans-serif!important; }
+  font-family: Helvetica Neue, sans-serif!important; }
 
-.brand-color, .brand-colour {
+.brand-color,
+.brand-colour {
   color: #4a8ec2!important; }
 
 /*------------------------------------*\
@@ -2102,7 +2293,7 @@ label, .label {
  * Text alignment
  */
 .text--left {
-  text-align: left !important; }
+  text-align: left  !important; }
 
 .text--center {
   text-align: center !important; }
@@ -2306,7 +2497,7 @@ label, .label {
  *
  */
 .go:after {
-  content: "\00A0" "\00BB" !important; }
+  content: " " "»" !important; }
 
 /**
  * Apply capital case to an element (usually a `strong`).
@@ -2318,7 +2509,8 @@ label, .label {
  * Hide content off-screen without resorting to `display:none;`, also provide
  * breakpoint specific hidden elements.
  */
-.accessibility, .visuallyhidden {
+.accessibility,
+.visuallyhidden {
   border: 0 !important;
   clip: rect(0 0 0 0) !important;
   height: 1px !important;
@@ -2329,7 +2521,8 @@ label, .label {
   width: 1px !important; }
 
 @media only screen and (max-width: 624px) {
-  .accessibility--palm, .visuallyhidden--palm {
+  .accessibility--palm,
+  .visuallyhidden--palm {
     border: 0 !important;
     clip: rect(0 0 0 0) !important;
     height: 1px !important;
@@ -2338,9 +2531,9 @@ label, .label {
     padding: 0 !important;
     position: absolute !important;
     width: 1px !important; } }
-
 @media only screen and (min-width: 625px) and (max-width: 979px) {
-  .accessibility--lap, .visuallyhidden--lap {
+  .accessibility--lap,
+  .visuallyhidden--lap {
     border: 0 !important;
     clip: rect(0 0 0 0) !important;
     height: 1px !important;
@@ -2349,9 +2542,9 @@ label, .label {
     padding: 0 !important;
     position: absolute !important;
     width: 1px !important; } }
-
 @media only screen and (min-width: 625px) {
-  .accessibility--lap-and-up, .visuallyhidden--lap-and-up {
+  .accessibility--lap-and-up,
+  .visuallyhidden--lap-and-up {
     border: 0 !important;
     clip: rect(0 0 0 0) !important;
     height: 1px !important;
@@ -2360,9 +2553,9 @@ label, .label {
     padding: 0 !important;
     position: absolute !important;
     width: 1px !important; } }
-
 @media only screen and (max-width: 979px) {
-  .accessibility--portable, .visuallyhidden--portable {
+  .accessibility--portable,
+  .visuallyhidden--portable {
     border: 0 !important;
     clip: rect(0 0 0 0) !important;
     height: 1px !important;
@@ -2371,9 +2564,9 @@ label, .label {
     padding: 0 !important;
     position: absolute !important;
     width: 1px !important; } }
-
 @media only screen and (min-width: 980px) {
-  .accessibility--desk, .visuallyhidden--desk {
+  .accessibility--desk,
+  .visuallyhidden--desk {
     border: 0 !important;
     clip: rect(0 0 0 0) !important;
     height: 1px !important;
@@ -2382,9 +2575,9 @@ label, .label {
     padding: 0 !important;
     position: absolute !important;
     width: 1px !important; } }
-
 @media only screen and (min-width: 1200px) {
-  .accessibility--desk-wide, .visuallyhidden--desk-wide {
+  .accessibility--desk-wide,
+  .visuallyhidden--desk-wide {
     border: 0 !important;
     clip: rect(0 0 0 0) !important;
     height: 1px !important;
@@ -2393,7 +2586,6 @@ label, .label {
     padding: 0 !important;
     position: absolute !important;
     width: 1px !important; } }
-
 /* endif */
 /**
  * She’s all yours, cap’n... Begin importing your stuff here.
@@ -2564,13 +2756,16 @@ td {
   border-radius: 8px;
   margin: 7px 7px 0px 0px; }
 
-.perfect-fit > .dot, .dot.perfect-fit {
+.perfect-fit > .dot,
+.dot.perfect-fit {
   background-color: #199E8D; }
 
-.good-fit > .dot, .dot.good-fit {
+.good-fit > .dot,
+.dot.good-fit {
   background-color: #E68C1A; }
 
-.bad-fit > .dot, .dot.bad-fit {
+.bad-fit > .dot,
+.dot.bad-fit {
   background-color: #CD2A2B; }
 
 .clear-filter {
@@ -2631,6 +2826,31 @@ td {
 .sponsored-content a {
   color: white; }
 
+@media (min-width: 620px) {
+  .grid .header {
+    width: calc(100% - 250px);
+    padding-right: 3em; } }
+
+@media (max-width: 620px) {
+  .grid .ad {
+    display: none; } }
+.grid .ad p {
+  width: 100%;
+  text-align: right;
+  font-family: "proxima-nova", sans-serif;
+  color: #c3bccf;
+  font-size: 0.75em; }
+
+.sponsored-by {
+  display: block;
+  margin-bottom: 1em; }
+  @media (max-width: 980px) {
+    .sponsored-by {
+      margin: 0 auto; } }
+
+#header h1 {
+  margin-bottom: 0 !important; }
+
 h1, h2, h3, h4, h5, h6, p {
   margin-bottom: 0em; }
 
@@ -2678,7 +2898,7 @@ h1 a:hover {
 
 .body-text {
   font-family: "ff-meta-serif-web-pro", serif;
-  font-size: 1em; }
+  font-size: 1.0em; }
   .body-text a {
     text-decoration: underline; }
 
@@ -2929,7 +3149,7 @@ p.credit {
   width: 12px;
   height: 12px;
   font-size: 1px;
-  background: url('chosen-sprite.png') -42px 1px no-repeat; }
+  background: url("chosen-sprite.png") -42px 1px no-repeat; }
 
 .chzn-container-single .chzn-single abbr:hover {
   background-position: -42px -10px; }
@@ -2946,7 +3166,7 @@ p.credit {
   width: 18px; }
 
 .chzn-container-single .chzn-single div b {
-  background: url('chosen-sprite.png') no-repeat 0px 2px;
+  background: url("chosen-sprite.png") no-repeat 0px 2px;
   display: block;
   width: 100%;
   height: 100%; }
@@ -2959,12 +3179,12 @@ p.credit {
   z-index: 1010; }
 
 .chzn-container-single .chzn-search input {
-  background: #fff url('chosen-sprite.png') no-repeat 100% -20px;
-  background: url('chosen-sprite.png') no-repeat 100% -20px, -webkit-gradient(linear, 0 0, 0 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
-  background: url('chosen-sprite.png') no-repeat 100% -20px, -webkit-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background: url('chosen-sprite.png') no-repeat 100% -20px, -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background: url('chosen-sprite.png') no-repeat 100% -20px, -o-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background: url('chosen-sprite.png') no-repeat 100% -20px, linear-gradient(#eeeeee 1%, #ffffff 15%);
+  background: #fff url("chosen-sprite.png") no-repeat 100% -20px;
+  background: url("chosen-sprite.png") no-repeat 100% -20px, -webkit-gradient(linear, 0 0, 0 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
+  background: url("chosen-sprite.png") no-repeat 100% -20px, -webkit-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+  background: url("chosen-sprite.png") no-repeat 100% -20px, -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+  background: url("chosen-sprite.png") no-repeat 100% -20px, -o-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+  background: url("chosen-sprite.png") no-repeat 100% -20px, linear-gradient(#eeeeee 1%, #ffffff 15%);
   margin: 1px 0;
   padding: 4px 20px 4px 5px;
   outline: 0;
@@ -3091,7 +3311,7 @@ p.credit {
   width: 12px;
   height: 12px;
   font-size: 1px;
-  background: url('chosen-sprite.png') -42px 1px no-repeat; }
+  background: url("chosen-sprite.png") -42px 1px no-repeat; }
 
 .chzn-container-multi .chzn-choices .search-choice .search-choice-close:hover {
   background-position: -42px -10px; }
@@ -3176,10 +3396,10 @@ p.credit {
   bottom: 0; }
 
 .chzn-container .chzn-results-scroll-down span {
-  background: url('chosen-sprite.png') no-repeat -4px -3px; }
+  background: url("chosen-sprite.png") no-repeat -4px -3px; }
 
 .chzn-container .chzn-results-scroll-up span {
-  background: url('chosen-sprite.png') no-repeat -22px -3px; }
+  background: url("chosen-sprite.png") no-repeat -22px -3px; }
 
 /* @end */
 /* @group Active  */
@@ -3292,12 +3512,12 @@ p.credit {
   border-right: none; }
 
 .chzn-rtl .chzn-search input {
-  background: #fff url('chosen-sprite.png') no-repeat -30px -20px;
-  background: url('chosen-sprite.png') no-repeat -30px -20px, -webkit-gradient(linear, 0 0, 0 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
-  background: url('chosen-sprite.png') no-repeat -30px -20px, -webkit-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background: url('chosen-sprite.png') no-repeat -30px -20px, -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background: url('chosen-sprite.png') no-repeat -30px -20px, -o-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
-  background: url('chosen-sprite.png') no-repeat -30px -20px, linear-gradient(#eeeeee 1%, #ffffff 15%);
+  background: #fff url("chosen-sprite.png") no-repeat -30px -20px;
+  background: url("chosen-sprite.png") no-repeat -30px -20px, -webkit-gradient(linear, 0 0, 0 100%, color-stop(1%, #eeeeee), color-stop(15%, #ffffff));
+  background: url("chosen-sprite.png") no-repeat -30px -20px, -webkit-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+  background: url("chosen-sprite.png") no-repeat -30px -20px, -moz-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+  background: url("chosen-sprite.png") no-repeat -30px -20px, -o-linear-gradient(top, #eeeeee 1%, #ffffff 15%);
+  background: url("chosen-sprite.png") no-repeat -30px -20px, linear-gradient(#eeeeee 1%, #ffffff 15%);
   padding: 4px 5px 4px 20px;
   direction: rtl; }
 
@@ -3311,10 +3531,9 @@ p.credit {
 /* @group Retina compatibility */
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min-resolution: 144dpi) {
   .chzn-rtl .chzn-search input, .chzn-container-single .chzn-single abbr, .chzn-container-single .chzn-single div b, .chzn-container-single .chzn-search input, .chzn-container-multi .chzn-choices .search-choice .search-choice-close, .chzn-container .chzn-results-scroll-down span, .chzn-container .chzn-results-scroll-up span {
-    background-image: url('chosen-sprite@2x.png') !important;
+    background-image: url("chosen-sprite@2x.png") !important;
     background-repeat: no-repeat !important;
     background-size: 52px 37px !important; } }
-
 /* @end */
 .rslides {
   position: relative;
@@ -3348,7 +3567,7 @@ p.credit {
 .centered-btns_nav {
   z-index: 3;
   position: absolute;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  -webkit-tap-highlight-color: transparent;
   top: 50%;
   left: 0;
   opacity: 0.7;
@@ -3361,7 +3580,7 @@ p.credit {
   margin-top: -45px; }
 
 .centered-btns_nav:active {
-  opacity: 1; }
+  opacity: 1.0; }
 
 .centered-btns_nav.next {
   left: auto;
@@ -3407,3 +3626,5 @@ p.credit {
 
 .centered-btns_tabs {
   margin: 0 20px 0; }
+
+/*# sourceMappingURL=style.sass.css.map */
