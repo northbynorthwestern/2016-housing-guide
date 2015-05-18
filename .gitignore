@@ -49,3 +49,4 @@ www/assets
 data/gdoc*.csv
 .dorms_gzip
 .dorms_html
+dist

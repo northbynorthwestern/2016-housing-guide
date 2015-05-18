@@ -1,3 +1,4 @@
+
 var geojson;
 
 var defaultStyle = {'weight': '0', fillColor: '#38235D', fillOpacity: '1'};
@@ -7,6 +8,23 @@ var notStyle = {'weight': '0', fillColor: '#cd2a2b', fillOpacity: '.5'};
 var highlightStyle = {'weight': 4, 'opacity': 0.8, 'color': 'white', 'dashArray': '', fillOpacity: 1 };
 
 jsonLayers = []; // will store each json layer as it is added to map to change later
+
+
+window.parseBoolean = function(string) {
+  var bool;
+  bool = (function() {
+    switch (false) {
+      case string.toLowerCase() !== 'true':
+        return true;
+      case string.toLowerCase() !== 'false':
+        return false;
+    }
+  })();
+  if (typeof bool === "boolean") {
+    return bool;
+  }
+  return void 0;
+};
 
 var map = L.map('map', {
 minZoom: 14,
@@ -19,7 +37,7 @@ scrollWheelZoom: false
 }).setView([42.05504447993239,-87.6753830909729], 15);
 L.tileLayer.provider('MapQuestOpen.OSM').addTo(map);
 $.ajax({
-url: 'http://nbn-housing.s3.amazonaws.com/static/json/shapes.json',
+url: 'js/shapes.json',
 async: true,
 dataType: 'jsonp',
 jsonp: false,
@@ -28,17 +46,25 @@ success:function(data) {
     parse_map_data(data);
 }
 });
+
 function parse_map_data(data){
-$.each(data, function(key, val){
-    geojson = new L.GeoJSON(val, {
-      onEachFeature: onEachFeature,
-      style: function(feature) {
-        return defaultStyle;
+  $.each(data, function(key, val){
+    if (val.properties.name !== 'Shepard Residential College' &&
+        val.properties.name !== 'South Mid-Quads Residence Hall' &&
+        val.properties.name !== 'North Mid-Quads Residence Hall' &&
+        val.properties.name !== 'Public Affairs Residential College') {
+
+        geojson = new L.GeoJSON(val, {
+          onEachFeature: onEachFeature,
+          style: function(feature) {
+            return defaultStyle;
+          }
+        }).addTo(map);
+        jsonLayers.push({name: val.properties.name, value: geojson}); // jsonLayers[].value.setStyle() to change style
       }
-    }).addTo(map);
-    jsonLayers.push({name: val.properties.name, value: geojson}); // jsonLayers[].value.setStyle() to change style
-});
+  });
 }
+
 function onEachFeature(feature, layer) {
     // does this feature have a property named popupContent?
     if (feature.properties && feature.properties.name) {
@@ -149,64 +175,69 @@ function changeMap(name, style) {
     })
 }
 
+
 // dorm data
 var dorms = {};
-_.each(COPY.dorms, function(dorm) {
-    var name = dorm[1];
-    dorms[name] = {};
+var create_dorms = function() {
+  _.each(COPY.dorms, function(dorm) {
 
-    if (dorm[3] === 'Hall') {
-        dorms[name]['reshall'] = true;
-    }
-    else {
-        dorms[name]['reshall'] = false;
-    }
+      var name = dorm['name'];
+      dorms[name] = {};
 
-    if (dorm[3] === 'College') {
-        dorms[name]['rescol'] = true;
-    }
-    else {
-        dorms[name]['rescol'] = false;
-    }
+      if (dorm['dorm_type'] === 'Hall') {
+          dorms[name]['reshall'] = true;
+      }
+      else {
+          dorms[name]['reshall'] = false;
+      }
 
-    if (dorm[3] === 'Community') {
-        dorms[name]['rescomm'] = true;
-    }
-    else {
-        dorms[name]['rescomm'] = false;
-    }
+      if (dorm['dorm_type'] === 'College') {
+          dorms[name]['rescol'] = true;
+      }
+      else {
+          dorms[name]['rescol'] = false;
+      }
 
-    if (dorm[6] === 'North') {
-        dorms[name]['north'] = true;
-        dorms[name]['south'] = false;
-    }
-    else {
-        dorms[name]['north'] = false;
-        dorms[name]['south'] = true;
-    }
+      if (dorm['dorm_type'] === 'Community') {
+          dorms[name]['rescomm'] = true;
+      }
+      else {
+          dorms[name]['rescomm'] = false;
+      }
 
-    if (dorm[5] <= 100) {
-        dorms[name]['small'] = true;
-        dorms[name]['med'] = false;
-        dorms[name]['large'] = false;
-    }
-    if (dorm[5] > 100 && dorm[5] <= 200) {
-        dorms[name]['small'] = false;
-        dorms[name]['med'] = true;
-        dorms[name]['large'] = false;
-    }
-    if (dorm[5] > 200) {
-        dorms[name]['small'] = false;
-        dorms[name]['med'] = false;
-        dorms[name]['large'] = true;
-    }
+      if (dorm['campus_side'] === 'North') {
+          dorms[name]['north'] = true;
+          dorms[name]['south'] = false;
+      }
+      else {
+          dorms[name]['north'] = false;
+          dorms[name]['south'] = true;
+      }
 
-    dorms[name]['ac'] = dorm[4];
-    dorms[name]['dining'] = dorm[8];
-    dorms[name]['freshmen'] = dorm[10];
-    dorms[name]['female'] = dorm[9];
-    dorms[name]['open_gender'] = dorm[11];
-});
+      if (dorm['size'] <= 100) {
+          dorms[name]['small'] = true;
+          dorms[name]['med'] = false;
+          dorms[name]['large'] = false;
+      }
+      if (dorm['size'] > 100 && dorm['size'] <= 200) {
+          dorms[name]['small'] = false;
+          dorms[name]['med'] = true;
+          dorms[name]['large'] = false;
+      }
+      if (dorm['size'] > 200) {
+          dorms[name]['small'] = false;
+          dorms[name]['med'] = false;
+          dorms[name]['large'] = true;
+      }
+
+      dorms[name]['ac'] = parseBoolean(dorm['has_ac']);
+      dorms[name]['dining'] = parseBoolean(dorm['dining']);
+      dorms[name]['freshmen'] = parseBoolean(dorm['freshmen_only']);
+      dorms[name]['female'] = parseBoolean(dorm['female_only']);
+      dorms[name]['open_gender'] = parseBoolean(dorm['open_gender']);
+  });
+  console.log(dorms);
+};
 
 // count true properties of an object
 var count = function(obj, props) {
@@ -242,6 +273,8 @@ var sizeCriteria = ['small', 'med', 'large'];
 var otherCriteria = ['ac', 'dining', 'female', 'freshmen', 'opengender'];
 
 $('.filter').change(function() {
+
+    console.log('CHANGIN');
     // update selections
     $('.filter').map(function(i, elem) {
         selections[$(elem).attr('id').split('-')[0]] = elem.checked;
@@ -261,8 +294,9 @@ $('.filter').change(function() {
         // update fits
         $('.dorm-name').removeClass('perfect-fit good-fit bad-fit');
         $('.dorm-name').each(function(i, elem) {
-            var name = $(elem).text();
-
+            var name = $(elem).data('fullname');
+            console.log(name);
+            console.log(dorms[name]);
             // name to match json
             var jsonName = $(elem).attr("value");
 
@@ -286,6 +320,7 @@ $('.filter').change(function() {
                     break;
                 }
             }
+
             for (var i in otherCriteria) {
                 if (selections[otherCriteria[i]] && dorms[name][otherCriteria[i]]) {
                     matchCount += 1;
@@ -330,10 +365,11 @@ $('.clear-filter').click(clearFilter);
 
 // clear filter on page load
 clearFilter();
+$(document).ready(function(){
+  var dorms_array = [];
+  _.each(COPY.dorms, function(dorm) {
+      dorms_array.push("{{dorm}}");
+  });
+  create_dorms();
 
-$(document).ready(function() {
-    var dorms_array = [];
-    _.each(COPY.dorms, function(dorm) {
-        dorms_array.push("{{dorm}}");
-    });
 });

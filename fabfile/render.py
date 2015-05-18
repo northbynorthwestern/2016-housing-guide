@@ -84,11 +84,12 @@ def copytext_js():
     with open('www/js/copy.js', 'w') as f:
         f.write(response.data)
 
-@task(default=True)
+@task()
 def render_all():
     """
     Render HTML templates and compile assets.
     """
+
     from flask import g
 
     less()
@@ -132,12 +133,59 @@ def render_all():
 
             view = _view_from_name(name)
 
-            content = view().data
+            content = view()
 
             compiled_includes = g.compiled_includes
 
         # Write rendered view
         # NB: Flask response object has utf-8 encoded the data
         with open(filename, 'w') as f:
-            f.write(content)
+            f.write(content.encode('utf-8'))
 
+
+@task
+def render_dorms(compiled_includes):
+    """
+    Render the detail pages.
+    """
+    from flask import g, url_for
+    from render_utils import make_context
+
+    context = make_context()
+
+    local('rm -rf .dorms_html')
+
+    dorms = list(context['COPY']['dorms'])
+
+    compiled_includes = compiled_includes or {}
+
+    for dorm in dorms:
+        dorm = dict(zip(dorm.__dict__['_columns'], dorm.__dict__['_row']))
+        slug = dorm.get('slug')
+
+        with app.app.test_request_context():
+            path = '%sindex.html' % url_for('_detail', slug=slug)
+
+        with app.app.test_request_context(path=path):
+            print 'Rendering %s' % path
+
+            g.compile_includes = True
+            g.compiled_includes = compiled_includes
+
+            view = app.__dict__['_detail']
+            content = view(slug)
+
+            # compiled_includes = g.compiled_includes
+
+        path = '.dorms_html%s' % path
+
+        # Ensure path exists
+        head = os.path.split(path)[0]
+
+        try:
+            os.makedirs(head)
+        except OSError:
+            pass
+
+        with open(path, 'w') as f:
+            f.write(content.encode('utf-8'))

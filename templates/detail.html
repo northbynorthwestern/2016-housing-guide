@@ -6,6 +6,7 @@
     <div class="grid">
         <div class="grid__item one-whole desk-two-thirds float-left">
             <h1><a href="../../"><span class="smaller">The </span>Housing Guide</a></h1>
+            <img class="sponsored-by" src="http://media.northbynorthwestern.com.s3.amazonaws.com/uploads/2015/_graphics/housing/sponsored_sub.png">
         </div><!--
      --><div class="grid__item one-whole desk-one-third">
             <div id="search-container">
@@ -29,22 +30,29 @@
 
     <div class="grid">
         <div id="detail-main-container" class="grid__item one-whole desk-three-quarters float-right">
-            <div>
-                <h2>{{ dorm.name }}</h2>
-        <h3>{{ dorm.address }}</h3>
-                <p class="body-text reduced-width padding-top">{{ dorm.blurb }}</p>
-            </div>
-            <div class="padding-top">
-        <div id="photo-tab" class="tab float-left" >
-                    <img src="http://nbn-housing.s3.amazonaws.com/static/img/photo-icon.png">
-                    <h3>Photo</h3>
-                </div>
 
-                <div id="video-tab" class="tab float-left">
-          <img src="http://nbn-housing.s3.amazonaws.com/static/img/video-icon.png">
-                    <h3>Video</h3>
-                </div>
-                <div id="media-container" class="clear reduced-width">
+            <div class="ad float-right">
+              <p class="small">Advertisement</p>
+              <a href="http://rezessentials.com" target="_blank"><img src="http://media.northbynorthwestern.com.s3.amazonaws.com/uploads/2015/_graphics/housing/resessentials_ad.jpg"></a>
+            </div>
+
+            <div class="header">
+              <h2>{{ dorm.name }}</h2>
+              <h3>{{ dorm.address }}</h3>
+              <p class="body-text reduced-width padding-top">{{ dorm.blurb|safe }}</p>
+            </div>
+
+            <div class="padding-top">
+              <div id="photo-tab" class="tab float-left" >
+              <img src="http://nbn-housing.s3.amazonaws.com/static/img/photo-icon.png">
+              <h3>Photo</h3>
+            </div>
+
+            <div id="video-tab" class="tab float-left">
+              <img src="http://nbn-housing.s3.amazonaws.com/static/img/video-icon.png">
+              <h3>Video</h3>
+            </div>
+            <div id="media-container" class="clear reduced-width">
           <div class="rslides_container">
           <ul class="rslides">
               {% for image in images %}
@@ -68,14 +76,14 @@
             <p class="body-text">{{dorm.campus_side}} campus</p>
             <p class="body-text"><span class="number">{{ dorm.dist_to_tech|float }}</span> minute walk to Tech</p>
             <p class="body-text"><span class="number">{{ dorm.dist_to_norris|float }}</span> minute walk to Norris</p>
-            <p class="body-text"><span class="number">{{ dorm.dist_to_kresge|float }}</span> minute walk to Kresge</p>
-            <p class="body-text"><span class="number">{{ dorm.dist_to_bk|float }}</span> minute walk to Burger King</p>
+            <p class="body-text"><span class="number">{{ dorm.dist_to_rock|float }}</span> minute walk to The Rock</p>
+            <p class="body-text">NBN Social Rating: <span class="number">{{dorm.social_rating|float}}</span><span class="sans-serif">/5.0</span></p>
           </div><!--
          --><div class="grid__item one-whole lap-one-third stats-item">
-            <p class="body-text"><span class="number">{{ dorm.doubles }}</span> doubles</p>
-            <p class="body-text">+ <span class="number">{{ dorm.singles }}</span> singles</p>
-            <p class="body-text">+ <span class="number">{{ dorm.triples }}</span> triples</p>
-            <p id="sum" class="body-text"><span class="number">{{ dorm.size }}</span></span> residents</p>
+            <p class="body-text"><span class="number">{{ dorm.doubles|float|round|int }}</span> doubles</p>
+            <p class="body-text">+ <span class="number">{{ dorm.singles|float|round|int }}</span> singles</p>
+            <p class="body-text">+ <span class="number">{{ dorm.triples|float|round|int }}</span> triples</p>
+            <p id="sum" class="body-text"><span class="number">{{ dorm.size|float|round|int }}</span></span> residents</p>
           </div><!--
          --><div class="grid__item one-whole lap-one-third stats-item">
             {% if dorm.has_ac %}
@@ -99,8 +107,18 @@
             {% if dorm.dorm_type == 'Special Interest Housing' %}
               <p class="body-text">Special interest housing</p>
             {% endif %}
+          </div>
+          <div class="grid__item one-whole lap-one-third stats-item">
             <p class="body-text"><span class="number">{{dorm.room_dimensions}}</span> room (double)</p>
-            <p class="body-text">$<span class="number">{{dorm.cost|float}}</span> per quarter</p>
+            {% if dorm.cost_single %}
+            <p class="body-text">$<span class="number">{{dorm.cost_single}}</span> per single/quarter</p>
+            {% endif %}
+            {% if dorm.cost_double %}
+            <p class="body-text">$<span class="number">{{dorm.cost_double}}</span> per double/quarter</p>
+            {% endif %}
+            {% if dorm.cost_triple %}
+            <p class="body-text">$<span class="number">{{dorm.cost_double}}</span> per triple/quarter</p>
+            {% endif %}
           </div>
         </div>
 
@@ -111,6 +129,17 @@
             <p class="quote-attr">{{ quote.source }}</p>
           {% endfor %}
                 </div>
+
+          {% if nonres_quotes %}
+                <div class="padding-top reduced-width">
+                    <h3 class="padding-top">What non-residents say</h3>
+          {% for quote in nonres_quotes %}
+                    <p class="body-text quote padding-top">&ldquo;{{ quote.text }}&rdquo;</p>
+            <p class="quote-attr">{{ quote.source }}</p>
+          {% endfor %}
+                </div>
+          {% endif %}
+
             </div>
         </div>
         <div id="detail-sidebar-container" class="grid__item one-whole desk-one-quarter float-left">
@@ -122,14 +151,16 @@
             <p class="body-text">{{dorm.campus_side}} campus</p>
             <p class="body-text"><span class="number">{{ dorm.dist_to_tech }}</span> minute walk to Tech</p>
             <p class="body-text"><span class="number">{{ dorm.dist_to_norris }}</span> minute walk to Norris</p>
-            <p class="body-text"><span class="number">{{ dorm.dist_to_kresge }}</span> minute walk to Kresge</p>
-            <p class="body-text"><span class="number">{{ dorm.dist_to_bk }}</span> minute walk to Burger King</p>
+            <p class="body-text"><span class="number">{{ dorm.dist_to_rock }}</span> minute walk to the Rock</p>
           </div>
           <div class="stats-item">
-            <p class="body-text"><span class="number">{{dorm.doubles}}</span> doubles</p>
-            <p class="body-text">+ <span class="number">{{dorm.singles}}</span> singles</p>
-            <p class="body-text">+ <span class="number">{{dorm.triples}}</span> triples</p>
-            <p id="sum" class="body-text"><span class="number">{{dorm.size}}</span> residents</p>
+            <p class="body-text">NBN Social Rating: <span class="number">{{dorm.social_rating|float}}</span><span class="sans-serif"> / 5.0</span></p>
+          </div>
+          <div class="stats-item">
+            <p class="body-text"><span class="number">{{ dorm.doubles|float|round|int }}</span> doubles</p>
+            <p class="body-text">+ <span class="number">{{ dorm.singles|float|round|int }}</span> singles</p>
+            <p class="body-text">+ <span class="number">{{ dorm.triples|float|round|int }}</span> triples</p>
+            <p id="sum" class="body-text"><span class="number">{{ dorm.size|float|round|int }}</span></span> residents</p>
           </div>
           <div class="stats-item">
             {% if dorm.has_ac %}
@@ -153,13 +184,20 @@
             {% if dorm.dorm_type == 'Special Interest Housing' %}
               <p class="body-text">Special interest housing</p>
             {% endif %}
+          </div>
+          <div class="stats-item">
             {% if dorm.room_dimensions %}
             <p class="body-text"><span class="number"> {{dorm.room_dimensions}}</span> room (double)</p>
             {% endif %}
-            <p class="body-text">$<span class="number">{{dorm.cost}}</span> per quarter</p>
-            <div class="ad padding-top">
-              <a href="http://rezessentials.com" target="_blank"><img src="http://nbn-housing.s3.amazonaws.com/static/img/rezessentials-box.jpg"></a>
-            </div>
+            {% if dorm.cost_single %}
+            <p class="body-text">$<span class="number">{{dorm.cost_single}}</span> per single/quarter</p>
+            {% endif %}
+            {% if dorm.cost_double %}
+            <p class="body-text">$<span class="number">{{dorm.cost_double}}</span> per double/quarter</p>
+            {% endif %}
+            {% if dorm.cost_triple %}
+            <p class="body-text">$<span class="number">{{dorm.cost_double}}</span> per triple/quarter</p>
+            {% endif %}
           </div>
         </div>
         </div>

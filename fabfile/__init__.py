@@ -17,12 +17,15 @@ from etc.gdocs import GoogleDoc
 # Other fabfiles
 import assets
 import utils
+import render
 
 NPM_INSTALL_COMMAND = 'npm install less universal-jst -g --prefix node_modules'
 
 # Bootstrap can only be run once, then it's disabled
 if app_config.PROJECT_SLUG == '$NEW_PROJECT_SLUG':
     import bootstrap
+
+
 
 
 """
@@ -122,8 +125,9 @@ def sass():
     out_path = 'www/css/style.sass.css'
 
     try:
-        local('./bin/sassc %s %s' % (path, out_path))
-    except:
+        local('/usr/bin/sass %s %s' % (path, out_path))
+    except Exception, e:
+        print e
         print 'It looks like "sassc" sucks and you suck for using sass'
         raise
 
@@ -138,25 +142,6 @@ def jst():
     except:
         print 'It looks like "jst" isn\'t installed. Try running: "%s"' % NPM_INSTALL_COMMAND
 
-@task
-def download_copy():
-    """
-    Downloads a Google Doc as an Excel file.
-    """
-    import ipdb; ipdb.set_trace();
-    doc = {}
-    doc['key'] = app_config.COPY_GOOGLE_DOC_KEY
-
-    g = GoogleDoc(**doc)
-    g.get_auth()
-    g.get_document()
-
-@task
-def update_copy():
-    """
-    Fetches the latest Google Doc and updates local JSON.
-    """
-    download_copy()
 
 @task
 def update_data():
@@ -164,6 +149,7 @@ def update_data():
     Stub function for updating app-specific data.
     """
     pass
+
 
 import app_config
 import os
@@ -177,6 +163,9 @@ def update_copy():
     """
     Downloads a Google Doc as an Excel file.
     """
+
+    print "DOING THINGS"
+
     if app_config.COPY_GOOGLE_DOC_KEY == None:
         print colored('You have set COPY_GOOGLE_DOC_KEY to None. If you want to use a Google Sheet, set COPY_GOOGLE_DOC_KEY  to the key of your sheet in app_config.py', 'blue')
         return
@@ -215,115 +204,122 @@ def copy_js():
     with open('www/js/copy.js', 'w') as f:
         f.write(js)
 
-@task
-def render():
-    """
-    Render HTML templates and compile assets.
-    """
-    from flask import g
 
-    update_copy()
-    # assets.sync()
-    update_data()
-    sass()
-    jst()
+# @task
+# def render_adfa():
 
-    app_config_js()
-    copy_js()
+    import ipdb; ipdb.set_trace();
+    # """
+    # Render HTML templates and compile assets.
+    # """
+    # from flask import g
 
-    compiled_includes = {}
+    # update_copy()
+    # # assets.sync()
+    # update_data()
+    # sass()
+    # jst()
 
-    for rule in app.app.url_map.iter_rules():
-        rule_string = rule.rule
-        name = rule.endpoint
+    # app_config_js()
+    # copy_js()
 
-        if name == 'static' or name.startswith('_'):
-            print 'Skipping %s' % name
-            continue
+    # compiled_includes = {}
 
-        if rule_string.endswith('/'):
-            filename = 'www' + rule_string + 'index.html'
-        elif rule_string.endswith('.html'):
-            filename = 'www' + rule_string
-        else:
-            print 'Skipping %s' % name
-            continue
+    # import ipdb; ipdb.set_trace();
 
-        dirname = os.path.dirname(filename)
+    # for rule in app.app.url_map.iter_rules():
+    #     rule_string = rule.rule
+    #     name = rule.endpoint
 
-        if not (os.path.exists(dirname)):
-            os.makedirs(dirname)
+    #     if name == 'static' or name.startswith('_'):
+    #         print 'Skipping %s' % name
+    #         continue
 
-        print 'Rendering %s' % (filename)
+    #     if rule_string.endswith('/'):
+    #         filename = 'www' + rule_string + 'index.html'
+    #     elif rule_string.endswith('.html'):
+    #         filename = 'www' + rule_string
+    #     else:
+    #         print 'Skipping %s' % name
+    #         continue
 
-        with app.app.test_request_context(path=rule_string):
-            g.compile_includes = True
-            g.compiled_includes = compiled_includes
+    #     dirname = os.path.dirname(filename)
 
-            bits = name.split('.')
+    #     if not (os.path.exists(dirname)):
+    #         os.makedirs(dirname)
 
-            # Determine which module the view resides in
-            if len(bits) > 1:
-                module, name = bits
-            else:
-                module = 'app'
+    #     print 'Rendering %s' % (filename)
 
-            view = globals()[module].__dict__[name]
-            content = view()
+    #     with app.app.test_request_context(path=rule_string):
+    #         g.compile_includes = True
+    #         g.compiled_includes = compiled_includes
 
-            compiled_includes = g.compiled_includes
+    #         bits = name.split('.')
 
-        with open(filename, 'w') as f:
-            f.write(content.encode('utf-8'))
+    #         # Determine which module the view resides in
+    #         if len(bits) > 1:
+    #             module, name = bits
+    #         else:
+    #             module = 'app'
 
-    return compiled_includes
+    #         view = globals()[module].__dict__[name]
+    #         content = view()
 
-@task
-def render_dorms(compiled_includes):
-    """
-    Render the detail pages.
-    """
-    from flask import g, url_for
-    from render_utils import make_context
+    #         compiled_includes = g.compiled_includes
 
-    context = make_context()
+    #     with open(filename, 'w') as f:
+    #         f.write(content.encode('utf-8'))
 
-    local('rm -rf .dorms_html')
+    # return compiled_includes
 
-    dorms = list(context['COPY']['dorms'])
+# @task
+# def render_dorms(compiled_includes):
+#     """
+#     Render the detail pages.
+#     """
+#     from flask import g, url_for
+#     from render_utils import make_context
 
-    compiled_includes = compiled_includes or {}
+#     context = make_context()
 
-    for dorm in dorms:
-        dorm = dict(zip(dorm.__dict__['_columns'], dorm.__dict__['_row']))
-        slug = dorm.get('slug')
+#     local('rm -rf .dorms_html')
 
-        with app.app.test_request_context():
-            path = '%sindex.html' % url_for('_detail', slug=slug)
+#     dorms = list(context['COPY']['dorms'])
 
-        with app.app.test_request_context(path=path):
-            print 'Rendering %s' % path
+#     compiled_includes = compiled_includes or {}
 
-            g.compile_includes = True
-            g.compiled_includes = compiled_includes
+#     for dorm in dorms:
+#         dorm = dict(zip(dorm.__dict__['_columns'], dorm.__dict__['_row']))
+#         slug = dorm.get('slug')
 
-            view = app.__dict__['_detail']
-            content = view(slug)
+#         import ipdb; ipdb.set_trace();
 
-            # compiled_includes = g.compiled_includes
+#         with app.app.test_request_context():
+#             path = '%sindex.html' % url_for('_detail', slug=slug)
 
-        path = '.dorms_html%s' % path
+#         with app.app.test_request_context(path=path):
+#             print 'Rendering %s' % path
 
-        # Ensure path exists
-        head = os.path.split(path)[0]
+#             g.compile_includes = True
+#             g.compiled_includes = compiled_includes
 
-        try:
-            os.makedirs(head)
-        except OSError:
-            pass
+#             view = app.__dict__['_detail']
+#             content = view(slug)
 
-        with open(path, 'w') as f:
-            f.write(content.encode('utf-8'))
+#             # compiled_includes = g.compiled_includes
+
+#         path = '.dorms_html%s' % path
+
+#         # Ensure path exists
+#         head = os.path.split(path)[0]
+
+#         try:
+#             os.makedirs(head)
+#         except OSError:
+#             pass
+
+#         with open(path, 'w') as f:
+#             f.write(content.encode('utf-8'))
 
 @task
 def tests():
@@ -622,12 +618,16 @@ def deploy(remote='origin'):
         if app_config.DEPLOY_SERVICES:
             deploy_confs()
 
-    compiled_includes = render()
-    render_dorms(compiled_includes)
-    _gzip('www', '.gzip')
-    _deploy_to_s3()
-    _gzip('.dorms_html', '.dorms_gzip')
-    _deploy_to_s3('.dorms_gzip')
+    compiled_includes = render.render_all()
+    render.render_dorms(compiled_includes)
+    sass()
+    # _gzip('www', '.gzip')
+    # _deploy_to_s3()
+    # _gzip('.dorms_html', '.dorms_gzip')
+    # _deploy_to_s3('.dorms_gzip')
+    local('rm -rf dist')
+    local('cp -r .dorms_html dist')
+    local('cp -r www/ dist/')
 
 """
 Cron jobs
