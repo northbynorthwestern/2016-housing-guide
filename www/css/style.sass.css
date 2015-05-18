@@ -2860,14 +2860,17 @@ td {
     margin-bottom: 2em;
     display: block;
     text-decoration: none; }
-    @media (min-width: 980px) {
+    @media (max-width: 770px) {
+      .related div.grid-item {
+        padding: 0 24px; } }
+    @media (min-width: 771px) {
       .related div.grid-item {
         max-width: 50%; }
         .related div.grid-item:nth-of-type(odd) {
           float: left;
           padding-left: 24px; }
         .related div.grid-item:nth-of-type(even) {
-          float: right;
+          float: left;
           padding-right: 24px; }
           .related div.grid-item:nth-of-type(even):after {
             visibility: hidden;
@@ -2893,6 +2896,8 @@ td {
   .related .text {
     float: right;
     width: calc(100% - 150px); }
+  .related .body-text {
+    width: 80%; }
 
 .clearfix:after {
   visibility: hidden;
@@ -2903,6 +2908,7 @@ td {
   height: 0; }
 
 .related {
+  margin-top: 3em;
   background-color: rgba(80, 31, 132, 0.05);
   border-top: 1px solid #c3bccf; }
 

@@ -308,19 +308,24 @@ td {
 
 .related {
   position: relative;
+
   div.grid-item {
     margin-bottom: 2em;
     display: block;
     text-decoration: none;
 
-    @media (min-width: $desk-start) {
+    @media (max-width: 770px) {
+      padding: 0 24px;
+    }
+
+    @media (min-width: 771px) {
 
       &:nth-of-type(odd) {
         float: left;
         padding-left: 24px;
       }
       &:nth-of-type(even) {
-        float: right;
+        float: left;
         padding-right: 24px;
         &:after {
           visibility: hidden;
@@ -364,6 +369,10 @@ td {
     width: calc(100% - 150px)
   }
 
+  .body-text {
+    width: 80%;
+  }
+
 }
 
 .clearfix:after {
@@ -376,6 +385,7 @@ td {
 }
 
 .related {
+  margin-top: 3em;
   background-color: rgba(80, 31, 132, 0.05);
   border-top: 1px solid $light-purple;
 }
