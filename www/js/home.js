@@ -9,6 +9,23 @@ var highlightStyle = {'weight': 4, 'opacity': 0.8, 'color': 'white', 'dashArray'
 
 jsonLayers = []; // will store each json layer as it is added to map to change later
 
+
+window.parseBoolean = function(string) {
+  var bool;
+  bool = (function() {
+    switch (false) {
+      case string.toLowerCase() !== 'true':
+        return true;
+      case string.toLowerCase() !== 'false':
+        return false;
+    }
+  })();
+  if (typeof bool === "boolean") {
+    return bool;
+  }
+  return void 0;
+};
+
 var map = L.map('map', {
 minZoom: 14,
 maxZoom: 18,
@@ -20,7 +37,7 @@ scrollWheelZoom: false
 }).setView([42.05504447993239,-87.6753830909729], 15);
 L.tileLayer.provider('MapQuestOpen.OSM').addTo(map);
 $.ajax({
-url: 'http://nbn-housing.s3.amazonaws.com/static/json/shapes.json',
+url: 'js/shapes.json',
 async: true,
 dataType: 'jsonp',
 jsonp: false,
@@ -29,17 +46,25 @@ success:function(data) {
     parse_map_data(data);
 }
 });
+
 function parse_map_data(data){
-$.each(data, function(key, val){
-    geojson = new L.GeoJSON(val, {
-      onEachFeature: onEachFeature,
-      style: function(feature) {
-        return defaultStyle;
+  $.each(data, function(key, val){
+    if (val.properties.name !== 'Shepard Residential College' &&
+        val.properties.name !== 'South Mid-Quads Residence Hall' &&
+        val.properties.name !== 'North Mid-Quads Residence Hall' &&
+        val.properties.name !== 'Public Affairs Residential College') {
+
+        geojson = new L.GeoJSON(val, {
+          onEachFeature: onEachFeature,
+          style: function(feature) {
+            return defaultStyle;
+          }
+        }).addTo(map);
+        jsonLayers.push({name: val.properties.name, value: geojson}); // jsonLayers[].value.setStyle() to change style
       }
-    }).addTo(map);
-    jsonLayers.push({name: val.properties.name, value: geojson}); // jsonLayers[].value.setStyle() to change style
-});
+  });
 }
+
 function onEachFeature(feature, layer) {
     // does this feature have a property named popupContent?
     if (feature.properties && feature.properties.name) {
@@ -194,7 +219,7 @@ var create_dorms = function() {
           dorms[name]['med'] = false;
           dorms[name]['large'] = false;
       }
-      if (dorm['size'] > 100 && dorm[5] <= 200) {
+      if (dorm['size'] > 100 && dorm['size'] <= 200) {
           dorms[name]['small'] = false;
           dorms[name]['med'] = true;
           dorms[name]['large'] = false;
@@ -205,12 +230,13 @@ var create_dorms = function() {
           dorms[name]['large'] = true;
       }
 
-      dorms[name]['ac'] = dorm['has_ac'];
-      dorms[name]['dining'] = dorm['dining'];
-      dorms[name]['freshmen'] = dorm['freshmen_only'];
-      dorms[name]['female'] = dorm['female_only'];
-      dorms[name]['open_gender'] = dorm['open_gender'];
+      dorms[name]['ac'] = parseBoolean(dorm['has_ac']);
+      dorms[name]['dining'] = parseBoolean(dorm['dining']);
+      dorms[name]['freshmen'] = parseBoolean(dorm['freshmen_only']);
+      dorms[name]['female'] = parseBoolean(dorm['female_only']);
+      dorms[name]['open_gender'] = parseBoolean(dorm['open_gender']);
   });
+  console.log(dorms);
 };
 
 // count true properties of an object
@@ -248,6 +274,7 @@ var otherCriteria = ['ac', 'dining', 'female', 'freshmen', 'opengender'];
 
 $('.filter').change(function() {
 
+    console.log('CHANGIN');
     // update selections
     $('.filter').map(function(i, elem) {
         selections[$(elem).attr('id').split('-')[0]] = elem.checked;
@@ -268,7 +295,8 @@ $('.filter').change(function() {
         $('.dorm-name').removeClass('perfect-fit good-fit bad-fit');
         $('.dorm-name').each(function(i, elem) {
             var name = $(elem).data('fullname');
-
+            console.log(name);
+            console.log(dorms[name]);
             // name to match json
             var jsonName = $(elem).attr("value");
 
