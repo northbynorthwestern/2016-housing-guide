@@ -39,7 +39,7 @@
             <div class="header">
               <h2>{{ dorm.name }}</h2>
               <h3>{{ dorm.address }}</h3>
-              <p class="body-text reduced-width padding-top">{{ dorm.blurb }}</p>
+              <p class="body-text reduced-width padding-top">{{ dorm.blurb|safe }}</p>
             </div>
 
             <div class="padding-top">
@@ -80,10 +80,10 @@
             <p class="body-text">Social Rating: <span class="number">{{dorm.social_rating|float}}</span><span class="sans-serif">/5.0</span></p>
           </div><!--
          --><div class="grid__item one-whole lap-one-third stats-item">
-            <p class="body-text"><span class="number">{{ dorm.doubles }}</span> doubles</p>
-            <p class="body-text">+ <span class="number">{{ dorm.singles }}</span> singles</p>
-            <p class="body-text">+ <span class="number">{{ dorm.triples }}</span> triples</p>
-            <p id="sum" class="body-text"><span class="number">{{ dorm.size }}</span></span> residents</p>
+            <p class="body-text"><span class="number">{{ dorm.doubles|float|round|int }}</span> doubles</p>
+            <p class="body-text">+ <span class="number">{{ dorm.singles|float|round|int }}</span> singles</p>
+            <p class="body-text">+ <span class="number">{{ dorm.triples|float|round|int }}</span> triples</p>
+            <p id="sum" class="body-text"><span class="number">{{ dorm.size|float|round|int }}</span></span> residents</p>
           </div><!--
          --><div class="grid__item one-whole lap-one-third stats-item">
             {% if dorm.has_ac %}
@@ -128,6 +128,7 @@
           {% endfor %}
                 </div>
 
+          {% if nonres_quotes %}
                 <div class="padding-top reduced-width">
                     <h3>What non-residents say</h3>
           {% for quote in nonres_quotes %}
@@ -135,6 +136,7 @@
             <p class="quote-attr">{{ quote.source }}</p>
           {% endfor %}
                 </div>
+          {% endif %}
 
             </div>
         </div>
@@ -153,10 +155,10 @@
             <p class="body-text">Social Rating: <span class="number">{{dorm.social_rating|float}}</span><span class="sans-serif"> / 5.0</span></p>
           </div>
           <div class="stats-item">
-            <p class="body-text"><span class="number">{{dorm.doubles}}</span> doubles</p>
-            <p class="body-text">+ <span class="number">{{dorm.singles}}</span> singles</p>
-            <p class="body-text">+ <span class="number">{{dorm.triples}}</span> triples</p>
-            <p id="sum" class="body-text"><span class="number">{{dorm.size}}</span> residents</p>
+            <p class="body-text"><span class="number">{{ dorm.doubles|float|round|int }}</span> doubles</p>
+            <p class="body-text">+ <span class="number">{{ dorm.singles|float|round|int }}</span> singles</p>
+            <p class="body-text">+ <span class="number">{{ dorm.triples|float|round|int }}</span> triples</p>
+            <p id="sum" class="body-text"><span class="number">{{ dorm.size|float|round|int }}</span></span> residents</p>
           </div>
           <div class="stats-item">
             {% if dorm.has_ac %}

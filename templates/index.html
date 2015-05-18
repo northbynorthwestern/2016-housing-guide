@@ -136,7 +136,7 @@
                         {% for dorm in COPY.dorms %}
                             {% if dorm.short_name != 'short_name' %}
                                 <tr onmouseover="highlightTable(this)" onmouseout="resetHighlightTable(this)">
-                                    <td><p class="dorm-name" value="{{dorm.name}}"><a href="hall/{{ dorm.slug }}">{{ dorm.short_name }}</a></p></td>
+                                    <td><p class="dorm-name" value="{{dorm.name}}" data-fullname="{{ dorm.name }}"><a href="hall/{{ dorm.slug }}">{{ dorm.short_name }}</a></p></td>
                                     <td><p style="text-align: right; padding-right: 10px;">{{ dorm.size|int }}</p></td>
                                     <td><p>{{ dorm.dorm_type }}</p></td>
                                 </tr>
@@ -149,7 +149,7 @@
                             <div class="dot perfect-fit"></div>
                             <p class="float-left">Perfect</p>
                             <div class="dot good-fit"></div>
-                            <p class="float-left">Meh</p>
+                            <p class="float-left">¯\_(ツ)_/¯</p>
                             <div class="dot bad-fit"></div>
                             <p class="float-left">Not your type</p>
                         </div>
@@ -161,23 +161,10 @@
 
     </div><!-- End grid container -->
 
-    <div class="grid padded" id="related-articles">
-        {% for article in COPY.featured_articles %}
-        <div class="filter-exp grid__item one-whole lap-and-up-one-third">
-          <a href="{{ article.url }}">
-            <img src="{{ article.img }}">
-            <div class="text">
-              <h2 class="title">{{ article.title }}</h2>
-              <p class="body-text">{{ article.teaser_sentence }}</p>
-            </div>
-          </a>
-        </div>
-        {% endfor %}
-    </div>
 
     <div class="grid padded">
       <div class="filter-exp grid__item one-whole">
-        <p class="body-text" style="padding: 1em; background-color: rgba(80, 31, 132, 0.05);">This year North by Northwestern did not include Shepard Residential College, Public Affairs Residential College, the North Mid-Quads and the South Mid-Quads because of ongoing rennovations. Check out <a href="http://apps.northbynorthwestern.com/housing/2014/"><strong>last year's housing guide</strong></a> to learn about those dorms.</p>
+        <p class="body-text" style="padding: 1em; background-color: rgba(80, 31, 132, 0.05);"><strong>Editors Note:</strong> This year North by Northwestern did not include Shepard Residential College, Public Affairs Residential College, the North Mid-Quads and the South Mid-Quads because of ongoing rennovations. Check out <a href="http://apps.northbynorthwestern.com/housing/2014/"><strong>last year's housing guide</strong></a> to learn about those dorms.</p>
       </div>
     </div>
 
@@ -190,12 +177,29 @@
         </div><!--
      --><div class="filter-exp grid__item one-whole lap-and-up-one-third">
             <h2>Types of halls</h2>
-            <p class="body-text">The university categorizes its halls into four types. A <a href="http://www.northwestern.edu/residential-communities/" target="_blank">residential community</a> has student-organized events and live-in faculty. A <a href="http://www.northwestern.edu/residentialcolleges/visitors/info/index.html" target="_blank">residential college</a> has a theme and offers activities and specialized classes supported by faculty fellows. <a href="http://www.northwestern.edu/living/options/undergraduate/special-interest-housing.html" target="_blank">Special interest housing</a> includes Interfaith Residence Hall in 1835 Hinman, GREEN House and other halls with particular focuses. A residence hall offers a classic college experience.
+            <p class="body-text">The university categorizes its halls into four types. A <a href="http://www.northwestern.edu/residential-communities/" target="_blank">residential community</a> has student-organized events and live-in faculty. A <a href="http://www.northwestern.edu/residentialcolleges/visitors/info/index.html" target="_blank">residential college</a> has a theme and offers activities and specialized classes supported by faculty fellows. <a href="http://www.northwestern.edu/living/housing-options/special-interest/index.html" target="_blank">Special interest housing</a> includes Interfaith Residence Hall in 1835 Hinman, GREEN House and other halls with particular focuses. A residence hall offers a classic college experience.
         </div><!--
      --><div class="filter-exp grid__item one-whole lap-and-up-one-third">
             <h2>Gender Open Housing</h2>
-            <p class="body-text"><a href="http://www.northwestern.edu/living/assignments/gender-open-housing.html" target="_blank">Gender Open Housing</a> has existed since 2010 as an experiment in providing a housing solution "wherby students, regardless of sex, gender, or gender identity, are permitted to share a room or suite in select areas of Northwestern’s residence halls." For freshmen, two suites on the third floor of 1835 Hinman will be available for students interested in the option.</p>
+            <p class="body-text"><a href="http://www.northwestern.edu/living/housing-options/special-interest/gender-open/index.html" target="_blank">Gender Open Housing</a> has existed since 2010 as an experiment in providing a housing solution "wherby students, regardless of sex, gender, or gender identity, are permitted to share a room or suite in select areas of Northwestern’s residence halls." For freshmen, two suites on the third floor of 1835 Hinman will be available for students interested in the option.</p>
         </div>
+    </div>
+
+    <div class="related clearfix">
+      <h3 class="padded">Check out some of these other <a href="http://northbynorthwestern.com" style="color: #501F84;">North by Northwestern</a> stories to help you prepare for freshman year:</h3>
+      <div class="grid padded">
+        {% for article in COPY.featured_articles %}
+          <div class="filter-exp grid-item">
+          <a href="{{ article.url }}">
+            <img src="{{ article.img }}">
+            <div class="text">
+              <h2 class="title">{{ article.title }}</h2>
+              <p class="body-text">{{ article.teaser_sentence }}</p>
+            </div>
+          </a>
+          </div>
+        {% endfor %}
+      </div>
     </div>
 {% endblock %}
 

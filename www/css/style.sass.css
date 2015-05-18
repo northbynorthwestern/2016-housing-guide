@@ -2782,7 +2782,7 @@ td {
     margin-right: 0%; }
 
 #legend {
-  width: 16em;
+  width: 17.5em;
   overflow-x: auto;
   overflow-y: hidden;
   margin: 0 auto; }
@@ -2854,15 +2854,57 @@ td {
 .sans-serif {
   font-family: "proxima-nova", sans-serif; }
 
-#related-articles h2.title {
-  font-family: "proxima-nova", sans-serif;
-  font-weight: 700; }
-#related-articles img {
-  width: 120px;
-  margin-right: 30px;
-  display: inline-block; }
-#related-articles .text {
-  float: right; }
+.related {
+  position: relative; }
+  .related div.grid-item {
+    margin-bottom: 2em;
+    display: block;
+    text-decoration: none; }
+    @media (min-width: 980px) {
+      .related div.grid-item {
+        max-width: 50%; }
+        .related div.grid-item:nth-of-type(odd) {
+          float: left;
+          padding-left: 24px; }
+        .related div.grid-item:nth-of-type(even) {
+          float: right;
+          padding-right: 24px; }
+          .related div.grid-item:nth-of-type(even):after {
+            visibility: hidden;
+            display: block;
+            font-size: 0;
+            content: " ";
+            clear: both;
+            height: 0; } }
+    .related div.grid-item:hover img {
+      opacity: 0.7; }
+    .related div.grid-item:hover .text h2 {
+      text-decoration: underline; }
+  .related h2.title {
+    margin-top: 0;
+    font-family: "proxima-nova", sans-serif;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 0.25em; }
+  .related img {
+    width: 120px;
+    margin-right: 30px;
+    display: inline-block; }
+  .related .text {
+    float: right;
+    width: calc(100% - 150px); }
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0; }
+
+.related {
+  background-color: rgba(80, 31, 132, 0.05);
+  border-top: 1px solid #c3bccf; }
 
 h1, h2, h3, h4, h5, h6, p {
   margin-bottom: 0em; }

@@ -248,8 +248,6 @@ var otherCriteria = ['ac', 'dining', 'female', 'freshmen', 'opengender'];
 
 $('.filter').change(function() {
 
-    console.log('changing');
-
     // update selections
     $('.filter').map(function(i, elem) {
         selections[$(elem).attr('id').split('-')[0]] = elem.checked;
@@ -270,7 +268,6 @@ $('.filter').change(function() {
         $('.dorm-name').removeClass('perfect-fit good-fit bad-fit');
         $('.dorm-name').each(function(i, elem) {
             var name = $(elem).data('fullname');
-            console.log(name);
 
             // name to match json
             var jsonName = $(elem).attr("value");
@@ -295,8 +292,6 @@ $('.filter').change(function() {
                     break;
                 }
             }
-
-            console.log(dorms[name]);
 
             for (var i in otherCriteria) {
                 if (selections[otherCriteria[i]] && dorms[name][otherCriteria[i]]) {
