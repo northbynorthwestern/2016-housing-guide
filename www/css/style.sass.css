@@ -2901,7 +2901,8 @@ td {
   box-sizing: border-box; }
   @media (min-width: 771px) {
     .grid-item:nth-of-type(odd) {
-      float: left; }
+      float: left;
+      clear: both; }
     .grid-item:nth-of-type(even) {
       float: right; } }
 
