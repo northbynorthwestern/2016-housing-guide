@@ -2875,7 +2875,6 @@ td {
       .related div.grid-item {
         width: 50%; } }
     .related div.grid-item:hover img {
-      display: block;
       opacity: 0.5; }
     .related div.grid-item:hover .text h2 {
       text-decoration: underline; }
@@ -2886,7 +2885,6 @@ td {
     line-height: 1.1;
     margin-bottom: 0.25em; }
   .related img {
-    float: left;
     width: 120px;
     margin-right: 30px;
     display: inline-block; }
@@ -2894,13 +2892,18 @@ td {
     float: right;
     width: calc(100% - 150px); }
   .related .body-text {
-    width: 80%; }
+    width: 100%; }
+    @media (min-width: 771px) {
+      .related .body-text {
+        width: 80%; } }
 
-@media (min-width: 771px) {
-  .grid-item:nth-of-type(odd) {
-    float: left; }
-  .grid-item:nth-of-type(even) {
-    float: right; } }
+.grid-item {
+  box-sizing: border-box; }
+  @media (min-width: 771px) {
+    .grid-item:nth-of-type(odd) {
+      float: left; }
+    .grid-item:nth-of-type(even) {
+      float: right; } }
 
 .clearfix:after {
   visibility: hidden;
