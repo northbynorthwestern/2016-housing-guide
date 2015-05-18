@@ -2,7 +2,8 @@
 
   var defaultStyle = {'weight': '0', fillColor: '#381f5e', fillOpacity: '1'};
 
-  var map = L.map('small-map', {
+  L.mapbox.accessToken = 'pk.eyJ1IjoiZHVuZXIiLCJhIjoiaWkwMnJIZyJ9.2zMvIebbUOk9C5R2itT7Dg';
+  var map = L.mapbox.map('small-map', 'duner.m3npglde', {
     minZoom: 15,
     maxBounds: [
       [42.07095890994855, -87.65922546386719],
@@ -10,7 +11,7 @@
     ],
     scrollWheelZoom: false
   }).setView([42.05504447993239,-87.6753830909729], 16);
-  L.tileLayer.provider('MapQuestOpen.OSM').addTo(map);
+
 
   function parse_map_data(data){
     $.each(data, function(key, val){
