@@ -100,10 +100,14 @@ def save_credentials(credentials):
         f.write(credentials.serialize())
 
 def get_document(key, file_path):
+
+    print "GETTING DOCUMENT"
     """
     Uses Authomatic to get the google doc
     """
     credentials = get_credentials()
+
+    # key = '1SAMHTa6dEfZQmkMlntCIKFhHWNpoL-2XhNKxR7txEDQ'
     url = SPREADSHEET_URL_TEMPLATE % key
     response = app_config.authomatic.access(credentials, url)
 
