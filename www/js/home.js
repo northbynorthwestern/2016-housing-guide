@@ -26,7 +26,9 @@ window.parseBoolean = function(string) {
   return void 0;
 };
 
-var map = L.map('map', {
+L.mapbox.accessToken = 'pk.eyJ1IjoiZHVuZXIiLCJhIjoiaWkwMnJIZyJ9.2zMvIebbUOk9C5R2itT7Dg';
+
+var map = L.mapbox.map('map', 'duner.m3npglde', {
 minZoom: 14,
 maxZoom: 18,
 maxBounds: [
@@ -35,7 +37,7 @@ maxBounds: [
 ],
 scrollWheelZoom: false
 }).setView([42.05504447993239,-87.6753830909729], 15);
-L.tileLayer.provider('MapQuestOpen.OSM').addTo(map);
+// L.tileLayer.provider('MapQuestOpen.OSM').addTo(map);
 $.ajax({
 url: 'js/shapes.json',
 async: true,
