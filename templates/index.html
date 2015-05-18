@@ -128,7 +128,7 @@
                         <thead>
                             <tr>
                                 <td>Hall</td>
-                                <td style="text-align: right; padding-right: 15px;">Residents</td>
+                                <td class="align-right">Residents</td>
                                 <td>Type</td>
                             </tr>
                         </thead>
@@ -186,17 +186,21 @@
     </div>
 
     <div class="related clearfix">
-      <h3 class="padded">Check out some of these other <a href="http://northbynorthwestern.com" style="color: #501F84;">North by Northwestern</a> stories to help you prepare for freshman year:</h3>
-      <div class="grid padded">
+      <h3 class="padded">Check out some of these other <a href="http://northbynorthwestern.com" class="purple">North by Northwestern</a> stories to help you prepare for freshman year:</h3>
+      <div class="related-grid">
         {% for article in COPY.featured_articles %}
+          {% if loop.index % 2 == 0 %}
+          <div class="filter-exp grid-item clearfix">
+          {% else %}
           <div class="filter-exp grid-item">
-          <a href="{{ article.url }}">
-            <img src="{{ article.img }}">
-            <div class="text">
-              <h2 class="title">{{ article.title }}</h2>
-              <p class="body-text">{{ article.teaser_sentence }}</p>
-            </div>
-          </a>
+          {% endif %}
+            <a href="{{ article.url }}">
+              {# <img src="{{ article.img }}"> #}
+              <div class="text">
+                <h2 class="title">{{ article.title }}</h2>
+                <p class="body-text">{{ article.teaser_sentence }}</p>
+              </div>
+            </a>
           </div>
         {% endfor %}
       </div>

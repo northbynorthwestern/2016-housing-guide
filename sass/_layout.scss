@@ -308,6 +308,9 @@ td {
 
 .related {
   position: relative;
+  padding-bottom: 3em;
+
+  .related-grid { padding: 24px; }
 
   div.grid-item {
     margin-bottom: 2em;
@@ -315,33 +318,30 @@ td {
     text-decoration: none;
 
     @media (max-width: 770px) {
-      padding: 0 24px;
+       &:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0;
+      }
     }
 
-    @media (min-width: 771px) {
 
-      &:nth-of-type(odd) {
-        float: left;
-        padding-left: 24px;
-      }
-      &:nth-of-type(even) {
-        float: left;
-        padding-right: 24px;
-        &:after {
-          visibility: hidden;
-          display: block;
-          font-size: 0;
-          content: " ";
-          clear: both;
-          height: 0;
-        }
-      }
-      max-width: 50%;
+    @media (min-width: 771px) {
+      // float: left;
+      // &:nth-of-type(even) {
+      //   float: right;
+      //   // padding-right: 24px;
+      // }
+      width: 50%;
     }
 
     &:hover {
       img {
-        opacity: 0.7;
+        display: block;
+        opacity: 0.5;
       }
       .text h2 {
         text-decoration: underline;
@@ -358,7 +358,7 @@ td {
   }
 
   img {
-    // float: left;
+    float: left;
     width: 120px;
     margin-right: 30px;
     display: inline-block;
@@ -375,6 +375,17 @@ td {
 
 }
 
+.grid-item {
+  @media (min-width: 771px) {
+    &:nth-of-type(odd) {
+      float: left;
+    }
+    &:nth-of-type(even) {
+      float: right;
+    }
+  }
+}
+
 .clearfix:after {
   visibility: hidden;
   display: block;
@@ -388,5 +399,19 @@ td {
   margin-top: 3em;
   background-color: rgba(80, 31, 132, 0.05);
   border-top: 1px solid $light-purple;
+}
+
+.purple {
+  color: #501F84;
+}
+
+.align-right {
+  text-align: right;
+  padding-right: 15px;
+}
+
+.editors-note {
+  padding: 1em;
+  background-color: rgba(80, 31, 132, 0.05);
 }
 

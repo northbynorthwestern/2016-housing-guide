@@ -2855,32 +2855,28 @@ td {
   font-family: "proxima-nova", sans-serif; }
 
 .related {
-  position: relative; }
+  position: relative;
+  padding-bottom: 3em; }
+  .related .related-grid {
+    padding: 24px; }
   .related div.grid-item {
     margin-bottom: 2em;
     display: block;
     text-decoration: none; }
     @media (max-width: 770px) {
-      .related div.grid-item {
-        padding: 0 24px; } }
+      .related div.grid-item:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: " ";
+        clear: both;
+        height: 0; } }
     @media (min-width: 771px) {
       .related div.grid-item {
-        max-width: 50%; }
-        .related div.grid-item:nth-of-type(odd) {
-          float: left;
-          padding-left: 24px; }
-        .related div.grid-item:nth-of-type(even) {
-          float: left;
-          padding-right: 24px; }
-          .related div.grid-item:nth-of-type(even):after {
-            visibility: hidden;
-            display: block;
-            font-size: 0;
-            content: " ";
-            clear: both;
-            height: 0; } }
+        width: 50%; } }
     .related div.grid-item:hover img {
-      opacity: 0.7; }
+      display: block;
+      opacity: 0.5; }
     .related div.grid-item:hover .text h2 {
       text-decoration: underline; }
   .related h2.title {
@@ -2890,6 +2886,7 @@ td {
     line-height: 1.1;
     margin-bottom: 0.25em; }
   .related img {
+    float: left;
     width: 120px;
     margin-right: 30px;
     display: inline-block; }
@@ -2898,6 +2895,12 @@ td {
     width: calc(100% - 150px); }
   .related .body-text {
     width: 80%; }
+
+@media (min-width: 771px) {
+  .grid-item:nth-of-type(odd) {
+    float: left; }
+  .grid-item:nth-of-type(even) {
+    float: right; } }
 
 .clearfix:after {
   visibility: hidden;
@@ -2911,6 +2914,17 @@ td {
   margin-top: 3em;
   background-color: rgba(80, 31, 132, 0.05);
   border-top: 1px solid #c3bccf; }
+
+.purple {
+  color: #501F84; }
+
+.align-right {
+  text-align: right;
+  padding-right: 15px; }
+
+.editors-note {
+  padding: 1em;
+  background-color: rgba(80, 31, 132, 0.05); }
 
 h1, h2, h3, h4, h5, h6, p {
   margin-bottom: 0em; }
