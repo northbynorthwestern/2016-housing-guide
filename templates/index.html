@@ -161,13 +161,18 @@
 
     </div><!-- End grid container -->
 
-    <div id="related-articles">
-      {% for article in COPY.featured_articles %}
-        <a href="{{ article.url }}">
-          <p class="title">{{ article.title }}</p>
-          <p class="title">{{ article.teaser_sentence }}</p>
-        </a>
-      {% endfor %}
+    <div class="grid padded" id="related-articles">
+        {% for article in COPY.featured_articles %}
+        <div class="filter-exp grid__item one-whole lap-and-up-one-third">
+          <a href="{{ article.url }}">
+            <img src="{{ article.img }}">
+            <div class="text">
+              <h2 class="title">{{ article.title }}</h2>
+              <p class="body-text">{{ article.teaser_sentence }}</p>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
     </div>
 
     <div class="grid padded">

@@ -2854,6 +2854,16 @@ td {
 .sans-serif {
   font-family: "proxima-nova", sans-serif; }
 
+#related-articles h2.title {
+  font-family: "proxima-nova", sans-serif;
+  font-weight: 700; }
+#related-articles img {
+  width: 120px;
+  margin-right: 30px;
+  display: inline-block; }
+#related-articles .text {
+  float: right; }
+
 h1, h2, h3, h4, h5, h6, p {
   margin-bottom: 0em; }
 

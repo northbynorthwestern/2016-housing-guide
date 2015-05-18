@@ -1,3 +1,4 @@
+
 var geojson;
 
 var defaultStyle = {'weight': '0', fillColor: '#38235D', fillOpacity: '1'};
@@ -149,64 +150,67 @@ function changeMap(name, style) {
     })
 }
 
+
 // dorm data
 var dorms = {};
-_.each(COPY.dorms, function(dorm) {
-    var name = dorm[1];
-    dorms[name] = {};
+var create_dorms = function() {
+  _.each(COPY.dorms, function(dorm) {
+      var name = dorm[1];
+      dorms[name] = {};
 
-    if (dorm[3] === 'Hall') {
-        dorms[name]['reshall'] = true;
-    }
-    else {
-        dorms[name]['reshall'] = false;
-    }
+      if (dorm[3] === 'Hall') {
+          dorms[name]['reshall'] = true;
+      }
+      else {
+          dorms[name]['reshall'] = false;
+      }
 
-    if (dorm[3] === 'College') {
-        dorms[name]['rescol'] = true;
-    }
-    else {
-        dorms[name]['rescol'] = false;
-    }
+      if (dorm[3] === 'College') {
+          dorms[name]['rescol'] = true;
+      }
+      else {
+          dorms[name]['rescol'] = false;
+      }
 
-    if (dorm[3] === 'Community') {
-        dorms[name]['rescomm'] = true;
-    }
-    else {
-        dorms[name]['rescomm'] = false;
-    }
+      if (dorm[3] === 'Community') {
+          dorms[name]['rescomm'] = true;
+      }
+      else {
+          dorms[name]['rescomm'] = false;
+      }
 
-    if (dorm[6] === 'North') {
-        dorms[name]['north'] = true;
-        dorms[name]['south'] = false;
-    }
-    else {
-        dorms[name]['north'] = false;
-        dorms[name]['south'] = true;
-    }
+      if (dorm[6] === 'North') {
+          dorms[name]['north'] = true;
+          dorms[name]['south'] = false;
+      }
+      else {
+          dorms[name]['north'] = false;
+          dorms[name]['south'] = true;
+      }
 
-    if (dorm[5] <= 100) {
-        dorms[name]['small'] = true;
-        dorms[name]['med'] = false;
-        dorms[name]['large'] = false;
-    }
-    if (dorm[5] > 100 && dorm[5] <= 200) {
-        dorms[name]['small'] = false;
-        dorms[name]['med'] = true;
-        dorms[name]['large'] = false;
-    }
-    if (dorm[5] > 200) {
-        dorms[name]['small'] = false;
-        dorms[name]['med'] = false;
-        dorms[name]['large'] = true;
-    }
+      if (dorm[5] <= 100) {
+          dorms[name]['small'] = true;
+          dorms[name]['med'] = false;
+          dorms[name]['large'] = false;
+      }
+      if (dorm[5] > 100 && dorm[5] <= 200) {
+          dorms[name]['small'] = false;
+          dorms[name]['med'] = true;
+          dorms[name]['large'] = false;
+      }
+      if (dorm[5] > 200) {
+          dorms[name]['small'] = false;
+          dorms[name]['med'] = false;
+          dorms[name]['large'] = true;
+      }
 
-    dorms[name]['ac'] = dorm[4];
-    dorms[name]['dining'] = dorm[8];
-    dorms[name]['freshmen'] = dorm[10];
-    dorms[name]['female'] = dorm[9];
-    dorms[name]['open_gender'] = dorm[11];
-});
+      dorms[name]['ac'] = dorm[4];
+      dorms[name]['dining'] = dorm[8];
+      dorms[name]['freshmen'] = dorm[10];
+      dorms[name]['female'] = dorm[9];
+      dorms[name]['open_gender'] = dorm[11];
+  });
+};
 
 // count true properties of an object
 var count = function(obj, props) {
@@ -330,10 +334,11 @@ $('.clear-filter').click(clearFilter);
 
 // clear filter on page load
 clearFilter();
+$(document).ready(function(){
+  var dorms_array = [];
+  _.each(COPY.dorms, function(dorm) {
+      dorms_array.push("{{dorm}}");
+  });
+  create_dorms();
 
-$(document).ready(function() {
-    var dorms_array = [];
-    _.each(COPY.dorms, function(dorm) {
-        dorms_array.push("{{dorm}}");
-    });
 });

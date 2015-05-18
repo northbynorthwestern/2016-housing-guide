@@ -304,3 +304,22 @@ td {
 .sans-serif {
   font-family: $proxima;
 }
+
+
+#related-articles {
+
+  h2.title {
+    font-family: $proxima;
+    font-weight: 700;
+  }
+
+  img {
+    width: 120px;
+    margin-right: 30px;
+    display: inline-block;
+  }
+
+  .text {
+    float: right;
+  }
+}
