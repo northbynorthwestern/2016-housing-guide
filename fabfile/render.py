@@ -94,8 +94,8 @@ def render_all():
 
     less()
     jst()
-    # app_config_js()
-    # copytext_js()
+    app_config_js()
+    copytext_js()
 
     compiled_includes = {}
 

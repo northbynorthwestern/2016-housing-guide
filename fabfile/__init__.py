@@ -626,7 +626,7 @@ def deploy(remote='origin'):
     # _gzip('.dorms_html', '.dorms_gzip')
     # _deploy_to_s3('.dorms_gzip')
     local('rm -rf dist')
-    local('cp -r .dorms_html/hall/ dist')
+    local('cp -r .dorms_html dist')
     local('cp -r www/ dist/')
 
 """

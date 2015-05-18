@@ -2851,6 +2851,9 @@ td {
 #header h1 {
   margin-bottom: 0 !important; }
 
+.sans-serif {
+  font-family: "proxima-nova", sans-serif; }
+
 h1, h2, h3, h4, h5, h6, p {
   margin-bottom: 0em; }
 
