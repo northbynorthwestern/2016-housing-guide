@@ -155,31 +155,32 @@ function changeMap(name, style) {
 var dorms = {};
 var create_dorms = function() {
   _.each(COPY.dorms, function(dorm) {
-      var name = dorm[1];
+
+      var name = dorm['name'];
       dorms[name] = {};
 
-      if (dorm[3] === 'Hall') {
+      if (dorm['dorm_type'] === 'Hall') {
           dorms[name]['reshall'] = true;
       }
       else {
           dorms[name]['reshall'] = false;
       }
 
-      if (dorm[3] === 'College') {
+      if (dorm['dorm_type'] === 'College') {
           dorms[name]['rescol'] = true;
       }
       else {
           dorms[name]['rescol'] = false;
       }
 
-      if (dorm[3] === 'Community') {
+      if (dorm['dorm_type'] === 'Community') {
           dorms[name]['rescomm'] = true;
       }
       else {
           dorms[name]['rescomm'] = false;
       }
 
-      if (dorm[6] === 'North') {
+      if (dorm['campus_side'] === 'North') {
           dorms[name]['north'] = true;
           dorms[name]['south'] = false;
       }
@@ -188,27 +189,27 @@ var create_dorms = function() {
           dorms[name]['south'] = true;
       }
 
-      if (dorm[5] <= 100) {
+      if (dorm['size'] <= 100) {
           dorms[name]['small'] = true;
           dorms[name]['med'] = false;
           dorms[name]['large'] = false;
       }
-      if (dorm[5] > 100 && dorm[5] <= 200) {
+      if (dorm['size'] > 100 && dorm[5] <= 200) {
           dorms[name]['small'] = false;
           dorms[name]['med'] = true;
           dorms[name]['large'] = false;
       }
-      if (dorm[5] > 200) {
+      if (dorm['size'] > 200) {
           dorms[name]['small'] = false;
           dorms[name]['med'] = false;
           dorms[name]['large'] = true;
       }
 
-      dorms[name]['ac'] = dorm[4];
-      dorms[name]['dining'] = dorm[8];
-      dorms[name]['freshmen'] = dorm[10];
-      dorms[name]['female'] = dorm[9];
-      dorms[name]['open_gender'] = dorm[11];
+      dorms[name]['ac'] = dorm['has_ac'];
+      dorms[name]['dining'] = dorm['dining'];
+      dorms[name]['freshmen'] = dorm['freshmen_only'];
+      dorms[name]['female'] = dorm['female_only'];
+      dorms[name]['open_gender'] = dorm['open_gender'];
   });
 };
 
@@ -246,6 +247,9 @@ var sizeCriteria = ['small', 'med', 'large'];
 var otherCriteria = ['ac', 'dining', 'female', 'freshmen', 'opengender'];
 
 $('.filter').change(function() {
+
+    console.log('changing');
+
     // update selections
     $('.filter').map(function(i, elem) {
         selections[$(elem).attr('id').split('-')[0]] = elem.checked;
@@ -265,7 +269,8 @@ $('.filter').change(function() {
         // update fits
         $('.dorm-name').removeClass('perfect-fit good-fit bad-fit');
         $('.dorm-name').each(function(i, elem) {
-            var name = $(elem).text();
+            var name = $(elem).data('fullname');
+            console.log(name);
 
             // name to match json
             var jsonName = $(elem).attr("value");
@@ -290,6 +295,9 @@ $('.filter').change(function() {
                     break;
                 }
             }
+
+            console.log(dorms[name]);
+
             for (var i in otherCriteria) {
                 if (selections[otherCriteria[i]] && dorms[name][otherCriteria[i]]) {
                     matchCount += 1;
