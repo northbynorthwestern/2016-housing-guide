@@ -2930,6 +2930,11 @@ td {
   clear: both;
   height: 0; }
 
+.methodology {
+  font-family: "proxima-nova", sans-serif;
+  color: #c3bccf;
+  font-size: 0.75em; }
+
 .related {
   margin-top: 3em;
   background-color: rgba(80, 31, 132, 0.05);
