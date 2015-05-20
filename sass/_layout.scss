@@ -312,6 +312,27 @@ td {
 
   .related-grid { padding: 24px; }
 
+  div.intro { margin-top: 1em; }
+  div.intro p {
+    font-family: $proxima;
+    width: 100%;
+    font-weight: 500;
+    margin-bottom: .75em;
+    text-align: left !important;
+
+    &.body-text { font-size: .875em; }
+
+    @media (min-width: $desk-start) {
+      margin: 0 auto;
+      text-align: center !important;
+      margin-bottom: 1em;
+
+      &.body-text {
+        width: 50%;
+      }
+    }
+  }
+
   div.grid-item {
     margin-bottom: 2em;
     display: block;
@@ -350,7 +371,6 @@ td {
 
   h2.title {
     margin-top: 0;
-    font-family: $proxima;
     font-weight: 700;
     line-height: 1.1;
     margin-bottom: 0.25em;
@@ -399,6 +419,11 @@ td {
   height: 0;
 }
 
+.methodology {
+  font-family: $proxima;
+  color: $light-purple;
+  font-size: 0.75em;
+}
 
 
 .related {

@@ -41,7 +41,7 @@ env.settings = None
 Running the app
 """
 @task
-def app(port='8000'):
+def app(port='8080'):
     """
     Serve app.py.
     """

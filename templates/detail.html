@@ -77,22 +77,31 @@
             <p class="body-text"><span class="number">{{ dorm.dist_to_tech|float }}</span> minute walk to Tech</p>
             <p class="body-text"><span class="number">{{ dorm.dist_to_norris|float }}</span> minute walk to Norris</p>
             <p class="body-text"><span class="number">{{ dorm.dist_to_rock|float }}</span> minute walk to The Rock</p>
-            <p class="body-text">NBN Social Rating: <span class="number">{{dorm.social_rating|float}}</span><span class="sans-serif">/5.0</span></p>
           </div><!--
          --><div class="grid__item one-whole lap-one-third stats-item">
             <p class="body-text"><span class="number">{{ dorm.doubles|float|round|int }}</span> doubles</p>
             <p class="body-text">+ <span class="number">{{ dorm.singles|float|round|int }}</span> singles</p>
             <p class="body-text">+ <span class="number">{{ dorm.triples|float|round|int }}</span> triples</p>
             <p id="sum" class="body-text"><span class="number">{{ dorm.size|float|round|int }}</span></span> residents</p>
+            <p class="body-text padding-top"><span class="number">{{dorm.room_dimensions}}</span> room (double)</p>
+            {% if dorm.cost_single %}
+            <p class="body-text">$<span class="number">{{dorm.cost_single}}</span> per single/quarter</p>
+            {% endif %}
+            {% if dorm.cost_double %}
+            <p class="body-text">$<span class="number">{{dorm.cost_double}}</span> per double/quarter</p>
+            {% endif %}
+            {% if dorm.cost_triple %}
+            <p class="body-text">$<span class="number">{{dorm.cost_double}}</span> per triple/quarter</p>
+            {% endif %}
           </div><!--
          --><div class="grid__item one-whole lap-one-third stats-item">
-            {% if dorm.has_ac %}
+            {% if dorm.has_ac == "TRUE" %}
               <p class="body-text">Air conditioning</p>
             {% endif %}
-            {% if not dorm.has_ac %}
+            {% if not dorm.has_ac == "FALSE" %}
               <p class="body-text">No air conditioning</p>
             {% endif %}
-            {% if dorm.dining %}
+            {% if dorm.dining == "TRUE" %}
               <p class="body-text">Dining hall in building</p>
             {% endif %}
             {% if dorm.dorm_type == 'Hall' %}
@@ -107,18 +116,8 @@
             {% if dorm.dorm_type == 'Special Interest Housing' %}
               <p class="body-text">Special interest housing</p>
             {% endif %}
-          </div>
-          <div class="grid__item one-whole lap-one-third stats-item">
-            <p class="body-text"><span class="number">{{dorm.room_dimensions}}</span> room (double)</p>
-            {% if dorm.cost_single %}
-            <p class="body-text">$<span class="number">{{dorm.cost_single}}</span> per single/quarter</p>
-            {% endif %}
-            {% if dorm.cost_double %}
-            <p class="body-text">$<span class="number">{{dorm.cost_double}}</span> per double/quarter</p>
-            {% endif %}
-            {% if dorm.cost_triple %}
-            <p class="body-text">$<span class="number">{{dorm.cost_double}}</span> per triple/quarter</p>
-            {% endif %}
+            <p class="body-text padding-top">NBN Social Rating: <span class="number">{{dorm.social_rating|float}}</span><span class="sans-serif">/5.0</span></p>
+            <p class="small methodology">Unscientifically calculated from an average of about five student responses.</p>
           </div>
         </div>
 
@@ -155,6 +154,7 @@
           </div>
           <div class="stats-item">
             <p class="body-text">NBN Social Rating: <span class="number">{{dorm.social_rating|float}}</span><span class="sans-serif"> / 5.0</span></p>
+            <p class="small methodology">Unscientifically calculated from an average of about five student responses.</p>
           </div>
           <div class="stats-item">
             <p class="body-text"><span class="number">{{ dorm.doubles|float|round|int }}</span> doubles</p>
@@ -163,13 +163,13 @@
             <p id="sum" class="body-text"><span class="number">{{ dorm.size|float|round|int }}</span></span> residents</p>
           </div>
           <div class="stats-item">
-            {% if dorm.has_ac %}
+            {% if dorm.has_ac == "TRUE" %}
               <p class="body-text">Air conditioning</p>
             {% endif %}
-            {% if not dorm.has_ac %}
+            {% if not dorm.has_ac == "FALSE" %}
               <p class="body-text">No air conditioning</p>
             {% endif %}
-            {% if dorm.dining %}
+            {% if dorm.dining == "TRUE" %}
               <p class="body-text">Dining hall in building</p>
             {% endif %}
             {% if dorm.dorm_type == 'Hall' %}
@@ -190,13 +190,13 @@
             <p class="body-text"><span class="number"> {{dorm.room_dimensions}}</span> room (double)</p>
             {% endif %}
             {% if dorm.cost_single %}
-            <p class="body-text">$<span class="number">{{dorm.cost_single}}</span> per single/quarter</p>
+            <p class="body-text">$<span class="number">{{dorm.cost_single}}</span> per single/year</p>
             {% endif %}
             {% if dorm.cost_double %}
-            <p class="body-text">$<span class="number">{{dorm.cost_double}}</span> per double/quarter</p>
+            <p class="body-text">$<span class="number">{{dorm.cost_double}}</span> per double/year</p>
             {% endif %}
             {% if dorm.cost_triple %}
-            <p class="body-text">$<span class="number">{{dorm.cost_double}}</span> per triple/quarter</p>
+            <p class="body-text">$<span class="number">{{dorm.cost_double}}</span> per triple/year</p>
             {% endif %}
           </div>
         </div>

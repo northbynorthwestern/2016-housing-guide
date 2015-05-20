@@ -2859,6 +2859,23 @@ td {
   padding-bottom: 3em; }
   .related .related-grid {
     padding: 24px; }
+  .related div.intro {
+    margin-top: 1em; }
+  .related div.intro p {
+    font-family: "proxima-nova", sans-serif;
+    width: 100%;
+    font-weight: 500;
+    margin-bottom: .75em;
+    text-align: left !important; }
+    .related div.intro p.body-text {
+      font-size: .875em; }
+    @media (min-width: 980px) {
+      .related div.intro p {
+        margin: 0 auto;
+        text-align: center !important;
+        margin-bottom: 1em; }
+        .related div.intro p.body-text {
+          width: 50%; } }
   .related div.grid-item {
     margin-bottom: 2em;
     display: block;
@@ -2880,7 +2897,6 @@ td {
       text-decoration: underline; }
   .related h2.title {
     margin-top: 0;
-    font-family: "proxima-nova", sans-serif;
     font-weight: 700;
     line-height: 1.1;
     margin-bottom: 0.25em; }
@@ -2913,6 +2929,11 @@ td {
   content: " ";
   clear: both;
   height: 0; }
+
+.methodology {
+  font-family: "proxima-nova", sans-serif;
+  color: #c3bccf;
+  font-size: 0.75em; }
 
 .related {
   margin-top: 3em;
