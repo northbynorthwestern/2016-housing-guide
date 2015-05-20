@@ -91,14 +91,13 @@
             <p class="body-text">$<span class="number">{{dorm.cost_double}}</span> per double/quarter</p>
             {% endif %}
             {% if dorm.cost_triple %}
-            <p class="body-text">$<span class="number">{{dorm.cost_double}}</span> per triple/quarter</p>
+            <p class="body-text">$<span class="number">{{dorm.cost_triple}}</span> per triple/quarter</p>
             {% endif %}
           </div><!--
          --><div class="grid__item one-whole lap-one-third stats-item">
             {% if dorm.has_ac == "TRUE" %}
               <p class="body-text">Air conditioning</p>
-            {% endif %}
-            {% if not dorm.has_ac == "FALSE" %}
+            {% else %}
               <p class="body-text">No air conditioning</p>
             {% endif %}
             {% if dorm.dining == "TRUE" %}
@@ -163,13 +162,12 @@
             <p id="sum" class="body-text"><span class="number">{{ dorm.size|float|round|int }}</span></span> residents</p>
           </div>
           <div class="stats-item">
-            {% if dorm.has_ac == "TRUE" %}
+            {% if dorm.has_ac == "True" %}
               <p class="body-text">Air conditioning</p>
-            {% endif %}
-            {% if not dorm.has_ac == "FALSE" %}
+            {% else %}
               <p class="body-text">No air conditioning</p>
             {% endif %}
-            {% if dorm.dining == "TRUE" %}
+            {% if dorm.dining == "True" %}
               <p class="body-text">Dining hall in building</p>
             {% endif %}
             {% if dorm.dorm_type == 'Hall' %}
@@ -196,7 +194,7 @@
             <p class="body-text">$<span class="number">{{dorm.cost_double}}</span> per double/year</p>
             {% endif %}
             {% if dorm.cost_triple %}
-            <p class="body-text">$<span class="number">{{dorm.cost_double}}</span> per triple/year</p>
+            <p class="body-text">$<span class="number">{{dorm.cost_triple}}</span> per triple/year</p>
             {% endif %}
           </div>
         </div>
