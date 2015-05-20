@@ -95,13 +95,13 @@
             {% endif %}
           </div><!--
          --><div class="grid__item one-whole lap-one-third stats-item">
-            {% if dorm.has_ac %}
+            {% if dorm.has_ac == "TRUE" %}
               <p class="body-text">Air conditioning</p>
             {% endif %}
-            {% if not dorm.has_ac %}
+            {% if not dorm.has_ac == "FALSE" %}
               <p class="body-text">No air conditioning</p>
             {% endif %}
-            {% if dorm.dining %}
+            {% if dorm.dining == "TRUE" %}
               <p class="body-text">Dining hall in building</p>
             {% endif %}
             {% if dorm.dorm_type == 'Hall' %}
@@ -163,13 +163,13 @@
             <p id="sum" class="body-text"><span class="number">{{ dorm.size|float|round|int }}</span></span> residents</p>
           </div>
           <div class="stats-item">
-            {% if dorm.has_ac %}
+            {% if dorm.has_ac == "TRUE" %}
               <p class="body-text">Air conditioning</p>
             {% endif %}
-            {% if not dorm.has_ac %}
+            {% if not dorm.has_ac == "FALSE" %}
               <p class="body-text">No air conditioning</p>
             {% endif %}
-            {% if dorm.dining %}
+            {% if dorm.dining == "TRUE" %}
               <p class="body-text">Dining hall in building</p>
             {% endif %}
             {% if dorm.dorm_type == 'Hall' %}
@@ -190,13 +190,13 @@
             <p class="body-text"><span class="number"> {{dorm.room_dimensions}}</span> room (double)</p>
             {% endif %}
             {% if dorm.cost_single %}
-            <p class="body-text">$<span class="number">{{dorm.cost_single}}</span> per single/quarter</p>
+            <p class="body-text">$<span class="number">{{dorm.cost_single}}</span> per single/year</p>
             {% endif %}
             {% if dorm.cost_double %}
-            <p class="body-text">$<span class="number">{{dorm.cost_double}}</span> per double/quarter</p>
+            <p class="body-text">$<span class="number">{{dorm.cost_double}}</span> per double/year</p>
             {% endif %}
             {% if dorm.cost_triple %}
-            <p class="body-text">$<span class="number">{{dorm.cost_double}}</span> per triple/quarter</p>
+            <p class="body-text">$<span class="number">{{dorm.cost_double}}</span> per triple/year</p>
             {% endif %}
           </div>
         </div>
