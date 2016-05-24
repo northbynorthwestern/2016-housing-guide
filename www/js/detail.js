@@ -13,29 +13,31 @@
   }).setView([42.05504447993239,-87.6753830909729], 16);
 
 
-  function parse_map_data(data){
-    $.each(data, function(key, val){
-        geojson = new L.GeoJSON(val, {
-          style: function(feature) {
-          return defaultStyle;
-        }
-      }).addTo(map);
-      var bounds = geojson.getBounds();
-      map.setView(bounds.getCenter(), 17);
-    });
-}
+  function parse_map_data(data) {
+    geojson = new L.GeoJSON(data, {
+      style: function(feature) {
+        return defaultStyle;
+      }
+    }).addTo(map);
+    var bounds = geojson.getBounds();
+    map.setView(bounds.getCenter(), 17);
+  }
 
 $(document).ready(function() {
 
   $(".rslides").responsiveSlides();
    $.ajax({
-    url: dorm_url,
+    url: '/js/shapes.json',
     async: true,
     dataType: 'jsonp',
     jsonp: false,
     jsonpCallback:'myCallback',
     success:function(data) {
-        parse_map_data(data);
+      _.each(data, function(value) {
+          if (value.properties.name === $('.header h2').text()) {
+            parse_map_data(value);
+          }
+      });
     }
   });
 

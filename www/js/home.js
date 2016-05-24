@@ -51,10 +51,7 @@ success:function(data) {
 
 function parse_map_data(data){
   $.each(data, function(key, val){
-    if (val.properties.name !== 'Shepard Residential College' &&
-        val.properties.name !== 'South Mid-Quads Residence Hall' &&
-        val.properties.name !== 'North Mid-Quads Residence Hall' &&
-        val.properties.name !== 'Public Affairs Residential College') {
+    if (val.properties.name !== 'Willard Residential College') {
 
         geojson = new L.GeoJSON(val, {
           onEachFeature: onEachFeature,
@@ -182,8 +179,8 @@ function changeMap(name, style) {
 var dorms = {};
 var create_dorms = function() {
   _.each(COPY.dorms, function(dorm) {
-
       var name = dorm['name'];
+
       dorms[name] = {};
 
       if (dorm['dorm_type'] === 'Hall') {
@@ -297,8 +294,8 @@ $('.filter').change(function() {
         $('.dorm-name').removeClass('perfect-fit good-fit bad-fit');
         $('.dorm-name').each(function(i, elem) {
             var name = $(elem).data('fullname');
-            console.log(name);
-            console.log(dorms[name]);
+            // console.log(name);
+            // console.log(dorms[name]);
             // name to match json
             var jsonName = $(elem).attr("value");
 

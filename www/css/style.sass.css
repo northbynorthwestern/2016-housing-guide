@@ -2842,6 +2842,7 @@ td {
   font-size: 0.75em; }
 
 .sponsored-by {
+  width: 150px;
   display: block;
   margin-bottom: 1em; }
   @media (max-width: 980px) {

@@ -74,6 +74,7 @@ def _detail(slug):
         if quote_dorm == dorm_name:
             context['nonres_quotes'].append(quote)
 
+    print context
     return render_template('detail.html', **context)
 
 
@@ -85,7 +86,7 @@ app.register_blueprint(oauth.oauth)
 if app_config.DEBUG:
     wsgi_app = DebuggedApplication(app, evalex=False)
 else:
-    wsgi_app = app
+    wsgi_app = DebuggedApplication(app, evalex=False)
 
 
 if __name__ == '__main__':
