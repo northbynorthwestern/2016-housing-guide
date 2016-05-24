@@ -74,7 +74,6 @@ def _detail(slug):
         if quote_dorm == dorm_name:
             context['nonres_quotes'].append(quote)
 
-    print context
     return render_template('detail.html', **context)
 
 
