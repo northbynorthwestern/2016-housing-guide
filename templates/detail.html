@@ -1,5 +1,11 @@
 {% extends "_base.html" %}
 
+{% block extra_css %}
+<link rel="stylesheet" href="../css/style.sass.css" />
+<link rel="stylesheet" href="/css/style.sass.css" />
+
+{% endblock extra_css %}
+
 {% block header_content %}
 
 <div id="header">
@@ -117,20 +123,22 @@
             {% if dorm.dorm_type == 'Special Interest Housing' %}
               <p class="body-text">Special interest housing</p>
             {% endif %}
-            {% if dorm.social_rating != "FALSE" %}
+            {% if dorm.social_rating %}
             <p class="body-text padding-top">NBN Social Rating: <span class="number">{{dorm.social_rating|float}}</span><span class="sans-serif">/5.0</span></p>
             <p class="small methodology">Unscientifically calculated from an average of about five student responses.</p>
             {% endif %}
           </div>
         </div>
 
-                <div class="padding-top reduced-width">
-                    <h3>What residents say</h3>
-          {% for quote in quotes %}
-                    <p class="body-text quote padding-top">&ldquo;{{ quote.text }}&rdquo;</p>
-            <p class="quote-attr">{{ quote.source }}</p>
-          {% endfor %}
-                </div>
+          {% if quotes %}
+          <div class="padding-top reduced-width">
+            <h3>What residents say</h3>
+            {% for quote in quotes %}
+              <p class="body-text quote padding-top">&ldquo;{{ quote.text }}&rdquo;</p>
+              <p class="quote-attr">{{ quote.source }}</p>
+            {% endfor %}
+          </div>
+          {% endif %}
 
           {% if nonres_quotes %}
                 <div class="padding-top reduced-width">
@@ -156,7 +164,7 @@
             <p class="body-text"><span class="number">{{ dorm.dist_to_rock }}</span> minute walk to the Rock</p>
           </div>
 
-          {% if dorm.social_rating != "FALSE" %}
+          {% if dorm.social_rating %}
           <div class="stats-item">
             <p class="body-text">NBN Social Rating: <span class="number">{{dorm.social_rating|float}}</span><span class="sans-serif"> / 5.0</span></p>
             <p class="small methodology">Unscientifically calculated from an average of about five student responses.</p>

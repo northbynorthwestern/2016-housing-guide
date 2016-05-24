@@ -27,7 +27,7 @@ $(document).ready(function() {
 
   $(".rslides").responsiveSlides();
    $.ajax({
-    url: '/js/shapes.json',
+    url: '../js/shapes.json',
     async: true,
     dataType: 'jsonp',
     jsonp: false,

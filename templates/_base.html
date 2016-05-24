@@ -20,10 +20,12 @@
 
     <link rel="image_src" href="http://media.northbynorthwestern.com.s3.amazonaws.com/uploads/2015/_graphics/housing/nbn-housing-guide-teaser.jpg/"f >
 
-    {{ CSS.push('sass/style.scss') }}
-    {% block extra_css %}{% endblock extra_css %}
-    {{ CSS.render('/css/style.sass.css') }}
-    <link rel="stylesheet" href="/css/style.sass.css" />
+    {# {{ CSS.push('sass/style.scss') }} #}
+    <link rel="stylesheet" href="css/style.sass.css" />
+    {% block extra_css %}
+    {% endblock extra_css %}
+    {# {{ CSS.render('/css/style.sass.css') }} #}
+    {# <link rel="stylesheet" href="/css/style.sass.css" /> #}
 
     <!-- JS -->
     {{ JS.push('js/lib/modernizr.js') }}
@@ -56,7 +58,7 @@
         <p class="credit"><em>Photos by&nbsp;</em>&nbsp;Mia Zanzucchi, Christopher Bayston, Leo Ji, Virginia Nowakowski, Brianna Willis, Audrey DeBruine, Alejandra Fernandez, Missy Chen</p>
       </div><!--
      --><div class="grid__item one-whole lap-and-up-one-quarter">
-        <p class="credit"><em>Videos by&nbsp;</em>&nbsp;Natalie Escobar, Alex Furuya, Abby Igoe, Hyunjee Lee, Nesa Mangal, Samantha Max, Rose McBride, Jacob Meschke, Malloy Moseley, Jon Palmer, Jackie Tang, Sarah Turbin, Nicola Traynor, Mira Wang and Mia Zanzucchi</p>
+        <p class="credit"><em>Videos by&nbsp;</em>&nbsp;Matthew Zhang, Hyunjee Lee, Mia Zanzucchi, Arielle Schwartz, Leo Ji, Rosalie Chan, Margaret Corn, Harrison Simons, Lizzie Philip, Isabella Jiao, Virginia Nowakowski, Nicki Kaplan, Audrey DeBruine, Alejandra Fernandez, Alyssa Morvis, Missy Chen</p>
       </div><!--
      --><div class="grid__item one-whole lap-and-up-one-quarter">
          <p class="credit"><em>Editing by&nbsp;</em>&nbsp;Tanner Howard, Austin Siegel, Morgan Kinney, Alex Duner, Erin Bacon, Petra Barbu</p>

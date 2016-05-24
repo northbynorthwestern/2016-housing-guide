@@ -10,14 +10,6 @@
         </div><!--
      --><div class="grid__item one-whole desk-one-third">
             <div id="search-container">
-      <select id="searchbox" name="" data-placeholder="Select a hall" single class="chosen-select">
-        <option></option>
-        {% for dorm in COPY.dorms %}
-            {% if dorm.short_name != 'short_name' %}
-                <option value="/housing/hall/{{ dorm.slug }}">{{ dorm.short_name }}</option>
-            {% endif %}
-        {% endfor %}
-      </select>
             </div>
         </div>
   <div style="clear: both;"></div>

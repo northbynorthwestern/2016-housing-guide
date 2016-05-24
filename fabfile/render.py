@@ -152,6 +152,8 @@ def render_all():
             compiled_includes = g.compiled_includes
             render_dorms(compiled_includes)
 
+        prepare_dist()
+
         # Write rendered view
         # NB: Flask response object has utf-8 encoded the data
         with open(filename, 'w') as f:
@@ -204,3 +206,13 @@ def render_dorms(compiled_includes):
 
         with open(path, 'w') as f:
             f.write(content.encode('utf-8'))
+
+@task
+def prepare_dist():
+    local('rm -rf dist')
+    local('mkdir dist')
+    local('cp -a www/. dist/')
+    local('cp -a .dorms_html/hall/. dist/hall/')
+    local('cp -a www/css/. dist/hall/css')
+    local('cp -a www/js/. dist/hall/js')
+
