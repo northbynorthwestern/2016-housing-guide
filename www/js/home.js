@@ -233,7 +233,7 @@ var create_dorms = function() {
       dorms[name]['dining'] = parseBoolean(dorm['dining']);
       dorms[name]['freshmen'] = parseBoolean(dorm['freshmen_only']);
       dorms[name]['female'] = parseBoolean(dorm['female_only']);
-      dorms[name]['open_gender'] = parseBoolean(dorm['open_gender']);
+      dorms[name]['opengender'] = parseBoolean(dorm['open_gender']);
   });
   console.log(dorms);
 };

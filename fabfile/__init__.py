@@ -131,16 +131,16 @@ def sass():
         print 'It looks like "sassc" sucks and you suck for using sass'
         raise
 
-@task
-def jst():
-    """
-    Render Underscore templates to a JST package.
-    """
+# @task
+# def jst():
+#     """
+#     Render Underscore templates to a JST package.
+#     """
 
-    try:
-        local('node_modules/bin/jst --template underscore jst www/js/templates.js')
-    except:
-        print 'It looks like "jst" isn\'t installed. Try running: "%s"' % NPM_INSTALL_COMMAND
+#     try:
+#         local('node_modules/bin/jst --template underscore jst www/js/templates.js')
+#     except:
+#         print 'It looks like "jst" isn\'t installed. Try running: "%s"' % NPM_INSTALL_COMMAND
 
 
 @task

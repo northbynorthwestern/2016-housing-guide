@@ -49,14 +49,27 @@ def less():
             raise
 
 @task
-def jst():
-    """
-    Render Underscore templates to a JST package.
-    """
+def sass():
+    path = 'sass/style.scss'
+    out_path = 'www/css/style.sass.css'
+
     try:
-        local('node_modules/universal-jst/bin/jst.js --template underscore jst www/js/templates.js')
-    except:
-        print 'It looks like "jst" isn\'t installed. Try running: "npm install"'
+        local('sass %s %s' % (path, out_path))
+    except Exception, e:
+        print e
+        print 'It looks like "sassc" sucks and you suck for using sass'
+        raise
+
+# @task
+# def jst():
+#     """
+#     Render Underscore templates to a JST package.
+#     """
+#     try:
+#         pass
+#         # local('node_modules/universal-jst/bin/jst.js --template underscore jst www/js/templates.js')
+#     except:
+#         print 'It looks like "jst" isn\'t installed. Try running: "npm install"'
 
 @task
 def app_config_js():
@@ -92,9 +105,10 @@ def render_all():
 
     from flask import g
 
-    less()
-    jst()
-    app_config_js()
+    # less()
+    sass()
+    # jst()
+    # app_config_js()
     copytext_js()
 
     compiled_includes = {}
@@ -136,6 +150,7 @@ def render_all():
             content = view()
 
             compiled_includes = g.compiled_includes
+            render_dorms(compiled_includes)
 
         # Write rendered view
         # NB: Flask response object has utf-8 encoded the data

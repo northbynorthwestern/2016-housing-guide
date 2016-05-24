@@ -6,7 +6,7 @@
     <div class="grid">
         <div class="grid__item one-whole desk-two-thirds float-left">
             <h1><a href="../../"><span class="smaller">The </span>Housing Guide</a></h1>
-            <img class="sponsored-by" src="http://media.northbynorthwestern.com.s3.amazonaws.com/uploads/2016/05/housing_guide/rezessentials-sponsoredby.png">
+            <a href="http://rezessentials.com"><img class="sponsored-by" src="http://media.northbynorthwestern.com.s3.amazonaws.com/uploads/2016/05/housing_guide/rezessentials-sponsoredby.png"></a>
         </div><!--
      --><div class="grid__item one-whole desk-one-third">
             <div id="search-container">
@@ -33,7 +33,7 @@
 
             <div class="ad float-right">
               <p class="small">Advertisement</p>
-              <a href="http://rezessentials.com" target="_blank"><img src="http://media.northbynorthwestern.com.s3.amazonaws.com/uploads/2015/_graphics/housing/resessentials_ad.jpg"></a>
+              <a href="http://rezessentials.com" target="_blank"><img src="http://media.northbynorthwestern.com.s3.amazonaws.com/uploads/2016/05/23/resessentials_ad.png"></a>
             </div>
 
             <div class="header">
@@ -48,10 +48,12 @@
               <h3>Photo</h3>
             </div>
 
+            {% if dorm.video_embed %}
             <div id="video-tab" class="tab float-left">
               <img src="http://nbn-housing.s3.amazonaws.com/static/img/video-icon.png">
               <h3>Video</h3>
             </div>
+            {% endif %}
             <div id="media-container" class="clear reduced-width">
           <div class="rslides_container">
           <ul class="rslides">
